@@ -1,4 +1,6 @@
-const nameofModel = require('./path');
+const User = require('./User');
+const Excercise = require('./Excercise');
+const Workout = require('./Workout');
+// const Order = require('./Order');
 
-
-module.exports = {  };
+module.exports = { User, Excercise, Workout };

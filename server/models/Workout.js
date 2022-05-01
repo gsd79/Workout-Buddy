@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-
+//how to use this in front end?
+//do we need to set up
 const { Schema } = mongoose;
 
 const workOutSchema = new Schema({

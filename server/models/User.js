@@ -16,6 +16,7 @@ const userSchema = new Schema({
     trim: true
   },
   email: {
+    //pull in method for regex on sign up
     type: String,
     required: true,
     unique: true
@@ -33,6 +34,7 @@ userSchema.pre('save', async function(next) {
   if (this.isNew || this.isModified('password')) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
+    //regex for password composition requirements??
   }
 
   next();

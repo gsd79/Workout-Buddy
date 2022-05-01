@@ -4,7 +4,12 @@
   "description": "Final Project Workout Tracker App",
   "main": "server.js",
   "scripts": {
-    "test": "npm run test"
+    "test": "npm run test",
+    "start": "node server/server.js",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
@@ -23,6 +28,7 @@
     "graphql": "^16.4.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.1",
+    "nodemon": "^2.0.16",
     "stripe": "^8.219.0"
   }
 }
