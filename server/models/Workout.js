@@ -1,0 +1,20 @@
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
+
+const workOutSchema = new Schema({
+  workOutType: {
+    type: Date,
+    default: Date.now
+  },
+  products: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Excercise'
+    }
+  ]
+});
+
+const workOut = mongoose.model('workOut', orderSchema);
+
+module.exports = workOut;
