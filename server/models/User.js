@@ -1,50 +1,56 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require("mongoose");
+const bcrypt = require("bcrypt");
 
-const { Schema } = mongoose;
-const bcrypt = require('bcrypt');
-const Workout = require('./Workout');
+// import schema from Workout.js
+const workoutSchema = require("./Workout");
 
-const userSchema = new Schema({
-  firstName: {
-    type: String,
-    required: true,
-    trim: true
+const userSchema = new Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      match: [/.+@.+\..+/, "Must use a valid email address"],
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    // set savedWorkouts to be an array of data that adheres to the workoutSchema
+    savedWorkouts: [workoutSchema],
   },
-  lastName: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  email: {
-    //pull in method for regex on sign up
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    required: true,
-    minlength: 5
-  },
-  workout: [Workoutschema]
-});
+  // set this to use virtual below
+  {
+    toJSON: {
+      virtuals: true,
+    },
+  }
+);
 
-// set up pre-save middleware to create password
-userSchema.pre('save', async function(next) {
-  if (this.isNew || this.isModified('password')) {
+// hash user password
+userSchema.pre("save", async function (next) {
+  if (this.isNew || this.isModified("password")) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
-    //regex for password composition requirements??
   }
 
   next();
 });
 
-// compare the incoming password with the hashed password
-userSchema.methods.isCorrectPassword = async function(password) {
-  return await bcrypt.compare(password, this.password);
+// custom method to compare and validate password for logging in
+userSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
 };
 
-const User = mongoose.model('User', userSchema);
+// when we query a user, we'll also get another field called `workoutCount` with the number of saved workouts we have
+userSchema.virtual("workoutCount").get(function () {
+  return this.savedWorkouts.length;
+});
+const User = model("User", userSchema);
 
 module.exports = User;
