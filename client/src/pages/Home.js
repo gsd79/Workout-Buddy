@@ -1,16 +1,40 @@
-import React from "react";
-import ProductList from "../components/ProductList";
-import CategoryMenu from "../components/CategoryMenu";
-import Cart from "../components/Cart";
+import React, { Component } from "react";
+import { Jumbotron, Container, CardColumns } from "react-bootstrap";
+import pic from "../assets/img/hero/VideoClipPic.png";
 
-const Home = () => {
+export class Home extends Component {
+  render() {
     return (
-        <div className="container">
-            <CategoryMenu />
-            <ProductList />
-            <Cart />
-        </div>
+      <>
+        <Jumbotron class="hero-section">
+          <Container class="hs-slider owl-carousel">
+            <CardColumns
+              class="hs-item set-bg"
+              data-setbg="../src/assets/img/hero/hero-1.jpg"
+            >
+              <img src={pic} />
+
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-6 offset-lg-6">
+                    <div class="hi-text">
+                      <span>Shape your body</span>
+                      <h1>
+                        Be <strong>strong</strong> traning hard
+                      </h1>
+                      <a href="/plans" class="primary-btn">
+                        Get info
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardColumns>
+          </Container>
+        </Jumbotron>
+      </>
     );
-};
+  }
+}
 
 export default Home;

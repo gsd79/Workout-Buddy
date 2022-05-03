@@ -1,11 +1,35 @@
-const db = require('./connection');
-// const {} = require('../models')
+const db = require("./connection");
+const { Workout } = require("../models");
 
-db.once('open', async () => {
-  //what do we want to do here?
-  //workouts
-  //await model.method
+db.once("open", async () => {
+  const workouts = await Workout.insertMany([
+    {
+      bodyPart: "waist",
+      equipment: "body weight",
+      gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0001.gif",
+      workoutId: "0001",
+      name: "3/4 sit-up",
+      target: "abs",
+    },
+    {
+      bodyPart: "waist",
+      equipment: "body weight",
+      gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0002.gif",
+      workoutId: "0002",
+      name: "45° side bend",
+      target: "abs",
+    },
+    {
+      bodyPart: "waist",
+      equipment: "body weight",
+      gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0003.gif",
+      workoutId: "0003",
+      name: "air bike",
+      target: "abs",
+    },
+  ]);
 
-  // process.exit(); 
+  console.log("workouts seeded");
+
+  process.exit();
 });
-
