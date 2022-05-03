@@ -1,19 +1,17 @@
 import React from "react";
 import {
-  Jumbotron,
   Container,
-  CardColumns,
   Card,
   Button,
-} from "react-bootstrap";
+} from "react-bootstrap"; //does not like jumbotron or card column
 import Auth from "../utils/auth";
-import { removeWorkoutId } from "../utils/localStorage";
+// import { removeWorkoutId } from "../utils/localStorage"; no localstorage created yet (will be using indexdb instead)
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_ME } from "../utils/queries";
+import { QUERY_USER } from "../utils/queries";
 import { REMOVE_WORKOUT } from "../utils/mutations";
 
 const SavedWorkouts = () => {
-  const { loading, data } = useQuery(GET_ME);
+  const { loading, data } = useQuery(QUERY_USER);
   const [removeWorkout] = useMutation(REMOVE_WORKOUT);
   const userData = data?.me || {};
 
@@ -30,7 +28,7 @@ const SavedWorkouts = () => {
         variables: { workoutId },
       });
 
-      removeWorkoutId(workoutId);
+      // removeWorkoutId(workoutId);
     } catch (err) {
       console.error(err);
     }
@@ -42,11 +40,11 @@ const SavedWorkouts = () => {
 
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
+      {/* <Jumbotron fluid className="text-light bg-dark"> */}
         <Container>
           <h1>Viewing saved workouts!</h1>
         </Container>
-      </Jumbotron>
+      {/* </Jumbotron> */}
       <Container>
         <h2>
           {userData.savedWorkouts.length
@@ -55,7 +53,8 @@ const SavedWorkouts = () => {
               }:`
             : "You have no saved workouts!"}
         </h2>
-        <CardColumns>
+        {/* <CardColumns> */}
+        <div>
           {userData.savedWorkouts.map((workout) => {
             return (
               <Card key={workout.workoutId} border="dark">
@@ -80,7 +79,8 @@ const SavedWorkouts = () => {
               </Card>
             );
           })}
-        </CardColumns>
+        {/* </CardColumns> */}
+        </div>
       </Container>
     </>
   );

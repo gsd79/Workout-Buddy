@@ -49,3 +49,16 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const REMOVE_WORKOUT = gql`
+  mutation removeWorkout($id: ID!) {
+    removeWorkout(id: $id) {
+      _id
+      username
+      workout {
+        _id
+        username
+      }
+    }
+  }
+`;

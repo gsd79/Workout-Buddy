@@ -1,17 +1,19 @@
 import React, { Component } from "react";
-import { Jumbotron, Container, CardColumns } from "react-bootstrap";
+import { Container } from "react-bootstrap";//does not like jumbotron or card column
 import pic from "../assets/img/hero/VideoClipPic.png";
 
 export class Home extends Component {
   render() {
     return (
       <>
-        <Jumbotron class="hero-section">
+        {/* <Jumbotron class="hero-section"> */}
+        <div>
           <Container class="hs-slider owl-carousel">
-            <CardColumns
+            <div>
+            {/* <CardColumns
               class="hs-item set-bg"
               data-setbg="../src/assets/img/hero/hero-1.jpg"
-            >
+            > */}
               <img src={pic} />
 
               <div class="container">
@@ -29,9 +31,11 @@ export class Home extends Component {
                   </div>
                 </div>
               </div>
-            </CardColumns>
+            </div>
+            {/* </CardColumns> */}
           </Container>
-        </Jumbotron>
+        </div>
+        {/* </Jumbotron> */}
       </>
     );
   }
