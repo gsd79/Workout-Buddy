@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Jumbotron, Nav, Container } from "react-bootstrap";
+import { Nav, Container } from "react-bootstrap"; //Jumbotron is not supported?
 import pic from "../../assets/img/banner-bg.jpg";
 
 export class WorkoutPlan extends Component {
   render() {
     return (
       <>
-        <Jumbotron
+        {/* <Jumbotron
           class="banner-section set-bg"
           data-setbg="./img/banner-bg.jpg"
-        >
+        > */}
+
           <img src={pic} />
           <Container class="container">
             <div class="row">
@@ -48,7 +49,7 @@ export class WorkoutPlan extends Component {
                       <li>Abs</li>
                       <li>Glutes</li>
                       <li>Tricepts</li>
-                      <li>Quats</li>
+                      <li>Quads</li>
                       <li>Upper Back</li>
                     </ul>
                     <a href="#" class="primary-btn plan-btn">
@@ -72,7 +73,7 @@ export class WorkoutPlan extends Component {
                       <li>Abs</li>
                       <li>Glutes</li>
                       <li>Tricepts</li>
-                      <li>Quats</li>
+                      <li>Quads</li>
                       <li>Upper Back</li>
                     </ul>
                     <a href="#" class="primary-btn plan-btn">
@@ -95,7 +96,7 @@ export class WorkoutPlan extends Component {
                       <li>Abs</li>
                       <li>Glutes</li>
                       <li>Tricepts</li>
-                      <li>Quats</li>
+                      <li>Quads</li>
                       <li>Upper Back</li>
                     </ul>
                     <a href="#" class="primary-btn plan-btn">
@@ -109,7 +110,7 @@ export class WorkoutPlan extends Component {
               </div>
             </div>
           </div>
-        </Jumbotron>
+        {/* </Jumbotron> */}
       </>
     );
   }

@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-//TODO: ask Matt or Qing how does this work and what would be important to change
 
 const secret = 'mysecretsshhhhh';
 const expiration = '2h';
