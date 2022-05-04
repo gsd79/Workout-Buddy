@@ -6,7 +6,7 @@ const options = {
   url: 'https://exercisedb.p.rapidapi.com/exercises',
   headers: {
     'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com',
-    'X-RapidAPI-Key': 'ff10634a33msh63cdd6d3c1de158p10082fjsnb42916df5257',
+    'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
     useQueryString: true
   }
 };

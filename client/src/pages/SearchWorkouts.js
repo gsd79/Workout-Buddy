@@ -8,14 +8,19 @@ import {
   Card,
   CardColumns,
 } from "react-bootstrap";
+// figureout imports line 12 
+import { saveWorkOut, searchWorkOut } from "../utils/API";
 import Auth from "../utils/auth";
 import { saveWorkoutIds, getSavedWorkoutIds } from "../utils/localStorage";
 import { useMutation } from "@apollo/client";
 import { SAVE_WORKOUT } from "../utils/mutations";
 
 const SearchWorkouts = () => {
+  //state for holding API data
   const [searchedWorkouts, setSearchedWorkouts] = useState([]);
+  //create state for search input
   const [searchInput, setSearchInput] = useState("");
+  //create state to hold workoutID value
   const [savedWorkoutIds, setSavedWorkoutIds] = useState(getSavedWorkoutIds());
 
   const [saveWorkout] = useMutation(SAVE_WORKOUT);
@@ -32,9 +37,7 @@ const SearchWorkouts = () => {
     }
 
     try {
-      const response = await fetch(
-        `https://wger.de/api/v2/exerciseinfo/?limit=20&offset=20${searchInput}` //<--This is in case we can find a search API instead of using seeds -->
-      );
+      const response = await searchWorkOut(searchInput);
 
       if (!response.ok) {
         throw new Error("Something went wrong!");
@@ -47,7 +50,7 @@ const SearchWorkouts = () => {
         bodyParts: workout.volumeInfo.bodyParts || ["No author to display"],
         name: workout.volumeInfo.name,
         equipment: workout.volumeInfo.equipment,
-        image: workout.volumeInfo.imageLinks?.thumbnail || "",
+        image: workout.volumeInfo.imageLinks?.thumbnail || "", //TODO DO WE NEED THIS LINE?
       }));
 
       setSearchedWorkouts(workoutData);
