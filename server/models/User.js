@@ -23,6 +23,7 @@ const userSchema = new Schema(
     },
     // set savedWorkouts to be an array of data that adheres to the workoutSchema
     savedWorkouts: [workoutSchema],
+    //TODOhydration/nutrition goes here
   },
   // set this to use virtual below
   {
@@ -52,5 +53,6 @@ userSchema.virtual("workoutCount").get(function () {
   return this.savedWorkouts.length;
 });
 const User = model("User", userSchema);
+
 
 module.exports = User;
