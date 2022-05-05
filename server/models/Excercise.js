@@ -1,3 +1,4 @@
+//WORKOUT PLAN?? COLLECTIONS OF WORKOUTS (EASY MEDIUM HARD)
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
