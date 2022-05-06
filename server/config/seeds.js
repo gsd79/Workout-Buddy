@@ -1,34 +1,33 @@
 const db = require("./connection");
-const { Workout, User } = require("../models");
+const { Workout, User, Category } = require("../models");
 
 
 db.once("open", async () => {
+  await Category.deleteMany();
+  const categories = await Category.insertMany([
+    { name: 'Body Weight' }
+  ]);
 
-  // const categories = await Category.insertMany([
-  //   { name: 'Food' },
-  //   { name: 'Household Supplies' },
-  //   { name: 'Electronics' },
-  //   { name: 'Books' },
-  //   { name: 'Toys' }
-  // ]);
-
+  await Workout.deleteMany();
   const workouts = await Workout.insertMany([
       {
-        "bodyPart": "waist",
-        "equipment": "body weight",
-        "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0001.gif",
-        "id": "0001",
-        "name": "3/4 sit-up",
-        "target": "abs"
+        bodyPart: "waist",
+        equipment: categories[0].name,
+        gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0001.gif",
+        id: "0001",
+        name: "3/4 sit-up",
+        target: "abs"
       },
       {
-        "bodyPart": "waist",
-        "equipment": "body weight",
-        "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0002.gif",
-        "id": "0002",
-        "name": "45° side bend",
-        "target": "abs"
+        bodyPart: "waist",
+        equipment: "body weight",
+        gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0002.gif",
+        id: "0002",
+        name: "45° side bend",
+        target: "abs"
       },
+
+      
     ]);
 //       {
 //         "bodyPart": "waist",
@@ -10635,15 +10634,22 @@ db.once("open", async () => {
   // console.log("workouts seeded");
 
   await User.deleteMany ();
-
-  await User.create({
+ 
+  const users = await User.create({
     username: 'gymbro1990',
     email: 'gymrat@testmail.com',
     password: 'password12345',
-    savedWorkouts: [0]
+    workouts: [
+      {
+        workouts: [workouts[0]._id]
+      }
+    ]
   });
 
  console.log('user seeded');
+ console.log(users)
+ console.log(workouts);
+ console.log(categories);
   process.exit();
 });
 
