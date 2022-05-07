@@ -1,31 +1,16 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require('mongoose');
 
-// This is a subdocument schema, it won't become its own model but we'll use it as the schema for the User's `savedWorkouts` array in User.js
+const { Schema } = mongoose;
+
 const workoutSchema = new Schema({
-  bodyPart: {
-    type: String,
-  },
-
-  equipment: {
-    type: String,
-    required: true,
-  },
-  gifUrl: {
-    type: String,
-  },
-  // saved workout id from workouts
-  id: {
-    type: String,
-    required: true,
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  target: {
-    type: String,
-  },
+  workouts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Workout'
+    }
+  ]
 });
-const Workout = model("Workout", workoutSchema);
+
+const Workout = mongoose.model('Workout', workoutSchema);
 
 module.exports = Workout;

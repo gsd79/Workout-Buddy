@@ -51,7 +51,7 @@ userSchema.methods.isCorrectPassword = async function (password) {
 userSchema.virtual("workoutCount").get(function () {
   return this.savedWorkouts.length;
 });
-const User = model("User", userSchema);
+const User = mongoose.model("User", userSchema);
 
 
 module.exports = User;

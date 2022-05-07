@@ -20,7 +20,7 @@ db.once("open", async () => {
       },
       {
         bodyPart: "waist",
-        equipment: "body weight",
+        equipment: categories[0].name,
         gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0002.gif",
         id: "0002",
         name: "45° side bend",
