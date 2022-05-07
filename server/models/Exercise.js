@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { Schema } = require("mongoose");
+const { Schema } = mongoose;
 
 // This is a subdocument schema, it won't become its own model but we'll use it as the schema for the User's `savedWorkouts` array in User.js
 const exerciseSchema = new Schema({
@@ -9,7 +9,7 @@ const exerciseSchema = new Schema({
 
   equipment: {
     type: String,
-    required: true,
+    
   },
   gifUrl: {
     type: String,
@@ -17,11 +17,11 @@ const exerciseSchema = new Schema({
   // could maybe use this as filter 
   id: {
     type: String,
-    required: true,
+    
   },
   name: {
     type: String,
-    required: true,
+    
   },
   target: {
     type: String,

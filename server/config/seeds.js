@@ -1,30 +1,32 @@
 const db = require("./connection");
-const { Workout, User, Category } = require("../models");
+const { Exercise, User, Category } = require("../models");
 
 
 db.once("open", async () => {
   await Category.deleteMany();
   const categories = await Category.insertMany([
-    { name: 'Body Weight' }
+    { name: 'body weight' }
   ]);
 
-  await Workout.deleteMany();
-  const workouts = await Workout.insertMany([
+  await Exercise.deleteMany();
+  const workouts = await Exercise.insertMany([
       {
         bodyPart: "waist",
-        equipment: categories[0].name,
+        equipment: "body weight",
         gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0001.gif",
         id: "0001",
         name: "3/4 sit-up",
-        target: "abs"
+        target: "abs",
+        category: categories[0]._id,
       },
       {
         bodyPart: "waist",
-        equipment: categories[0].name,
+        equipment: "body weight",
         gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0002.gif",
         id: "0002",
         name: "45° side bend",
-        target: "abs"
+        target: "abs",
+        category: categories[0]._id,
       },
 
       
@@ -10641,7 +10643,7 @@ db.once("open", async () => {
     password: 'password12345',
     workouts: [
       {
-        workouts: [workouts[0]._id]
+        exercises: [workouts[0]._id]
       }
     ]
   });

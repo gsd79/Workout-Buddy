@@ -1,13 +1,8 @@
-// const { Schema, model } = require("mongoose");
-// const bcrypt = require("bcrypt");
-
-// // import schema from Workout.js
-// const workoutSchema = require("./Workout");
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const Workout = require('./Workout');
+const Exercise = require('./Exercise');
 
 const userSchema = new Schema(
   {
@@ -27,7 +22,7 @@ const userSchema = new Schema(
       required: true,
     },
     // set savedWorkouts to be an array of data that adheres to the workoutSchema
-    workouts: [Workout.Schema],
+    workouts: [Exercise.schema],
     //TODOhydration/nutrition goes here
   },
 );

@@ -16,7 +16,7 @@ const typeDefs = gql`
   }
 
   type Workout {
-    workouts: [Workout]
+    workouts: [Exercise]
   }
 
   type User {
