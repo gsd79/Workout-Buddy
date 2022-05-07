@@ -1,41 +1,49 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-  type Query {
-    me: User
+  type Category {
+    _id: ID
+    name: String
   }
-  type Mutation {
-    login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
-    saveWorkout(workoutWorkout: InputWorkout!): User
-    removeWorkout(workoutId: ID!): User
+
+  type Exercise {
+ bodyPart: String
+ equipment: String 
+ gifUrl: String
+ id: String 
+ name: String  
+ target: String 
+ _id: ID
   }
-  type User {
-    _id: ID!
-    username: String!
-    email: String!
-    workoutCount: Int
-    savedWorkouts: [Workout]
-  }
+
   type Workout {
-    bodyPart: String!
-    equipment: String!
-    gifUrl: String!
-    id: String!
-    name: String!
-    target: String!
+    workouts: [Exercise]
   }
-  input InputWorkout {
-    bodyPart: String!
-    equipment: String!
-    gifUrl: String!
-    id: String!
-    name: String!
-    target: String!
+
+  type User {
+    _id: ID
+   username: String  
+   email: String
+   password: String
+   savedworkouts: [Workout]
   }
+
   type Auth {
-    token: ID!
+    token: ID
     user: User
+  }
+
+  type Query {
+    categories: [Category]
+    workouts(category: ID, name: String): [Workout]
+    workouts(_id: ID!): Workout
+    user: User
+  }
+
+  type Mutation {
+    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    saveWorkout(workouts: [ID]!): Workout
+    login(email: String!, password: String!): Auth
   }
 `;
 
