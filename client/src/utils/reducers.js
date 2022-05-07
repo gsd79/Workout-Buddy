@@ -1,83 +1,110 @@
+// TODO: ASK ABOUT HOW TO ORGANIZE REDUCERS
+
 import { useReducer } from "react";
 import {
-  
- 
+  UPDATE_USER, 
+  ADD_WORKOUT, 
+  ADD_REPS, 
+  REMOVE_WORKOUT, 
+  ADD_CALORIES,
+  REMOVE_CALORIES, 
+  ADD_WATER,
+  REMOVE_WATER, 
+  REMOVE_ALL, 
+  TOGGLE_PROGRESS
 } from "./actions";
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    case UPDATE_USER:
+      case UPDATE_USER:
       return {
         ...state,
         user: [...action.user],
       };
 
-    case ADD_TO_CART:
+    case ADD_WORKOUT:
       return {
         ...state,
-        cartOpen: true,
-        cart: [...state.cart, action.product],
+        progressOpen: true,
+        progress: [...state.progress, action.workout],
       };
 
-    case ADD_MULTIPLE_TO_CART:
+    case ADD_REPS:
       return {
         ...state,
-        cart: [...state.cart, ...action.products],
-      };
-
-    case UPDATE_CART_QUANTITY:
-      return {
-        ...state,
-        cartOpen: true,
-        cart: state.cart.map(product => {
-          if (action._id === product._id) {
-            product.purchaseQuantity = action.purchaseQuantity
+        progressOpen: true,
+        progress: state.progress.map(workout => {
+          if (action._id === workout._id) {
+            workout.repAmt = action.repAmt
           }
-          return product
+          return workout
         })
       };
 
-    case REMOVE_FROM_CART:
-      let newState = state.cart.filter(product => {
-        return product._id !== action._id;
-      });
+    // case REMOVE_WORKOUT:
+    //   let newState = state.progress.filter(workout => {
+    //     return workout._id !== action._id;
+    //   });
 
       return {
         ...state,
-        cartOpen: newState.length > 0,
+        progressOpen: newState.length > 0,
         cart: newState
       };
 
-    case CLEAR_CART:
+      case ADD_CALORIES:
+        return {
+          ...state,
+          progressOpen: true,
+          progress: [...state.progress, action.calories],
+        };  
+
+      // case REMOVE_CALORIES:
+      //   let newState = state.progress.filter(calories => {
+      //     return calories._id !== action._id;
+      //   });
+      //   return {
+      //     ...state,
+      //     progressOpen: newState.length > 0,
+      //     cart: newState
+      //   };    
+
+      case ADD_WATER:
+        return {
+          ...state,
+          progressOpen: true,
+          progress: [...state.progress, action.water],
+        };  
+
+      case REMOVE_WATER:
+        let newState = state.progress.filter(water => {
+          return water._id !== action._id;
+        });
+        return {
+          ...state,
+          progressOpen: newState.length > 0,
+          cart: newState
+        };    
+
+    case REMOVE_ALL:
       return {
         ...state,
-        cartOpen: false,
-        cart: []
+        progressOpen: false,
+        progress: []
       };
 
-    case TOGGLE_CART:
+    case TOGGLE_PROGRESS:
       return {
         ...state,
-        cartOpen: !state.cartOpen
+        progressOpen: !state.progressOpen
       };
 
-    case UPDATE_CATEGORIES:
-      return {
-        ...state,
-        categories: [...action.categories],
-      };
-
-    case UPDATE_CURRENT_CATEGORY:
-      return {
-        ...state,
-        currentCategory: action.currentCategory
-      }
-
+    
     default:
       return state;
   }
 };
 
-export function useProductReducer(initialState) {
+export function useProgressReducer(initialState) {
   return useReducer(reducer, initialState)
 }

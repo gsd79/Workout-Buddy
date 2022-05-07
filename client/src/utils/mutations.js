@@ -31,17 +31,25 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_WORKOUT = gql`
-mutation addWorkout($user: [ID]!) {
-  addOrder(products: $products) {
-      purchaseDate
-      products {
-        _id
-        username
-      }
-    }
-  }
-`;
+// export const ADD_WORKOUT = gql`
+// mutation addWorkout($progress: [ID]!) {
+//   addWorkout(workouts: $workout) {
+//       difficulty
+//       muscle groups
+//       _id
+//     }
+//   }
+// `;
+
+// export const ADD_WORKOUT = gql`
+// mutation addWorkout($progress: [ID]!) {
+//   addWorkout(workouts: $workout) {
+//       difficulty
+//       muscle groups
+//       _id
+//     }
+//   }
+// `;
 
 
 export const REMOVE_WORKOUT = gql`

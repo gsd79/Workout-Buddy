@@ -10,14 +10,13 @@ import { reducer } from '../utils/reducers';
 // sample test of global state
 
 const initialState ={
-    workoutPlan: [],
-    workouts: [{deadlift}]
+    workouts: []
 }
 
 
-test('UPDATE_WORKOUTPLAN', () => {
+test('UPDATE_WORKOUTS', () => {
     let newState = reducer(initialState, {
-        type: 'UPDATE_WORKOUTPLAN',
+        type: 'UPDATE_WORKOUTS',
         workouts: [{}, {}]
     })
     
