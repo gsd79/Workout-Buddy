@@ -9,7 +9,11 @@
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^4.4.1",
+<<<<<<< HEAD
     "graphql": "^16.4.0",
+=======
+    "graphql": "^16.3.0",
+>>>>>>> 2f4e5bd3ced885819e02a615951d38adc4f2bfe5
     "graphql-tag": "^2.12.6",
     "jwt-decode": "^3.1.2",
     "react": "^16.13.1",
