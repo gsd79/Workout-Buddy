@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const Exercise = require('./Exercise');
+const Workout = require('./Workout');
 
 const userSchema = new Schema(
   {
@@ -22,7 +22,7 @@ const userSchema = new Schema(
       required: true,
     },
     // set savedWorkouts to be an array of data that adheres to the workoutSchema
-    workouts: [Exercise.schema],
+    workouts: [Workout.schema],
     //TODOhydration/nutrition goes here
   },
 );
