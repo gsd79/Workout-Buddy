@@ -1,8 +1,6 @@
-const { Schema, model } = require("mongoose");
-const bcrypt = require("bcrypt");
-
-// import schema from Workout.js
-const workoutSchema = require("./Workout");
+const { Schema, model } = require('mongoose');
+const bcrypt = require('bcrypt');
+const Workout = require('./Workout');
 
 const userSchema = new Schema(
   {
@@ -22,14 +20,14 @@ const userSchema = new Schema(
       required: true,
     },
     // set savedWorkouts to be an array of data that adheres to the workoutSchema
-    savedWorkouts: [workoutSchema],
+    workouts: [Workout.schema],
     //TODOhydration/nutrition goes here
   },
-  // set this to use virtual below
+
   {
     toJSON: {
-      virtuals: true,
-    },
+      virtuals: true
+    }
   }
 );
 

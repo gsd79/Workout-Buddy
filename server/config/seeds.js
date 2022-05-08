@@ -1,37 +1,47 @@
 const db = require("./connection");
-const { Workout, User } = require("../models");
+const { Exercise, User, Category } = require("../models");
 
 
 db.once("open", async () => {
+  await Category.deleteMany();
+  const categories = await Category.insertMany([
+    { name: 'waist' },
+    { name: 'upper legs' },
+    { name: 'back' },
+    { name: 'lower legs' },
+    { name: 'chest' },
+    { name: 'shoulder' },
+    { name: 'upper arms' },
+    { name: 'lower arms' },
+    { name: 'cardio' },
+    
+  ]);
 
-  // const categories = await Category.insertMany([
-  //   { name: 'Food' },
-  //   { name: 'Household Supplies' },
-  //   { name: 'Electronics' },
-  //   { name: 'Books' },
-  //   { name: 'Toys' }
-  // ]);
-
-  const workouts = await Workout.insertMany([
+  await Exercise.deleteMany();
+  const workouts = await Exercise.insertMany([
       {
-        "bodyPart": "waist",
-        "equipment": "body weight",
-        "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0001.gif",
-        "id": "0001",
-        "name": "3/4 sit-up",
-        "target": "abs"
+        bodyPart: categories[0]._id,
+        equipment: "body weight",
+        gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0001.gif",
+        id: "0001",
+        name: "3/4 sit-up",
+        target: "abs",
+        
       },
       {
-        "bodyPart": "waist",
-        "equipment": "body weight",
-        "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0002.gif",
-        "id": "0002",
-        "name": "45° side bend",
-        "target": "abs"
+        bodyPart: categories[0]._id,
+        equipment: "body weight",
+        gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0002.gif",
+        id: "0002",
+        name: "45° side bend",
+        target: "abs",
+        
       },
+
+      
     ]);
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0003.gif",
 //         "id": "0003",
@@ -39,7 +49,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1512.gif",
 //         "id": "1512",
@@ -47,7 +57,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0006.gif",
 //         "id": "0006",
@@ -55,7 +65,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0007.gif",
 //         "id": "0007",
@@ -63,7 +73,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1368.gif",
 //         "id": "1368",
@@ -71,7 +81,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3293.gif",
 //         "id": "3293",
@@ -79,7 +89,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3294.gif",
 //         "id": "3294",
@@ -87,7 +97,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2355.gif",
 //         "id": "2355",
@@ -95,7 +105,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2333.gif",
 //         "id": "2333",
@@ -103,7 +113,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3214.gif",
 //         "id": "3214",
@@ -111,7 +121,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3204.gif",
 //         "id": "3204",
@@ -119,15 +129,15 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0009.gif",
 //         "id": "0009",
-//         "name": "assisted chest dip (kneeling)",
+//         "name": "assisted categories[4]._id dip (kneeling)",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "assisted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0011.gif",
 //         "id": "0011",
@@ -135,7 +145,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "assisted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0010.gif",
 //         "id": "0010",
@@ -143,7 +153,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "assisted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1708.gif",
 //         "id": "1708",
@@ -151,7 +161,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "assisted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1709.gif",
 //         "id": "1709",
@@ -159,7 +169,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "assisted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1710.gif",
 //         "id": "1710",
@@ -167,7 +177,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "assisted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0012.gif",
 //         "id": "0012",
@@ -175,7 +185,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "assisted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0013.gif",
 //         "id": "0013",
@@ -183,7 +193,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "medicine ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0014.gif",
 //         "id": "0014",
@@ -191,7 +201,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0015.gif",
 //         "id": "0015",
@@ -199,7 +209,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "assisted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0016.gif",
 //         "id": "0016",
@@ -207,7 +217,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "assisted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1713.gif",
 //         "id": "1713",
@@ -215,7 +225,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "assisted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1714.gif",
 //         "id": "1714",
@@ -223,7 +233,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0017.gif",
 //         "id": "0017",
@@ -231,7 +241,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "assisted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1716.gif",
 //         "id": "1716",
@@ -239,7 +249,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "assisted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1712.gif",
 //         "id": "1712",
@@ -247,7 +257,7 @@ db.once("open", async () => {
 //         "target": "adductors"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "assisted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1758.gif",
 //         "id": "1758",
@@ -255,7 +265,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1431.gif",
 //         "id": "1431",
@@ -263,7 +273,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1432.gif",
 //         "id": "1432",
@@ -271,7 +281,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "assisted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0018.gif",
 //         "id": "0018",
@@ -279,7 +289,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0019.gif",
 //         "id": "0019",
@@ -287,63 +297,63 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2364.gif",
 //         "id": "2364",
-//         "name": "assisted wide-grip chest dip (kneeling)",
+//         "name": "assisted wide-grip categories[4]._id dip (kneeling)",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3220.gif",
 //         "id": "3220",
 //         "name": "astride jumps (male)",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3672.gif",
 //         "id": "3672",
-//         "name": "back and forth step",
-//         "target": "cardiovascular system"
+//         "name": "categories[2]._id and forth step",
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1314.gif",
 //         "id": "1314",
-//         "name": "back extension on exercise ball",
+//         "name": "categories[2]._id extension on exercise ball",
 //         "target": "spine"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3297.gif",
 //         "id": "3297",
-//         "name": "back lever",
-//         "target": "upper back"
+//         "name": "categories[2]._id lever",
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1405.gif",
 //         "id": "1405",
-//         "name": "back pec stretch",
+//         "name": "categories[2]._id pec stretch",
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1473.gif",
 //         "id": "1473",
-//         "name": "backward jump",
+//         "name": "categories[2]._idward jump",
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0020.gif",
 //         "id": "0020",
@@ -351,7 +361,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0968.gif",
 //         "id": "0968",
@@ -359,7 +369,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0969.gif",
 //         "id": "0969",
@@ -367,7 +377,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0970.gif",
 //         "id": "0970",
@@ -375,7 +385,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0971.gif",
 //         "id": "0971",
@@ -383,7 +393,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1254.gif",
 //         "id": "1254",
@@ -391,7 +401,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0980.gif",
 //         "id": "0980",
@@ -399,7 +409,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0972.gif",
 //         "id": "0972",
@@ -407,7 +417,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0974.gif",
 //         "id": "0974",
@@ -415,7 +425,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0975.gif",
 //         "id": "0975",
@@ -423,7 +433,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0976.gif",
 //         "id": "0976",
@@ -431,23 +441,23 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3117.gif",
 //         "id": "3117",
-//         "name": "band fixed back close grip pulldown",
+//         "name": "band fixed categories[2]._id close grip pulldown",
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3116.gif",
 //         "id": "3116",
-//         "name": "band fixed back underhand pulldown",
+//         "name": "band fixed categories[2]._id underhand pulldown",
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0977.gif",
 //         "id": "0977",
@@ -455,7 +465,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0978.gif",
 //         "id": "0978",
@@ -463,7 +473,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1408.gif",
 //         "id": "1408",
@@ -471,7 +481,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0979.gif",
 //         "id": "0979",
@@ -479,7 +489,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0981.gif",
 //         "id": "0981",
@@ -487,7 +497,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0983.gif",
 //         "id": "0983",
@@ -495,7 +505,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0985.gif",
 //         "id": "0985",
@@ -503,7 +513,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0984.gif",
 //         "id": "0984",
@@ -511,7 +521,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1002.gif",
 //         "id": "1002",
@@ -519,7 +529,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0986.gif",
 //         "id": "0986",
@@ -527,7 +537,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0987.gif",
 //         "id": "0987",
@@ -535,31 +545,31 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0988.gif",
 //         "id": "0988",
 //         "name": "band one arm standing low row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0989.gif",
 //         "id": "0989",
-//         "name": "band one arm twisting chest press",
+//         "name": "band one arm twisting categories[4]._id press",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0990.gif",
 //         "id": "0990",
 //         "name": "band one arm twisting seated row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0991.gif",
 //         "id": "0991",
@@ -567,7 +577,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0992.gif",
 //         "id": "0992",
@@ -575,7 +585,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0993.gif",
 //         "id": "0993",
@@ -583,7 +593,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0994.gif",
 //         "id": "0994",
@@ -591,7 +601,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0996.gif",
 //         "id": "0996",
@@ -599,7 +609,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1011.gif",
 //         "id": "1011",
@@ -607,15 +617,15 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0997.gif",
 //         "id": "0997",
-//         "name": "band shoulder press",
+//         "name": "band categories[5]._id press",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1018.gif",
 //         "id": "1018",
@@ -623,7 +633,7 @@ db.once("open", async () => {
 //         "target": "traps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0998.gif",
 //         "id": "0998",
@@ -631,7 +641,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0999.gif",
 //         "id": "0999",
@@ -639,7 +649,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1000.gif",
 //         "id": "1000",
@@ -647,7 +657,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1001.gif",
 //         "id": "1001",
@@ -655,7 +665,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1004.gif",
 //         "id": "1004",
@@ -663,7 +673,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1003.gif",
 //         "id": "1003",
@@ -671,7 +681,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1005.gif",
 //         "id": "1005",
@@ -679,7 +689,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1022.gif",
 //         "id": "1022",
@@ -687,7 +697,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1007.gif",
 //         "id": "1007",
@@ -695,7 +705,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1008.gif",
 //         "id": "1008",
@@ -703,7 +713,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1009.gif",
 //         "id": "1009",
@@ -711,15 +721,15 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1023.gif",
 //         "id": "1023",
-//         "name": "band straight back stiff leg deadlift",
+//         "name": "band straight categories[2]._id stiff leg deadlift",
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1010.gif",
 //         "id": "1010",
@@ -727,7 +737,7 @@ db.once("open", async () => {
 //         "target": "spine"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1012.gif",
 //         "id": "1012",
@@ -735,7 +745,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1369.gif",
 //         "id": "1369",
@@ -743,7 +753,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1013.gif",
 //         "id": "1013",
@@ -751,7 +761,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1014.gif",
 //         "id": "1014",
@@ -759,7 +769,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1015.gif",
 //         "id": "1015",
@@ -767,7 +777,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1016.gif",
 //         "id": "1016",
@@ -775,7 +785,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1017.gif",
 //         "id": "1017",
@@ -783,7 +793,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0023.gif",
 //         "id": "0023",
@@ -791,7 +801,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0024.gif",
 //         "id": "0024",
@@ -799,7 +809,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0025.gif",
 //         "id": "0025",
@@ -807,7 +817,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0026.gif",
 //         "id": "0026",
@@ -815,7 +825,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1316.gif",
 //         "id": "1316",
@@ -823,15 +833,15 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0027.gif",
 //         "id": "0027",
 //         "name": "barbell bent over row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2407.gif",
 //         "id": "2407",
@@ -839,7 +849,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0028.gif",
 //         "id": "0028",
@@ -847,7 +857,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0029.gif",
 //         "id": "0029",
@@ -855,7 +865,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0030.gif",
 //         "id": "0030",
@@ -863,7 +873,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0031.gif",
 //         "id": "0031",
@@ -871,7 +881,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0032.gif",
 //         "id": "0032",
@@ -879,7 +889,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0033.gif",
 //         "id": "0033",
@@ -887,7 +897,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0034.gif",
 //         "id": "0034",
@@ -895,7 +905,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0035.gif",
 //         "id": "0035",
@@ -903,7 +913,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1255.gif",
 //         "id": "1255",
@@ -911,7 +921,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0036.gif",
 //         "id": "0036",
@@ -919,7 +929,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0037.gif",
 //         "id": "0037",
@@ -927,7 +937,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0038.gif",
 //         "id": "0038",
@@ -935,7 +945,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1370.gif",
 //         "id": "1370",
@@ -943,15 +953,15 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0039.gif",
 //         "id": "0039",
-//         "name": "barbell front chest squat",
+//         "name": "barbell front categories[4]._id squat",
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0041.gif",
 //         "id": "0041",
@@ -959,7 +969,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0040.gif",
 //         "id": "0040",
@@ -967,7 +977,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0042.gif",
 //         "id": "0042",
@@ -975,7 +985,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0043.gif",
 //         "id": "0043",
@@ -983,15 +993,15 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1461.gif",
 //         "id": "1461",
-//         "name": "barbell full squat (back pov)",
+//         "name": "barbell full squat (categories[2]._id pov)",
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1462.gif",
 //         "id": "1462",
@@ -999,7 +1009,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1545.gif",
 //         "id": "1545",
@@ -1007,7 +1017,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1409.gif",
 //         "id": "1409",
@@ -1015,7 +1025,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3562.gif",
 //         "id": "3562",
@@ -1023,7 +1033,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0044.gif",
 //         "id": "0044",
@@ -1031,7 +1041,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0045.gif",
 //         "id": "0045",
@@ -1039,7 +1049,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0046.gif",
 //         "id": "0046",
@@ -1047,7 +1057,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1436.gif",
 //         "id": "1436",
@@ -1055,7 +1065,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0047.gif",
 //         "id": "0047",
@@ -1063,7 +1073,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1719.gif",
 //         "id": "1719",
@@ -1071,7 +1081,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0048.gif",
 //         "id": "0048",
@@ -1079,23 +1089,23 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0049.gif",
 //         "id": "0049",
 //         "name": "barbell incline row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0050.gif",
 //         "id": "0050",
-//         "name": "barbell incline shoulder raise",
+//         "name": "barbell incline categories[5]._id raise",
 //         "target": "serratus anterior"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0051.gif",
 //         "id": "0051",
@@ -1103,7 +1113,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0052.gif",
 //         "id": "0052",
@@ -1111,7 +1121,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0053.gif",
 //         "id": "0053",
@@ -1119,7 +1129,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1410.gif",
 //         "id": "1410",
@@ -1127,7 +1137,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1435.gif",
 //         "id": "1435",
@@ -1135,7 +1145,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0054.gif",
 //         "id": "0054",
@@ -1143,15 +1153,15 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1720.gif",
 //         "id": "1720",
-//         "name": "barbell lying back of the head tricep extension",
+//         "name": "barbell lying categories[2]._id of the head tricep extension",
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0055.gif",
 //         "id": "0055",
@@ -1159,7 +1169,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0056.gif",
 //         "id": "0056",
@@ -1167,7 +1177,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0057.gif",
 //         "id": "0057",
@@ -1175,7 +1185,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0058.gif",
 //         "id": "0058",
@@ -1183,7 +1193,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0059.gif",
 //         "id": "0059",
@@ -1191,7 +1201,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0061.gif",
 //         "id": "0061",
@@ -1199,7 +1209,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0060.gif",
 //         "id": "0060",
@@ -1207,7 +1217,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0063.gif",
 //         "id": "0063",
@@ -1215,15 +1225,15 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0064.gif",
 //         "id": "0064",
 //         "name": "barbell one arm bent over row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0065.gif",
 //         "id": "0065",
@@ -1231,7 +1241,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0066.gif",
 //         "id": "0066",
@@ -1239,7 +1249,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0067.gif",
 //         "id": "0067",
@@ -1247,7 +1257,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0068.gif",
 //         "id": "0068",
@@ -1255,7 +1265,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0069.gif",
 //         "id": "0069",
@@ -1263,7 +1273,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1411.gif",
 //         "id": "1411",
@@ -1271,7 +1281,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1412.gif",
 //         "id": "1412",
@@ -1279,15 +1289,15 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3017.gif",
 //         "id": "3017",
 //         "name": "barbell pendlay row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1751.gif",
 //         "id": "1751",
@@ -1295,7 +1305,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0070.gif",
 //         "id": "0070",
@@ -1303,7 +1313,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0071.gif",
 //         "id": "0071",
@@ -1311,7 +1321,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0072.gif",
 //         "id": "0072",
@@ -1319,7 +1329,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0073.gif",
 //         "id": "0073",
@@ -1327,7 +1337,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0022.gif",
 //         "id": "0022",
@@ -1335,7 +1345,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0074.gif",
 //         "id": "0074",
@@ -1343,7 +1353,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0075.gif",
 //         "id": "0075",
@@ -1351,7 +1361,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0076.gif",
 //         "id": "0076",
@@ -1359,7 +1369,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0078.gif",
 //         "id": "0078",
@@ -1367,7 +1377,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0077.gif",
 //         "id": "0077",
@@ -1375,7 +1385,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0079.gif",
 //         "id": "0079",
@@ -1383,7 +1393,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2187.gif",
 //         "id": "2187",
@@ -1391,7 +1401,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0080.gif",
 //         "id": "0080",
@@ -1399,15 +1409,15 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0118.gif",
 //         "id": "0118",
 //         "name": "barbell reverse grip bent over row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1256.gif",
 //         "id": "1256",
@@ -1415,7 +1425,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1257.gif",
 //         "id": "1257",
@@ -1423,15 +1433,15 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1317.gif",
 //         "id": "1317",
 //         "name": "barbell reverse grip incline bench row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1721.gif",
 //         "id": "1721",
@@ -1439,7 +1449,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0081.gif",
 //         "id": "0081",
@@ -1447,7 +1457,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0082.gif",
 //         "id": "0082",
@@ -1455,7 +1465,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0084.gif",
 //         "id": "0084",
@@ -1463,7 +1473,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0083.gif",
 //         "id": "0083",
@@ -1471,7 +1481,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0085.gif",
 //         "id": "0085",
@@ -1479,7 +1489,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0086.gif",
 //         "id": "0086",
@@ -1487,7 +1497,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0087.gif",
 //         "id": "0087",
@@ -1495,7 +1505,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0088.gif",
 //         "id": "0088",
@@ -1503,7 +1513,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1371.gif",
 //         "id": "1371",
@@ -1511,7 +1521,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1718.gif",
 //         "id": "1718",
@@ -1519,7 +1529,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0089.gif",
 //         "id": "0089",
@@ -1527,7 +1537,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0090.gif",
 //         "id": "0090",
@@ -1535,7 +1545,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0091.gif",
 //         "id": "0091",
@@ -1543,7 +1553,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0092.gif",
 //         "id": "0092",
@@ -1551,7 +1561,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0094.gif",
 //         "id": "0094",
@@ -1559,7 +1569,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0095.gif",
 //         "id": "0095",
@@ -1567,7 +1577,7 @@ db.once("open", async () => {
 //         "target": "traps"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0096.gif",
 //         "id": "0096",
@@ -1575,7 +1585,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0098.gif",
 //         "id": "0098",
@@ -1583,7 +1593,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0097.gif",
 //         "id": "0097",
@@ -1591,7 +1601,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1756.gif",
 //         "id": "1756",
@@ -1599,7 +1609,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0099.gif",
 //         "id": "0099",
@@ -1607,7 +1617,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2799.gif",
 //         "id": "2799",
@@ -1615,7 +1625,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2800.gif",
 //         "id": "2800",
@@ -1623,7 +1633,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0100.gif",
 //         "id": "0100",
@@ -1631,7 +1641,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0101.gif",
 //         "id": "0101",
@@ -1639,7 +1649,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2810.gif",
 //         "id": "2810",
@@ -1647,7 +1657,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0102.gif",
 //         "id": "0102",
@@ -1655,7 +1665,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2798.gif",
 //         "id": "2798",
@@ -1663,7 +1673,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0103.gif",
 //         "id": "0103",
@@ -1671,15 +1681,15 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0104.gif",
 //         "id": "0104",
-//         "name": "barbell standing back wrist curl",
+//         "name": "barbell standing categories[2]._id wrist curl",
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0105.gif",
 //         "id": "0105",
@@ -1687,7 +1697,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1372.gif",
 //         "id": "1372",
@@ -1695,7 +1705,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0106.gif",
 //         "id": "0106",
@@ -1703,7 +1713,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1456.gif",
 //         "id": "1456",
@@ -1711,7 +1721,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2414.gif",
 //         "id": "2414",
@@ -1719,7 +1729,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0107.gif",
 //         "id": "0107",
@@ -1727,7 +1737,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0108.gif",
 //         "id": "0108",
@@ -1735,7 +1745,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0109.gif",
 //         "id": "0109",
@@ -1743,7 +1753,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0110.gif",
 //         "id": "0110",
@@ -1751,7 +1761,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0111.gif",
 //         "id": "0111",
@@ -1759,7 +1769,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0112.gif",
 //         "id": "0112",
@@ -1767,7 +1777,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1629.gif",
 //         "id": "1629",
@@ -1775,7 +1785,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1457.gif",
 //         "id": "1457",
@@ -1783,7 +1793,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0113.gif",
 //         "id": "0113",
@@ -1791,7 +1801,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0114.gif",
 //         "id": "0114",
@@ -1799,7 +1809,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0115.gif",
 //         "id": "0115",
@@ -1807,7 +1817,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0116.gif",
 //         "id": "0116",
@@ -1815,7 +1825,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0117.gif",
 //         "id": "0117",
@@ -1823,7 +1833,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3305.gif",
 //         "id": "3305",
@@ -1831,7 +1841,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0120.gif",
 //         "id": "0120",
@@ -1839,7 +1849,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0119.gif",
 //         "id": "0119",
@@ -1847,7 +1857,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0121.gif",
 //         "id": "0121",
@@ -1855,7 +1865,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0122.gif",
 //         "id": "0122",
@@ -1863,7 +1873,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1258.gif",
 //         "id": "1258",
@@ -1871,7 +1881,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0124.gif",
 //         "id": "0124",
@@ -1879,7 +1889,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0123.gif",
 //         "id": "0123",
@@ -1887,7 +1897,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0126.gif",
 //         "id": "0126",
@@ -1895,7 +1905,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0125.gif",
 //         "id": "0125",
@@ -1903,7 +1913,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0127.gif",
 //         "id": "0127",
@@ -1911,7 +1921,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3212.gif",
 //         "id": "3212",
@@ -1919,7 +1929,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "rope",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0128.gif",
 //         "id": "0128",
@@ -1927,23 +1937,23 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3360.gif",
 //         "id": "3360",
 //         "name": "bear crawl",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "assisted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1259.gif",
 //         "id": "1259",
-//         "name": "behind head chest stretch",
+//         "name": "behind head categories[4]._id stretch",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0129.gif",
 //         "id": "0129",
@@ -1951,7 +1961,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1399.gif",
 //         "id": "1399",
@@ -1959,7 +1969,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0130.gif",
 //         "id": "0130",
@@ -1967,7 +1977,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3019.gif",
 //         "id": "3019",
@@ -1975,7 +1985,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3639.gif",
 //         "id": "3639",
@@ -1983,7 +1993,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1770.gif",
 //         "id": "1770",
@@ -1991,7 +2001,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0139.gif",
 //         "id": "0139",
@@ -1999,7 +2009,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0140.gif",
 //         "id": "0140",
@@ -2007,7 +2017,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0137.gif",
 //         "id": "0137",
@@ -2015,7 +2025,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3543.gif",
 //         "id": "3543",
@@ -2023,7 +2033,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3544.gif",
 //         "id": "3544",
@@ -2031,7 +2041,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1771.gif",
 //         "id": "1771",
@@ -2039,7 +2049,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1769.gif",
 //         "id": "1769",
@@ -2047,23 +2057,23 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3168.gif",
 //         "id": "3168",
 //         "name": "bodyweight squatting row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3167.gif",
 //         "id": "3167",
 //         "name": "bodyweight squatting row (with towel)",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1373.gif",
 //         "id": "1373",
@@ -2071,55 +2081,55 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3156.gif",
 //         "id": "3156",
 //         "name": "bodyweight standing close-grip one arm row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3158.gif",
 //         "id": "3158",
 //         "name": "bodyweight standing close-grip row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3162.gif",
 //         "id": "3162",
 //         "name": "bodyweight standing one arm row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3161.gif",
 //         "id": "3161",
 //         "name": "bodyweight standing one arm row (with towel)",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3166.gif",
 //         "id": "3166",
 //         "name": "bodyweight standing row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3165.gif",
 //         "id": "3165",
 //         "name": "bodyweight standing row (with towel)",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0138.gif",
 //         "id": "0138",
@@ -2127,7 +2137,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1374.gif",
 //         "id": "1374",
@@ -2135,7 +2145,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2466.gif",
 //         "id": "2466",
@@ -2143,15 +2153,15 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1160.gif",
 //         "id": "1160",
 //         "name": "burpee",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0870.gif",
 //         "id": "0870",
@@ -2159,7 +2169,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1494.gif",
 //         "id": "1494",
@@ -2167,15 +2177,15 @@ db.once("open", async () => {
 //         "target": "adductors"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0148.gif",
 //         "id": "0148",
-//         "name": "cable alternate shoulder press",
+//         "name": "cable alternate categories[5]._id press",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0149.gif",
 //         "id": "0149",
@@ -2183,7 +2193,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3235.gif",
 //         "id": "3235",
@@ -2191,7 +2201,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0150.gif",
 //         "id": "0150",
@@ -2199,7 +2209,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0151.gif",
 //         "id": "0151",
@@ -2207,7 +2217,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1630.gif",
 //         "id": "1630",
@@ -2215,7 +2225,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1631.gif",
 //         "id": "1631",
@@ -2223,7 +2233,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0152.gif",
 //         "id": "0152",
@@ -2231,7 +2241,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0153.gif",
 //         "id": "0153",
@@ -2239,7 +2249,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0154.gif",
 //         "id": "0154",
@@ -2247,7 +2257,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0155.gif",
 //         "id": "0155",
@@ -2255,7 +2265,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0868.gif",
 //         "id": "0868",
@@ -2263,7 +2273,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0157.gif",
 //         "id": "0157",
@@ -2271,7 +2281,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0158.gif",
 //         "id": "0158",
@@ -2279,7 +2289,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1260.gif",
 //         "id": "1260",
@@ -2287,7 +2297,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1261.gif",
 //         "id": "1261",
@@ -2295,15 +2305,15 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0159.gif",
 //         "id": "0159",
 //         "name": "cable decline seated wide-grip row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1632.gif",
 //         "id": "1632",
@@ -2311,15 +2321,15 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0160.gif",
 //         "id": "0160",
 //         "name": "cable floor seated wide-grip row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0161.gif",
 //         "id": "0161",
@@ -2327,7 +2337,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0162.gif",
 //         "id": "0162",
@@ -2335,15 +2345,15 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0164.gif",
 //         "id": "0164",
-//         "name": "cable front shoulder raise",
+//         "name": "cable front categories[5]._id raise",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0165.gif",
 //         "id": "0165",
@@ -2351,7 +2361,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1722.gif",
 //         "id": "1722",
@@ -2359,15 +2369,15 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0167.gif",
 //         "id": "0167",
 //         "name": "cable high row (kneeling)",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0168.gif",
 //         "id": "0168",
@@ -2375,7 +2385,7 @@ db.once("open", async () => {
 //         "target": "adductors"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0169.gif",
 //         "id": "0169",
@@ -2383,15 +2393,15 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1318.gif",
 //         "id": "1318",
 //         "name": "cable incline bench row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0171.gif",
 //         "id": "0171",
@@ -2399,7 +2409,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0170.gif",
 //         "id": "0170",
@@ -2407,7 +2417,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0172.gif",
 //         "id": "0172",
@@ -2415,7 +2425,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0173.gif",
 //         "id": "0173",
@@ -2423,7 +2433,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0174.gif",
 //         "id": "0174",
@@ -2431,15 +2441,15 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0860.gif",
 //         "id": "0860",
-//         "name": "cable kickback",
+//         "name": "cable kickcategories[2]._id",
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0175.gif",
 //         "id": "0175",
@@ -2447,7 +2457,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3697.gif",
 //         "id": "3697",
@@ -2455,7 +2465,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0176.gif",
 //         "id": "0176",
@@ -2463,7 +2473,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2330.gif",
 //         "id": "2330",
@@ -2471,7 +2481,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0177.gif",
 //         "id": "0177",
@@ -2479,7 +2489,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2616.gif",
 //         "id": "2616",
@@ -2487,7 +2497,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0178.gif",
 //         "id": "0178",
@@ -2495,7 +2505,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0179.gif",
 //         "id": "0179",
@@ -2503,15 +2513,15 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0180.gif",
 //         "id": "0180",
 //         "name": "cable low seated row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1634.gif",
 //         "id": "1634",
@@ -2519,7 +2529,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0182.gif",
 //         "id": "0182",
@@ -2527,7 +2537,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0184.gif",
 //         "id": "0184",
@@ -2535,7 +2545,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0185.gif",
 //         "id": "0185",
@@ -2543,7 +2553,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0186.gif",
 //         "id": "0186",
@@ -2551,7 +2561,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0188.gif",
 //         "id": "0188",
@@ -2559,15 +2569,15 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0189.gif",
 //         "id": "0189",
 //         "name": "cable one arm bent over row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0190.gif",
 //         "id": "0190",
@@ -2575,15 +2585,15 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1262.gif",
 //         "id": "1262",
-//         "name": "cable one arm decline chest fly",
+//         "name": "cable one arm decline categories[4]._id fly",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1263.gif",
 //         "id": "1263",
@@ -2591,7 +2601,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1264.gif",
 //         "id": "1264",
@@ -2599,7 +2609,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1265.gif",
 //         "id": "1265",
@@ -2607,7 +2617,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1266.gif",
 //         "id": "1266",
@@ -2615,7 +2625,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0191.gif",
 //         "id": "0191",
@@ -2623,7 +2633,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0192.gif",
 //         "id": "0192",
@@ -2631,7 +2641,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1633.gif",
 //         "id": "1633",
@@ -2639,7 +2649,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1267.gif",
 //         "id": "1267",
@@ -2647,7 +2657,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3563.gif",
 //         "id": "3563",
@@ -2655,7 +2665,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1635.gif",
 //         "id": "1635",
@@ -2663,15 +2673,15 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0193.gif",
 //         "id": "0193",
-//         "name": "cable one arm straight back high row (kneeling)",
-//         "target": "upper back"
+//         "name": "cable one arm straight categories[2]._id high row (kneeling)",
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1723.gif",
 //         "id": "1723",
@@ -2679,7 +2689,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1636.gif",
 //         "id": "1636",
@@ -2687,7 +2697,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1637.gif",
 //         "id": "1637",
@@ -2695,7 +2705,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0194.gif",
 //         "id": "0194",
@@ -2703,15 +2713,15 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1319.gif",
 //         "id": "1319",
 //         "name": "cable palm rotational row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0195.gif",
 //         "id": "0195",
@@ -2719,7 +2729,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1268.gif",
 //         "id": "1268",
@@ -2727,7 +2737,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0196.gif",
 //         "id": "0196",
@@ -2735,7 +2745,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0198.gif",
 //         "id": "0198",
@@ -2743,7 +2753,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0197.gif",
 //         "id": "0197",
@@ -2751,7 +2761,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1638.gif",
 //         "id": "1638",
@@ -2759,7 +2769,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0201.gif",
 //         "id": "0201",
@@ -2767,7 +2777,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0199.gif",
 //         "id": "0199",
@@ -2775,7 +2785,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0200.gif",
 //         "id": "0200",
@@ -2783,7 +2793,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0202.gif",
 //         "id": "0202",
@@ -2791,7 +2801,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0203.gif",
 //         "id": "0203",
@@ -2799,7 +2809,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0204.gif",
 //         "id": "0204",
@@ -2807,7 +2817,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0205.gif",
 //         "id": "0205",
@@ -2815,7 +2825,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0873.gif",
 //         "id": "0873",
@@ -2823,7 +2833,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0206.gif",
 //         "id": "0206",
@@ -2831,7 +2841,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2406.gif",
 //         "id": "2406",
@@ -2839,7 +2849,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1413.gif",
 //         "id": "1413",
@@ -2847,7 +2857,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0209.gif",
 //         "id": "0209",
@@ -2855,7 +2865,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0210.gif",
 //         "id": "0210",
@@ -2863,7 +2873,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0207.gif",
 //         "id": "0207",
@@ -2871,39 +2881,39 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0208.gif",
 //         "id": "0208",
-//         "name": "cable reverse-grip straight back seated high row",
-//         "target": "upper back"
+//         "name": "cable reverse-grip straight categories[2]._id seated high row",
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1320.gif",
 //         "id": "1320",
 //         "name": "cable rope crossover seated row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1321.gif",
 //         "id": "1321",
 //         "name": "cable rope elevated seated row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1322.gif",
 //         "id": "1322",
 //         "name": "cable rope extension incline bench row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1639.gif",
 //         "id": "1639",
@@ -2911,7 +2921,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1724.gif",
 //         "id": "1724",
@@ -2919,7 +2929,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1725.gif",
 //         "id": "1725",
@@ -2927,7 +2937,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1726.gif",
 //         "id": "1726",
@@ -2935,7 +2945,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1640.gif",
 //         "id": "1640",
@@ -2943,15 +2953,15 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1323.gif",
 //         "id": "1323",
 //         "name": "cable rope seated row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0211.gif",
 //         "id": "0211",
@@ -2959,15 +2969,15 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2144.gif",
 //         "id": "2144",
-//         "name": "cable seated chest press",
+//         "name": "cable seated categories[4]._id press",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0212.gif",
 //         "id": "0212",
@@ -2975,7 +2985,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1641.gif",
 //         "id": "1641",
@@ -2983,7 +2993,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0213.gif",
 //         "id": "0213",
@@ -2991,15 +3001,15 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0214.gif",
 //         "id": "0214",
 //         "name": "cable seated one arm alternate row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1642.gif",
 //         "id": "1642",
@@ -3007,7 +3017,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1643.gif",
 //         "id": "1643",
@@ -3015,7 +3025,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0215.gif",
 //         "id": "0215",
@@ -3023,23 +3033,23 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0861.gif",
 //         "id": "0861",
 //         "name": "cable seated row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0216.gif",
 //         "id": "0216",
-//         "name": "cable seated shoulder internal rotation",
+//         "name": "cable seated categories[5]._id internal rotation",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2399.gif",
 //         "id": "2399",
@@ -3047,23 +3057,23 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0218.gif",
 //         "id": "0218",
 //         "name": "cable seated wide-grip row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0219.gif",
 //         "id": "0219",
-//         "name": "cable shoulder press",
+//         "name": "cable categories[5]._id press",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0220.gif",
 //         "id": "0220",
@@ -3071,7 +3081,7 @@ db.once("open", async () => {
 //         "target": "traps"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0222.gif",
 //         "id": "0222",
@@ -3079,7 +3089,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0221.gif",
 //         "id": "0221",
@@ -3087,7 +3097,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0223.gif",
 //         "id": "0223",
@@ -3095,7 +3105,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1717.gif",
 //         "id": "1717",
@@ -3103,7 +3113,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1644.gif",
 //         "id": "1644",
@@ -3111,15 +3121,15 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0224.gif",
 //         "id": "0224",
-//         "name": "cable standing back wrist curl",
+//         "name": "cable standing categories[2]._id wrist curl",
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1375.gif",
 //         "id": "1375",
@@ -3127,7 +3137,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0225.gif",
 //         "id": "0225",
@@ -3135,7 +3145,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0226.gif",
 //         "id": "0226",
@@ -3143,7 +3153,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0874.gif",
 //         "id": "0874",
@@ -3151,7 +3161,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0227.gif",
 //         "id": "0227",
@@ -3159,7 +3169,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0228.gif",
 //         "id": "0228",
@@ -3167,7 +3177,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0229.gif",
 //         "id": "0229",
@@ -3175,7 +3185,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0230.gif",
 //         "id": "0230",
@@ -3183,7 +3193,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0231.gif",
 //         "id": "0231",
@@ -3191,7 +3201,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1376.gif",
 //         "id": "1376",
@@ -3199,7 +3209,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0232.gif",
 //         "id": "0232",
@@ -3207,7 +3217,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0233.gif",
 //         "id": "0233",
@@ -3215,7 +3225,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1727.gif",
 //         "id": "1727",
@@ -3223,31 +3233,31 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0234.gif",
 //         "id": "0234",
 //         "name": "cable standing row (v-bar)",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0235.gif",
 //         "id": "0235",
-//         "name": "cable standing shoulder external rotation",
+//         "name": "cable standing categories[5]._id external rotation",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0236.gif",
 //         "id": "0236",
 //         "name": "cable standing twist row (v-bar)",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1269.gif",
 //         "id": "1269",
@@ -3255,7 +3265,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0238.gif",
 //         "id": "0238",
@@ -3263,7 +3273,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0237.gif",
 //         "id": "0237",
@@ -3271,15 +3281,15 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0239.gif",
 //         "id": "0239",
-//         "name": "cable straight back seated row",
-//         "target": "upper back"
+//         "name": "cable straight categories[2]._id seated row",
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0240.gif",
 //         "id": "0240",
@@ -3287,7 +3297,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2464.gif",
 //         "id": "2464",
@@ -3295,7 +3305,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0241.gif",
 //         "id": "0241",
@@ -3303,7 +3313,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2405.gif",
 //         "id": "2405",
@@ -3311,7 +3321,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0242.gif",
 //         "id": "0242",
@@ -3319,7 +3329,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0243.gif",
 //         "id": "0243",
@@ -3327,7 +3337,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0862.gif",
 //         "id": "0862",
@@ -3335,7 +3345,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0244.gif",
 //         "id": "0244",
@@ -3343,7 +3353,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1645.gif",
 //         "id": "1645",
@@ -3351,15 +3361,15 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1728.gif",
 //         "id": "1728",
-//         "name": "cable two arm tricep kickback",
+//         "name": "cable two arm tricep kickcategories[2]._id",
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0245.gif",
 //         "id": "0245",
@@ -3367,23 +3377,23 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1270.gif",
 //         "id": "1270",
-//         "name": "cable upper chest crossovers",
+//         "name": "cable upper categories[4]._id crossovers",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1324.gif",
 //         "id": "1324",
 //         "name": "cable upper row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0246.gif",
 //         "id": "0246",
@@ -3391,7 +3401,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1325.gif",
 //         "id": "1325",
@@ -3399,7 +3409,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0247.gif",
 //         "id": "0247",
@@ -3407,7 +3417,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1407.gif",
 //         "id": "1407",
@@ -3415,7 +3425,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1377.gif",
 //         "id": "1377",
@@ -3423,7 +3433,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "rope",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1378.gif",
 //         "id": "1378",
@@ -3431,15 +3441,15 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0248.gif",
 //         "id": "0248",
 //         "name": "cambered bar lying row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2963.gif",
 //         "id": "2963",
@@ -3447,7 +3457,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1548.gif",
 //         "id": "1548",
@@ -3455,55 +3465,55 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1271.gif",
 //         "id": "1271",
-//         "name": "chest and front of shoulder stretch",
+//         "name": "categories[4]._id and front of categories[5]._id stretch",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0251.gif",
 //         "id": "0251",
-//         "name": "chest dip",
+//         "name": "categories[4]._id dip",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1430.gif",
 //         "id": "1430",
-//         "name": "chest dip (on dip-pull-up cage)",
+//         "name": "categories[4]._id dip (on dip-pull-up cage)",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2462.gif",
 //         "id": "2462",
-//         "name": "chest dip on straight bar",
+//         "name": "categories[4]._id dip on straight bar",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1272.gif",
 //         "id": "1272",
-//         "name": "chest stretch with exercise ball",
+//         "name": "categories[4]._id stretch with exercise ball",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3216.gif",
 //         "id": "3216",
-//         "name": "chest tap push-up (male)",
+//         "name": "categories[4]._id tap push-up (male)",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1326.gif",
 //         "id": "1326",
@@ -3511,15 +3521,15 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0253.gif",
 //         "id": "0253",
 //         "name": "chin-ups (narrow parallel grip)",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0257.gif",
 //         "id": "0257",
@@ -3527,7 +3537,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1273.gif",
 //         "id": "1273",
@@ -3535,7 +3545,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0258.gif",
 //         "id": "0258",
@@ -3543,7 +3553,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1327.gif",
 //         "id": "1327",
@@ -3551,7 +3561,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0259.gif",
 //         "id": "0259",
@@ -3559,7 +3569,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2398.gif",
 //         "id": "2398",
@@ -3567,7 +3577,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0260.gif",
 //         "id": "0260",
@@ -3575,7 +3585,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1468.gif",
 //         "id": "1468",
@@ -3583,7 +3593,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0262.gif",
 //         "id": "0262",
@@ -3591,7 +3601,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0267.gif",
 //         "id": "0267",
@@ -3599,7 +3609,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0271.gif",
 //         "id": "0271",
@@ -3607,7 +3617,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0272.gif",
 //         "id": "0272",
@@ -3615,7 +3625,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0274.gif",
 //         "id": "0274",
@@ -3623,7 +3633,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3016.gif",
 //         "id": "3016",
@@ -3631,7 +3641,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3769.gif",
 //         "id": "3769",
@@ -3639,15 +3649,15 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2331.gif",
 //         "id": "2331",
 //         "name": "cycle cross trainer",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0276.gif",
 //         "id": "0276",
@@ -3655,7 +3665,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0277.gif",
 //         "id": "0277",
@@ -3663,7 +3673,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0279.gif",
 //         "id": "0279",
@@ -3671,7 +3681,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0282.gif",
 //         "id": "0282",
@@ -3679,7 +3689,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1274.gif",
 //         "id": "1274",
@@ -3687,7 +3697,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0283.gif",
 //         "id": "0283",
@@ -3695,7 +3705,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0284.gif",
 //         "id": "0284",
@@ -3703,7 +3713,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1275.gif",
 //         "id": "1275",
@@ -3711,7 +3721,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0285.gif",
 //         "id": "0285",
@@ -3719,7 +3729,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2403.gif",
 //         "id": "2403",
@@ -3727,7 +3737,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1646.gif",
 //         "id": "1646",
@@ -3735,7 +3745,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1647.gif",
 //         "id": "1647",
@@ -3743,7 +3753,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1648.gif",
 //         "id": "1648",
@@ -3751,7 +3761,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0286.gif",
 //         "id": "0286",
@@ -3759,7 +3769,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1649.gif",
 //         "id": "1649",
@@ -3767,7 +3777,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1650.gif",
 //         "id": "1650",
@@ -3775,7 +3785,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2137.gif",
 //         "id": "2137",
@@ -3783,7 +3793,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0287.gif",
 //         "id": "0287",
@@ -3791,7 +3801,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0288.gif",
 //         "id": "0288",
@@ -3799,7 +3809,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0289.gif",
 //         "id": "0289",
@@ -3807,7 +3817,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0290.gif",
 //         "id": "0290",
@@ -3815,7 +3825,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0291.gif",
 //         "id": "0291",
@@ -3823,15 +3833,15 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0293.gif",
 //         "id": "0293",
 //         "name": "dumbbell bent over row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1651.gif",
 //         "id": "1651",
@@ -3839,7 +3849,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1652.gif",
 //         "id": "1652",
@@ -3847,7 +3857,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1653.gif",
 //         "id": "1653",
@@ -3855,7 +3865,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0294.gif",
 //         "id": "0294",
@@ -3863,7 +3873,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2401.gif",
 //         "id": "2401",
@@ -3871,7 +3881,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1654.gif",
 //         "id": "1654",
@@ -3879,7 +3889,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1655.gif",
 //         "id": "1655",
@@ -3887,7 +3897,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1656.gif",
 //         "id": "1656",
@@ -3895,15 +3905,15 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1201.gif",
 //         "id": "1201",
 //         "name": "dumbbell burpee",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0295.gif",
 //         "id": "0295",
@@ -3911,7 +3921,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1731.gif",
 //         "id": "1731",
@@ -3919,7 +3929,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0296.gif",
 //         "id": "0296",
@@ -3927,7 +3937,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0297.gif",
 //         "id": "0297",
@@ -3935,7 +3945,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3635.gif",
 //         "id": "3635",
@@ -3943,7 +3953,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0298.gif",
 //         "id": "0298",
@@ -3951,7 +3961,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1657.gif",
 //         "id": "1657",
@@ -3959,7 +3969,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0299.gif",
 //         "id": "0299",
@@ -3967,7 +3977,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2136.gif",
 //         "id": "2136",
@@ -3975,7 +3985,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0300.gif",
 //         "id": "0300",
@@ -3983,7 +3993,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0301.gif",
 //         "id": "0301",
@@ -3991,7 +4001,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0302.gif",
 //         "id": "0302",
@@ -3999,7 +4009,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0303.gif",
 //         "id": "0303",
@@ -4007,7 +4017,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1276.gif",
 //         "id": "1276",
@@ -4015,7 +4025,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1617.gif",
 //         "id": "1617",
@@ -4023,7 +4033,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0305.gif",
 //         "id": "0305",
@@ -4031,7 +4041,7 @@ db.once("open", async () => {
 //         "target": "traps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0304.gif",
 //         "id": "0304",
@@ -4039,7 +4049,7 @@ db.once("open", async () => {
 //         "target": "traps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0306.gif",
 //         "id": "0306",
@@ -4047,7 +4057,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0307.gif",
 //         "id": "0307",
@@ -4055,7 +4065,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1437.gif",
 //         "id": "1437",
@@ -4063,7 +4073,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0308.gif",
 //         "id": "0308",
@@ -4071,7 +4081,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1277.gif",
 //         "id": "1277",
@@ -4079,7 +4089,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1732.gif",
 //         "id": "1732",
@@ -4087,7 +4097,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0310.gif",
 //         "id": "0310",
@@ -4095,7 +4105,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0309.gif",
 //         "id": "0309",
@@ -4103,7 +4113,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0311.gif",
 //         "id": "0311",
@@ -4111,7 +4121,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1760.gif",
 //         "id": "1760",
@@ -4119,7 +4129,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0313.gif",
 //         "id": "0313",
@@ -4127,7 +4137,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1659.gif",
 //         "id": "1659",
@@ -4135,7 +4145,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0312.gif",
 //         "id": "0312",
@@ -4143,7 +4153,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2402.gif",
 //         "id": "2402",
@@ -4151,7 +4161,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1664.gif",
 //         "id": "1664",
@@ -4159,7 +4169,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3545.gif",
 //         "id": "3545",
@@ -4167,7 +4177,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0314.gif",
 //         "id": "0314",
@@ -4175,7 +4185,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0315.gif",
 //         "id": "0315",
@@ -4183,7 +4193,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0316.gif",
 //         "id": "0316",
@@ -4191,7 +4201,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0318.gif",
 //         "id": "0318",
@@ -4199,7 +4209,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0317.gif",
 //         "id": "0317",
@@ -4207,7 +4217,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0319.gif",
 //         "id": "0319",
@@ -4215,7 +4225,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1278.gif",
 //         "id": "1278",
@@ -4223,7 +4233,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0320.gif",
 //         "id": "0320",
@@ -4231,7 +4241,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0321.gif",
 //         "id": "0321",
@@ -4239,7 +4249,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1618.gif",
 //         "id": "1618",
@@ -4247,7 +4257,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0322.gif",
 //         "id": "0322",
@@ -4255,7 +4265,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1279.gif",
 //         "id": "1279",
@@ -4263,7 +4273,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1280.gif",
 //         "id": "1280",
@@ -4271,7 +4281,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1619.gif",
 //         "id": "1619",
@@ -4279,7 +4289,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1620.gif",
 //         "id": "1620",
@@ -4287,7 +4297,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0323.gif",
 //         "id": "0323",
@@ -4295,7 +4305,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1281.gif",
 //         "id": "1281",
@@ -4303,7 +4313,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1282.gif",
 //         "id": "1282",
@@ -4311,7 +4321,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0324.gif",
 //         "id": "0324",
@@ -4319,7 +4329,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1283.gif",
 //         "id": "1283",
@@ -4327,7 +4337,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0325.gif",
 //         "id": "0325",
@@ -4335,7 +4345,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0326.gif",
 //         "id": "0326",
@@ -4343,23 +4353,23 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0327.gif",
 //         "id": "0327",
 //         "name": "dumbbell incline row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0328.gif",
 //         "id": "0328",
-//         "name": "dumbbell incline shoulder raise",
+//         "name": "dumbbell incline categories[5]._id raise",
 //         "target": "serratus anterior"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0329.gif",
 //         "id": "0329",
@@ -4367,7 +4377,7 @@ db.once("open", async () => {
 //         "target": "traps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3542.gif",
 //         "id": "3542",
@@ -4375,7 +4385,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0330.gif",
 //         "id": "0330",
@@ -4383,7 +4393,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0331.gif",
 //         "id": "0331",
@@ -4391,7 +4401,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1733.gif",
 //         "id": "1733",
@@ -4399,15 +4409,15 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3541.gif",
 //         "id": "3541",
 //         "name": "dumbbell incline y-raise",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0332.gif",
 //         "id": "0332",
@@ -4415,23 +4425,23 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0333.gif",
 //         "id": "0333",
-//         "name": "dumbbell kickback",
+//         "name": "dumbbell kickcategories[2]._id",
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1734.gif",
 //         "id": "1734",
-//         "name": "dumbbell kickbacks on exercise ball",
+//         "name": "dumbbell kickcategories[2]._ids on exercise ball",
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1660.gif",
 //         "id": "1660",
@@ -4439,7 +4449,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0334.gif",
 //         "id": "0334",
@@ -4447,7 +4457,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0335.gif",
 //         "id": "0335",
@@ -4455,7 +4465,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0336.gif",
 //         "id": "0336",
@@ -4463,7 +4473,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1658.gif",
 //         "id": "1658",
@@ -4471,7 +4481,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0337.gif",
 //         "id": "0337",
@@ -4479,7 +4489,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1729.gif",
 //         "id": "1729",
@@ -4487,7 +4497,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0338.gif",
 //         "id": "0338",
@@ -4495,15 +4505,15 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0863.gif",
 //         "id": "0863",
-//         "name": "dumbbell lying external shoulder rotation",
+//         "name": "dumbbell lying external categories[5]._id rotation",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0339.gif",
 //         "id": "0339",
@@ -4511,7 +4521,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0340.gif",
 //         "id": "0340",
@@ -4519,7 +4529,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2470.gif",
 //         "id": "2470",
@@ -4527,7 +4537,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0341.gif",
 //         "id": "0341",
@@ -4535,7 +4545,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0343.gif",
 //         "id": "0343",
@@ -4543,7 +4553,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0342.gif",
 //         "id": "0342",
@@ -4551,7 +4561,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0344.gif",
 //         "id": "0344",
@@ -4559,7 +4569,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0345.gif",
 //         "id": "0345",
@@ -4567,7 +4577,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0346.gif",
 //         "id": "0346",
@@ -4575,7 +4585,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0347.gif",
 //         "id": "0347",
@@ -4583,7 +4593,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2705.gif",
 //         "id": "2705",
@@ -4591,7 +4601,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1284.gif",
 //         "id": "1284",
@@ -4599,15 +4609,15 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1328.gif",
 //         "id": "1328",
 //         "name": "dumbbell lying rear delt row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0348.gif",
 //         "id": "0348",
@@ -4615,7 +4625,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1735.gif",
 //         "id": "1735",
@@ -4623,7 +4633,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0349.gif",
 //         "id": "0349",
@@ -4631,7 +4641,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2706.gif",
 //         "id": "2706",
@@ -4639,7 +4649,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1661.gif",
 //         "id": "1661",
@@ -4647,7 +4657,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0350.gif",
 //         "id": "0350",
@@ -4655,7 +4665,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0351.gif",
 //         "id": "0351",
@@ -4663,7 +4673,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1662.gif",
 //         "id": "1662",
@@ -4671,7 +4681,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0352.gif",
 //         "id": "0352",
@@ -4679,7 +4689,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1285.gif",
 //         "id": "1285",
@@ -4687,23 +4697,23 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0292.gif",
 //         "id": "0292",
 //         "name": "dumbbell one arm bent-over row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1286.gif",
 //         "id": "1286",
-//         "name": "dumbbell one arm chest fly on exercise ball",
+//         "name": "dumbbell one arm categories[4]._id fly on exercise ball",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0353.gif",
 //         "id": "0353",
@@ -4711,15 +4721,15 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1287.gif",
 //         "id": "1287",
-//         "name": "dumbbell one arm decline chest press",
+//         "name": "dumbbell one arm decline categories[4]._id press",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1288.gif",
 //         "id": "1288",
@@ -4727,7 +4737,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1736.gif",
 //         "id": "1736",
@@ -4735,7 +4745,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1663.gif",
 //         "id": "1663",
@@ -4743,7 +4753,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1621.gif",
 //         "id": "1621",
@@ -4751,23 +4761,23 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1289.gif",
 //         "id": "1289",
-//         "name": "dumbbell one arm incline chest press",
+//         "name": "dumbbell one arm incline categories[4]._id press",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0354.gif",
 //         "id": "0354",
-//         "name": "dumbbell one arm kickback",
+//         "name": "dumbbell one arm kickcategories[2]._id",
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0355.gif",
 //         "id": "0355",
@@ -4775,7 +4785,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0356.gif",
 //         "id": "0356",
@@ -4783,7 +4793,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1290.gif",
 //         "id": "1290",
@@ -4791,7 +4801,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1665.gif",
 //         "id": "1665",
@@ -4799,7 +4809,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1666.gif",
 //         "id": "1666",
@@ -4807,7 +4817,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1291.gif",
 //         "id": "1291",
@@ -4815,7 +4825,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0358.gif",
 //         "id": "0358",
@@ -4823,7 +4833,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0359.gif",
 //         "id": "0359",
@@ -4831,7 +4841,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1622.gif",
 //         "id": "1622",
@@ -4839,7 +4849,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1414.gif",
 //         "id": "1414",
@@ -4847,7 +4857,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1667.gif",
 //         "id": "1667",
@@ -4855,7 +4865,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1668.gif",
 //         "id": "1668",
@@ -4863,7 +4873,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1669.gif",
 //         "id": "1669",
@@ -4871,7 +4881,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1415.gif",
 //         "id": "1415",
@@ -4879,23 +4889,23 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0361.gif",
 //         "id": "0361",
-//         "name": "dumbbell one arm shoulder press",
+//         "name": "dumbbell one arm categories[5]._id press",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0360.gif",
 //         "id": "0360",
-//         "name": "dumbbell one arm shoulder press v. 2",
+//         "name": "dumbbell one arm categories[5]._id press v. 2",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3888.gif",
 //         "id": "3888",
@@ -4903,7 +4913,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1670.gif",
 //         "id": "1670",
@@ -4911,7 +4921,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1671.gif",
 //         "id": "1671",
@@ -4919,7 +4929,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0362.gif",
 //         "id": "0362",
@@ -4927,7 +4937,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0363.gif",
 //         "id": "0363",
@@ -4935,7 +4945,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0364.gif",
 //         "id": "0364",
@@ -4943,7 +4953,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1672.gif",
 //         "id": "1672",
@@ -4951,7 +4961,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1292.gif",
 //         "id": "1292",
@@ -4959,7 +4969,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0365.gif",
 //         "id": "0365",
@@ -4967,7 +4977,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0366.gif",
 //         "id": "0366",
@@ -4975,7 +4985,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1441.gif",
 //         "id": "1441",
@@ -4983,7 +4993,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0367.gif",
 //         "id": "0367",
@@ -4991,7 +5001,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0368.gif",
 //         "id": "0368",
@@ -4999,7 +5009,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0369.gif",
 //         "id": "0369",
@@ -5007,15 +5017,15 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1329.gif",
 //         "id": "1329",
 //         "name": "dumbbell palm rotational bent over row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1623.gif",
 //         "id": "1623",
@@ -5023,7 +5033,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0370.gif",
 //         "id": "0370",
@@ -5031,7 +5041,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0371.gif",
 //         "id": "0371",
@@ -5039,7 +5049,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0372.gif",
 //         "id": "0372",
@@ -5047,7 +5057,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1673.gif",
 //         "id": "1673",
@@ -5055,7 +5065,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1293.gif",
 //         "id": "1293",
@@ -5063,7 +5073,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0373.gif",
 //         "id": "0373",
@@ -5071,7 +5081,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0374.gif",
 //         "id": "0374",
@@ -5079,7 +5089,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1674.gif",
 //         "id": "1674",
@@ -5087,7 +5097,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0375.gif",
 //         "id": "0375",
@@ -5095,7 +5105,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1294.gif",
 //         "id": "1294",
@@ -5103,7 +5113,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1295.gif",
 //         "id": "1295",
@@ -5111,7 +5121,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1700.gif",
 //         "id": "1700",
@@ -5119,7 +5129,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0376.gif",
 //         "id": "0376",
@@ -5127,7 +5137,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2292.gif",
 //         "id": "2292",
@@ -5135,15 +5145,15 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0377.gif",
 //         "id": "0377",
-//         "name": "dumbbell rear delt row_shoulder",
+//         "name": "dumbbell rear delt row_categories[5]._id",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0378.gif",
 //         "id": "0378",
@@ -5151,7 +5161,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0380.gif",
 //         "id": "0380",
@@ -5159,7 +5169,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0379.gif",
 //         "id": "0379",
@@ -5167,7 +5177,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0381.gif",
 //         "id": "0381",
@@ -5175,7 +5185,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0382.gif",
 //         "id": "0382",
@@ -5183,7 +5193,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1624.gif",
 //         "id": "1624",
@@ -5191,7 +5201,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0383.gif",
 //         "id": "0383",
@@ -5199,31 +5209,31 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1330.gif",
 //         "id": "1330",
 //         "name": "dumbbell reverse grip incline bench one arm row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1331.gif",
 //         "id": "1331",
 //         "name": "dumbbell reverse grip incline bench two arm row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2327.gif",
 //         "id": "2327",
 //         "name": "dumbbell reverse grip row (female)",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0384.gif",
 //         "id": "0384",
@@ -5231,7 +5241,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1675.gif",
 //         "id": "1675",
@@ -5239,7 +5249,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0385.gif",
 //         "id": "0385",
@@ -5247,7 +5257,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1459.gif",
 //         "id": "1459",
@@ -5255,7 +5265,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0386.gif",
 //         "id": "0386",
@@ -5263,7 +5273,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2397.gif",
 //         "id": "2397",
@@ -5271,7 +5281,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0387.gif",
 //         "id": "0387",
@@ -5279,7 +5289,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1676.gif",
 //         "id": "1676",
@@ -5287,7 +5297,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0388.gif",
 //         "id": "0388",
@@ -5295,15 +5305,15 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3546.gif",
 //         "id": "3546",
-//         "name": "dumbbell seated alternate shoulder",
+//         "name": "dumbbell seated alternate categories[5]._id",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0389.gif",
 //         "id": "0389",
@@ -5311,7 +5321,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2317.gif",
 //         "id": "2317",
@@ -5319,15 +5329,15 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1730.gif",
 //         "id": "1730",
-//         "name": "dumbbell seated bent over alternate kickback",
+//         "name": "dumbbell seated bent over alternate kickcategories[2]._id",
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1737.gif",
 //         "id": "1737",
@@ -5335,7 +5345,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1677.gif",
 //         "id": "1677",
@@ -5343,7 +5353,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0390.gif",
 //         "id": "0390",
@@ -5351,15 +5361,15 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3547.gif",
 //         "id": "3547",
-//         "name": "dumbbell seated biceps curl to shoulder press",
+//         "name": "dumbbell seated biceps curl to categories[5]._id press",
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1379.gif",
 //         "id": "1379",
@@ -5367,7 +5377,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0391.gif",
 //         "id": "0391",
@@ -5375,7 +5385,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0392.gif",
 //         "id": "0392",
@@ -5383,7 +5393,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1678.gif",
 //         "id": "1678",
@@ -5391,7 +5401,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0393.gif",
 //         "id": "0393",
@@ -5399,15 +5409,15 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0394.gif",
 //         "id": "0394",
-//         "name": "dumbbell seated kickback",
+//         "name": "dumbbell seated kickcategories[2]._id",
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0396.gif",
 //         "id": "0396",
@@ -5415,7 +5425,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0395.gif",
 //         "id": "0395",
@@ -5423,7 +5433,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0397.gif",
 //         "id": "0397",
@@ -5431,7 +5441,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1679.gif",
 //         "id": "1679",
@@ -5439,15 +5449,15 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0398.gif",
 //         "id": "0398",
-//         "name": "dumbbell seated one arm kickback",
+//         "name": "dumbbell seated one arm kickcategories[2]._id",
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0399.gif",
 //         "id": "0399",
@@ -5455,7 +5465,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0400.gif",
 //         "id": "0400",
@@ -5463,7 +5473,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1380.gif",
 //         "id": "1380",
@@ -5471,7 +5481,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1381.gif",
 //         "id": "1381",
@@ -5479,7 +5489,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0401.gif",
 //         "id": "0401",
@@ -5487,7 +5497,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0402.gif",
 //         "id": "0402",
@@ -5495,7 +5505,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0403.gif",
 //         "id": "0403",
@@ -5503,7 +5513,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1738.gif",
 //         "id": "1738",
@@ -5511,23 +5521,23 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0405.gif",
 //         "id": "0405",
-//         "name": "dumbbell seated shoulder press",
+//         "name": "dumbbell seated categories[5]._id press",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0404.gif",
 //         "id": "0404",
-//         "name": "dumbbell seated shoulder press (parallel grip)",
+//         "name": "dumbbell seated categories[5]._id press (parallel grip)",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2188.gif",
 //         "id": "2188",
@@ -5535,7 +5545,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0406.gif",
 //         "id": "0406",
@@ -5543,7 +5553,7 @@ db.once("open", async () => {
 //         "target": "traps"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0407.gif",
 //         "id": "0407",
@@ -5551,7 +5561,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0408.gif",
 //         "id": "0408",
@@ -5559,15 +5569,15 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3664.gif",
 //         "id": "3664",
 //         "name": "dumbbell side plank with rear fly",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3548.gif",
 //         "id": "3548",
@@ -5575,7 +5585,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0409.gif",
 //         "id": "0409",
@@ -5583,7 +5593,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1757.gif",
 //         "id": "1757",
@@ -5591,7 +5601,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2805.gif",
 //         "id": "2805",
@@ -5599,7 +5609,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0410.gif",
 //         "id": "0410",
@@ -5607,7 +5617,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0411.gif",
 //         "id": "0411",
@@ -5615,7 +5625,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0413.gif",
 //         "id": "0413",
@@ -5623,7 +5633,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3560.gif",
 //         "id": "3560",
@@ -5631,7 +5641,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0414.gif",
 //         "id": "0414",
@@ -5639,7 +5649,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0415.gif",
 //         "id": "0415",
@@ -5647,15 +5657,15 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1739.gif",
 //         "id": "1739",
-//         "name": "dumbbell standing alternating tricep kickback",
+//         "name": "dumbbell standing alternating tricep kickcategories[2]._id",
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2143.gif",
 //         "id": "2143",
@@ -5663,7 +5673,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1740.gif",
 //         "id": "1740",
@@ -5671,7 +5681,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1741.gif",
 //         "id": "1741",
@@ -5679,7 +5689,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0416.gif",
 //         "id": "0416",
@@ -5687,7 +5697,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0417.gif",
 //         "id": "0417",
@@ -5695,7 +5705,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0418.gif",
 //         "id": "0418",
@@ -5703,7 +5713,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0419.gif",
 //         "id": "0419",
@@ -5711,7 +5721,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2321.gif",
 //         "id": "2321",
@@ -5719,15 +5729,15 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0420.gif",
 //         "id": "0420",
-//         "name": "dumbbell standing kickback",
+//         "name": "dumbbell standing kickcategories[2]._id",
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0421.gif",
 //         "id": "0421",
@@ -5735,7 +5745,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0422.gif",
 //         "id": "0422",
@@ -5743,7 +5753,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1680.gif",
 //         "id": "1680",
@@ -5751,7 +5761,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0423.gif",
 //         "id": "0423",
@@ -5759,7 +5769,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0424.gif",
 //         "id": "0424",
@@ -5767,7 +5777,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0425.gif",
 //         "id": "0425",
@@ -5775,7 +5785,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0426.gif",
 //         "id": "0426",
@@ -5783,7 +5793,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0427.gif",
 //         "id": "0427",
@@ -5791,7 +5801,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0428.gif",
 //         "id": "0428",
@@ -5799,7 +5809,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0429.gif",
 //         "id": "0429",
@@ -5807,7 +5817,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0430.gif",
 //         "id": "0430",
@@ -5815,7 +5825,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2293.gif",
 //         "id": "2293",
@@ -5823,7 +5833,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1684.gif",
 //         "id": "1684",
@@ -5831,7 +5841,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0431.gif",
 //         "id": "0431",
@@ -5839,7 +5849,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2796.gif",
 //         "id": "2796",
@@ -5847,7 +5857,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2812.gif",
 //         "id": "2812",
@@ -5855,7 +5865,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0432.gif",
 //         "id": "0432",
@@ -5863,7 +5873,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0433.gif",
 //         "id": "0433",
@@ -5871,7 +5881,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0434.gif",
 //         "id": "0434",
@@ -5879,7 +5889,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2808.gif",
 //         "id": "2808",
@@ -5887,7 +5897,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2803.gif",
 //         "id": "2803",
@@ -5895,7 +5905,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0436.gif",
 //         "id": "0436",
@@ -5903,15 +5913,15 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1742.gif",
 //         "id": "1742",
-//         "name": "dumbbell tricep kickback with stork stance",
+//         "name": "dumbbell tricep kickcategories[2]._id with stork stance",
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1743.gif",
 //         "id": "1743",
@@ -5919,7 +5929,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0437.gif",
 //         "id": "0437",
@@ -5927,23 +5937,23 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1765.gif",
 //         "id": "1765",
-//         "name": "dumbbell upright row (back pov)",
+//         "name": "dumbbell upright row (categories[2]._id pov)",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0864.gif",
 //         "id": "0864",
-//         "name": "dumbbell upright shoulder external rotation",
+//         "name": "dumbbell upright categories[5]._id external rotation",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/5201.gif",
 //         "id": "5201",
@@ -5951,7 +5961,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0438.gif",
 //         "id": "0438",
@@ -5959,7 +5969,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0439.gif",
 //         "id": "0439",
@@ -5967,7 +5977,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2294.gif",
 //         "id": "2294",
@@ -5975,7 +5985,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2189.gif",
 //         "id": "2189",
@@ -5983,15 +5993,15 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1167.gif",
 //         "id": "1167",
-//         "name": "dynamic chest stretch (male)",
+//         "name": "dynamic categories[4]._id stretch (male)",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3287.gif",
 //         "id": "3287",
@@ -5999,15 +6009,15 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1772.gif",
 //         "id": "1772",
 //         "name": "elbow lift - reverse push-up",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0443.gif",
 //         "id": "0443",
@@ -6015,15 +6025,15 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3292.gif",
 //         "id": "3292",
 //         "name": "elevator",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1332.gif",
 //         "id": "1332",
@@ -6031,39 +6041,39 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1333.gif",
 //         "id": "1333",
-//         "name": "exercise ball back extension with arms extended",
+//         "name": "exercise ball categories[2]._id extension with arms extended",
 //         "target": "spine"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1334.gif",
 //         "id": "1334",
-//         "name": "exercise ball back extension with hands behind head",
+//         "name": "exercise ball categories[2]._id extension with hands behind head",
 //         "target": "spine"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1335.gif",
 //         "id": "1335",
-//         "name": "exercise ball back extension with knees off ground",
+//         "name": "exercise ball categories[2]._id extension with knees off ground",
 //         "target": "spine"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1336.gif",
 //         "id": "1336",
-//         "name": "exercise ball back extension with rotation",
+//         "name": "exercise ball categories[2]._id extension with rotation",
 //         "target": "spine"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1744.gif",
 //         "id": "1744",
@@ -6071,7 +6081,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1559.gif",
 //         "id": "1559",
@@ -6079,7 +6089,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1338.gif",
 //         "id": "1338",
@@ -6087,7 +6097,7 @@ db.once("open", async () => {
 //         "target": "spine"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1339.gif",
 //         "id": "1339",
@@ -6095,15 +6105,15 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1341.gif",
 //         "id": "1341",
-//         "name": "exercise ball lower back stretch (pyramid)",
+//         "name": "exercise ball lower categories[2]._id stretch (pyramid)",
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1342.gif",
 //         "id": "1342",
@@ -6111,7 +6121,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1382.gif",
 //         "id": "1382",
@@ -6119,7 +6129,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3241.gif",
 //         "id": "3241",
@@ -6127,7 +6137,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3240.gif",
 //         "id": "3240",
@@ -6135,7 +6145,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1416.gif",
 //         "id": "1416",
@@ -6143,7 +6153,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1417.gif",
 //         "id": "1417",
@@ -6151,7 +6161,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1296.gif",
 //         "id": "1296",
@@ -6159,7 +6169,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1343.gif",
 //         "id": "1343",
@@ -6167,7 +6177,7 @@ db.once("open", async () => {
 //         "target": "spine"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1560.gif",
 //         "id": "1560",
@@ -6175,7 +6185,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1745.gif",
 //         "id": "1745",
@@ -6183,7 +6193,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1746.gif",
 //         "id": "1746",
@@ -6191,7 +6201,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1747.gif",
 //         "id": "1747",
@@ -6199,7 +6209,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3010.gif",
 //         "id": "3010",
@@ -6207,7 +6217,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1748.gif",
 //         "id": "1748",
@@ -6215,15 +6225,15 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1344.gif",
 //         "id": "1344",
 //         "name": "ez bar reverse grip bent over row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1682.gif",
 //         "id": "1682",
@@ -6231,7 +6241,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1749.gif",
 //         "id": "1749",
@@ -6239,7 +6249,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0445.gif",
 //         "id": "0445",
@@ -6247,7 +6257,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1627.gif",
 //         "id": "1627",
@@ -6255,7 +6265,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0446.gif",
 //         "id": "0446",
@@ -6263,7 +6273,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0447.gif",
 //         "id": "0447",
@@ -6271,7 +6281,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0448.gif",
 //         "id": "0448",
@@ -6279,7 +6289,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2186.gif",
 //         "id": "2186",
@@ -6287,7 +6297,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0449.gif",
 //         "id": "0449",
@@ -6295,7 +6305,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0450.gif",
 //         "id": "0450",
@@ -6303,7 +6313,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0451.gif",
 //         "id": "0451",
@@ -6311,7 +6321,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0452.gif",
 //         "id": "0452",
@@ -6319,7 +6329,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1458.gif",
 //         "id": "1458",
@@ -6327,7 +6337,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0453.gif",
 //         "id": "0453",
@@ -6335,7 +6345,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0454.gif",
 //         "id": "0454",
@@ -6343,7 +6353,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1628.gif",
 //         "id": "1628",
@@ -6351,7 +6361,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2404.gif",
 //         "id": "2404",
@@ -6359,7 +6369,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2432.gif",
 //         "id": "2432",
@@ -6367,7 +6377,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "ez barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2741.gif",
 //         "id": "2741",
@@ -6375,7 +6385,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2133.gif",
 //         "id": "2133",
@@ -6383,7 +6393,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0455.gif",
 //         "id": "0455",
@@ -6391,7 +6401,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3303.gif",
 //         "id": "3303",
@@ -6399,7 +6409,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0456.gif",
 //         "id": "0456",
@@ -6407,7 +6417,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0457.gif",
 //         "id": "0457",
@@ -6415,7 +6425,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0458.gif",
 //         "id": "0458",
@@ -6423,7 +6433,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0459.gif",
 //         "id": "0459",
@@ -6431,7 +6441,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1472.gif",
 //         "id": "1472",
@@ -6439,7 +6449,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3470.gif",
 //         "id": "3470",
@@ -6447,7 +6457,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3194.gif",
 //         "id": "3194",
@@ -6455,7 +6465,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2429.gif",
 //         "id": "2429",
@@ -6463,7 +6473,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3301.gif",
 //         "id": "3301",
@@ -6471,7 +6481,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3296.gif",
 //         "id": "3296",
@@ -6479,15 +6489,15 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3295.gif",
 //         "id": "3295",
 //         "name": "front lever reps",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0464.gif",
 //         "id": "0464",
@@ -6495,7 +6505,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3315.gif",
 //         "id": "3315",
@@ -6503,7 +6513,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3299.gif",
 //         "id": "3299",
@@ -6511,7 +6521,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3327.gif",
 //         "id": "3327",
@@ -6519,7 +6529,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0466.gif",
 //         "id": "0466",
@@ -6527,7 +6537,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3561.gif",
 //         "id": "3561",
@@ -6535,7 +6545,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3523.gif",
 //         "id": "3523",
@@ -6543,7 +6553,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3193.gif",
 //         "id": "3193",
@@ -6551,7 +6561,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0467.gif",
 //         "id": "0467",
@@ -6559,7 +6569,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0469.gif",
 //         "id": "0469",
@@ -6567,7 +6577,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "sled machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1383.gif",
 //         "id": "1383",
@@ -6575,7 +6585,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "sled machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1384.gif",
 //         "id": "1384",
@@ -6583,15 +6593,15 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3221.gif",
 //         "id": "3221",
 //         "name": "half knee bends (male)",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3202.gif",
 //         "id": "3202",
@@ -6599,7 +6609,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1511.gif",
 //         "id": "1511",
@@ -6607,7 +6617,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "upper body ergometer",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2139.gif",
 //         "id": "2139",
@@ -6615,7 +6625,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3218.gif",
 //         "id": "3218",
@@ -6623,7 +6633,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3215.gif",
 //         "id": "3215",
@@ -6631,7 +6641,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3302.gif",
 //         "id": "3302",
@@ -6639,7 +6649,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0471.gif",
 //         "id": "0471",
@@ -6647,7 +6657,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1764.gif",
 //         "id": "1764",
@@ -6655,7 +6665,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0472.gif",
 //         "id": "0472",
@@ -6663,7 +6673,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1761.gif",
 //         "id": "1761",
@@ -6671,7 +6681,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0473.gif",
 //         "id": "0473",
@@ -6679,7 +6689,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0474.gif",
 //         "id": "0474",
@@ -6687,7 +6697,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0475.gif",
 //         "id": "0475",
@@ -6695,7 +6705,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0476.gif",
 //         "id": "0476",
@@ -6703,15 +6713,15 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3636.gif",
 //         "id": "3636",
 //         "name": "high knee against wall",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0484.gif",
 //         "id": "0484",
@@ -6719,15 +6729,15 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1418.gif",
 //         "id": "1418",
-//         "name": "hug keens to chest",
+//         "name": "hug keens to categories[4]._id",
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3234.gif",
 //         "id": "3234",
@@ -6735,7 +6745,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0489.gif",
 //         "id": "0489",
@@ -6743,7 +6753,7 @@ db.once("open", async () => {
 //         "target": "spine"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0488.gif",
 //         "id": "0488",
@@ -6751,7 +6761,7 @@ db.once("open", async () => {
 //         "target": "spine"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3289.gif",
 //         "id": "3289",
@@ -6759,7 +6769,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1471.gif",
 //         "id": "1471",
@@ -6767,7 +6777,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3698.gif",
 //         "id": "3698",
@@ -6775,7 +6785,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0490.gif",
 //         "id": "0490",
@@ -6783,7 +6793,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0491.gif",
 //         "id": "0491",
@@ -6791,7 +6801,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0492.gif",
 //         "id": "0492",
@@ -6799,7 +6809,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0493.gif",
 //         "id": "0493",
@@ -6807,7 +6817,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3785.gif",
 //         "id": "3785",
@@ -6815,7 +6825,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0494.gif",
 //         "id": "0494",
@@ -6823,7 +6833,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3011.gif",
 //         "id": "3011",
@@ -6831,7 +6841,7 @@ db.once("open", async () => {
 //         "target": "serratus anterior"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0495.gif",
 //         "id": "0495",
@@ -6839,7 +6849,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "rope",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1564.gif",
 //         "id": "1564",
@@ -6847,7 +6857,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0496.gif",
 //         "id": "0496",
@@ -6855,7 +6865,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2400.gif",
 //         "id": "2400",
@@ -6863,47 +6873,47 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0499.gif",
 //         "id": "0499",
 //         "name": "inverted row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2300.gif",
 //         "id": "2300",
 //         "name": "inverted row bent knees",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2298.gif",
 //         "id": "2298",
 //         "name": "inverted row on bench",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0497.gif",
 //         "id": "0497",
 //         "name": "inverted row v. 2",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0498.gif",
 //         "id": "0498",
 //         "name": "inverted row with straps",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1419.gif",
 //         "id": "1419",
@@ -6911,15 +6921,15 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1297.gif",
 //         "id": "1297",
-//         "name": "isometric chest squeeze",
+//         "name": "isometric categories[4]._id squeeze",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0500.gif",
 //         "id": "0500",
@@ -6927,23 +6937,23 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0501.gif",
 //         "id": "0501",
 //         "name": "jack burpee",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3224.gif",
 //         "id": "3224",
 //         "name": "jack jump (male)",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0507.gif",
 //         "id": "0507",
@@ -6951,7 +6961,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0508.gif",
 //         "id": "0508",
@@ -6959,15 +6969,15 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "rope",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2612.gif",
 //         "id": "2612",
 //         "name": "jump rope",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0514.gif",
 //         "id": "0514",
@@ -6975,7 +6985,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0513.gif",
 //         "id": "0513",
@@ -6983,7 +6993,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0517.gif",
 //         "id": "0517",
@@ -6991,7 +7001,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0518.gif",
 //         "id": "0518",
@@ -6999,7 +7009,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0520.gif",
 //         "id": "0520",
@@ -7007,7 +7017,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0519.gif",
 //         "id": "0519",
@@ -7015,23 +7025,23 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0521.gif",
 //         "id": "0521",
 //         "name": "kettlebell alternating renegade row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0522.gif",
 //         "id": "0522",
 //         "name": "kettlebell alternating row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0523.gif",
 //         "id": "0523",
@@ -7039,7 +7049,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0524.gif",
 //         "id": "0524",
@@ -7047,7 +7057,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0525.gif",
 //         "id": "0525",
@@ -7055,7 +7065,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0526.gif",
 //         "id": "0526",
@@ -7063,7 +7073,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0527.gif",
 //         "id": "0527",
@@ -7071,7 +7081,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0528.gif",
 //         "id": "0528",
@@ -7079,7 +7089,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0529.gif",
 //         "id": "0529",
@@ -7087,7 +7097,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0530.gif",
 //         "id": "0530",
@@ -7095,7 +7105,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0531.gif",
 //         "id": "0531",
@@ -7103,7 +7113,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0532.gif",
 //         "id": "0532",
@@ -7111,7 +7121,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0533.gif",
 //         "id": "0533",
@@ -7119,7 +7129,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0534.gif",
 //         "id": "0534",
@@ -7127,7 +7137,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0535.gif",
 //         "id": "0535",
@@ -7135,7 +7145,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0536.gif",
 //         "id": "0536",
@@ -7143,7 +7153,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0537.gif",
 //         "id": "0537",
@@ -7151,7 +7161,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1298.gif",
 //         "id": "1298",
@@ -7159,7 +7169,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0538.gif",
 //         "id": "0538",
@@ -7167,7 +7177,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0539.gif",
 //         "id": "0539",
@@ -7175,7 +7185,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0540.gif",
 //         "id": "0540",
@@ -7183,15 +7193,15 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0541.gif",
 //         "id": "0541",
 //         "name": "kettlebell one arm row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0542.gif",
 //         "id": "0542",
@@ -7199,15 +7209,15 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0543.gif",
 //         "id": "0543",
-//         "name": "kettlebell pirate supper legs",
+//         "name": "kettlebell pirate scategories[1]._id",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0544.gif",
 //         "id": "0544",
@@ -7215,7 +7225,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0545.gif",
 //         "id": "0545",
@@ -7223,7 +7233,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0546.gif",
 //         "id": "0546",
@@ -7231,7 +7241,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1438.gif",
 //         "id": "1438",
@@ -7239,7 +7249,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0547.gif",
 //         "id": "0547",
@@ -7247,7 +7257,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0548.gif",
 //         "id": "0548",
@@ -7255,7 +7265,7 @@ db.once("open", async () => {
 //         "target": "traps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0549.gif",
 //         "id": "0549",
@@ -7263,7 +7273,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0550.gif",
 //         "id": "0550",
@@ -7271,7 +7281,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0551.gif",
 //         "id": "0551",
@@ -7279,7 +7289,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0552.gif",
 //         "id": "0552",
@@ -7287,7 +7297,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0553.gif",
 //         "id": "0553",
@@ -7295,15 +7305,15 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1345.gif",
 //         "id": "1345",
 //         "name": "kettlebell two arm row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "kettlebell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0554.gif",
 //         "id": "0554",
@@ -7311,7 +7321,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0555.gif",
 //         "id": "0555",
@@ -7319,7 +7329,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0558.gif",
 //         "id": "0558",
@@ -7327,7 +7337,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3640.gif",
 //         "id": "3640",
@@ -7335,7 +7345,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1420.gif",
 //         "id": "1420",
@@ -7343,7 +7353,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1346.gif",
 //         "id": "1346",
@@ -7351,15 +7361,15 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3239.gif",
 //         "id": "3239",
-//         "name": "kneeling plank tap shoulder (male)",
+//         "name": "kneeling plank tap categories[5]._id (male)",
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3211.gif",
 //         "id": "3211",
@@ -7367,7 +7377,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3288.gif",
 //         "id": "3288",
@@ -7375,7 +7385,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3418.gif",
 //         "id": "3418",
@@ -7383,7 +7393,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3419.gif",
 //         "id": "3419",
@@ -7391,7 +7401,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0562.gif",
 //         "id": "0562",
@@ -7399,7 +7409,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3237.gif",
 //         "id": "3237",
@@ -7407,7 +7417,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3300.gif",
 //         "id": "3300",
@@ -7415,7 +7425,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2271.gif",
 //         "id": "2271",
@@ -7423,7 +7433,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0570.gif",
 //         "id": "0570",
@@ -7431,7 +7441,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1576.gif",
 //         "id": "1576",
@@ -7439,7 +7449,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2287.gif",
 //         "id": "2287",
@@ -7447,15 +7457,15 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0571.gif",
 //         "id": "0571",
 //         "name": "lever alternating narrow grip seated row ",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0572.gif",
 //         "id": "0572",
@@ -7463,31 +7473,31 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0573.gif",
 //         "id": "0573",
-//         "name": "lever back extension",
+//         "name": "lever categories[2]._id extension",
 //         "target": "spine"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0574.gif",
 //         "id": "0574",
 //         "name": "lever bent over row ",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3200.gif",
 //         "id": "3200",
 //         "name": "lever bent-over row with v-bar ",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0575.gif",
 //         "id": "0575",
@@ -7495,7 +7505,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2289.gif",
 //         "id": "2289",
@@ -7503,31 +7513,31 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0577.gif",
 //         "id": "0577",
-//         "name": "lever chest press",
+//         "name": "lever categories[4]._id press",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0576.gif",
 //         "id": "0576",
-//         "name": "lever chest press ",
+//         "name": "lever categories[4]._id press ",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1455.gif",
 //         "id": "1455",
-//         "name": "lever chest press v. 2",
+//         "name": "lever categories[4]._id press v. 2",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0578.gif",
 //         "id": "0578",
@@ -7535,15 +7545,15 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1300.gif",
 //         "id": "1300",
-//         "name": "lever decline chest press",
+//         "name": "lever decline categories[4]._id press",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1253.gif",
 //         "id": "1253",
@@ -7551,7 +7561,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0579.gif",
 //         "id": "0579",
@@ -7559,7 +7569,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0580.gif",
 //         "id": "0580",
@@ -7567,7 +7577,7 @@ db.once("open", async () => {
 //         "target": "traps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1439.gif",
 //         "id": "1439",
@@ -7575,7 +7585,7 @@ db.once("open", async () => {
 //         "target": "traps"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2288.gif",
 //         "id": "2288",
@@ -7583,7 +7593,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1615.gif",
 //         "id": "1615",
@@ -7591,15 +7601,15 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0581.gif",
 //         "id": "0581",
 //         "name": "lever high row ",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2286.gif",
 //         "id": "2286",
@@ -7607,7 +7617,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2611.gif",
 //         "id": "2611",
@@ -7615,23 +7625,23 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1299.gif",
 //         "id": "1299",
-//         "name": "lever incline chest press",
+//         "name": "lever incline categories[4]._id press",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1479.gif",
 //         "id": "1479",
-//         "name": "lever incline chest press v. 2",
+//         "name": "lever incline categories[4]._id press v. 2",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0582.gif",
 //         "id": "0582",
@@ -7639,7 +7649,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0583.gif",
 //         "id": "0583",
@@ -7647,7 +7657,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0584.gif",
 //         "id": "0584",
@@ -7655,7 +7665,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0585.gif",
 //         "id": "0585",
@@ -7663,7 +7673,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0586.gif",
 //         "id": "0586",
@@ -7671,7 +7681,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3195.gif",
 //         "id": "3195",
@@ -7679,7 +7689,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0587.gif",
 //         "id": "0587",
@@ -7687,31 +7697,31 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0588.gif",
 //         "id": "0588",
 //         "name": "lever narrow grip seated row ",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0589.gif",
 //         "id": "0589",
 //         "name": "lever one arm bent over row ",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1356.gif",
 //         "id": "1356",
 //         "name": "lever one arm lateral high row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1347.gif",
 //         "id": "1347",
@@ -7719,15 +7729,15 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0590.gif",
 //         "id": "0590",
-//         "name": "lever one arm shoulder press ",
+//         "name": "lever one arm categories[5]._id press ",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0591.gif",
 //         "id": "0591",
@@ -7735,7 +7745,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0592.gif",
 //         "id": "0592",
@@ -7743,7 +7753,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1614.gif",
 //         "id": "1614",
@@ -7751,7 +7761,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2285.gif",
 //         "id": "2285",
@@ -7759,7 +7769,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2736.gif",
 //         "id": "2736",
@@ -7767,7 +7777,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1616.gif",
 //         "id": "1616",
@@ -7775,15 +7785,15 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1348.gif",
 //         "id": "1348",
 //         "name": "lever reverse grip vertical row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0593.gif",
 //         "id": "0593",
@@ -7791,15 +7801,15 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1349.gif",
 //         "id": "1349",
 //         "name": "lever reverse t-bar row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2315.gif",
 //         "id": "2315",
@@ -7807,7 +7817,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2335.gif",
 //         "id": "2335",
@@ -7815,7 +7825,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0594.gif",
 //         "id": "0594",
@@ -7823,7 +7833,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1452.gif",
 //         "id": "1452",
@@ -7831,15 +7841,15 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0595.gif",
 //         "id": "0595",
-//         "name": "lever seated crunch (chest pad)",
+//         "name": "lever seated crunch (categories[4]._id pad)",
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3760.gif",
 //         "id": "3760",
@@ -7847,7 +7857,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1451.gif",
 //         "id": "1451",
@@ -7855,7 +7865,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0596.gif",
 //         "id": "0596",
@@ -7863,7 +7873,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3759.gif",
 //         "id": "3759",
@@ -7871,7 +7881,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0597.gif",
 //         "id": "0597",
@@ -7879,7 +7889,7 @@ db.once("open", async () => {
 //         "target": "abductors"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0598.gif",
 //         "id": "0598",
@@ -7887,7 +7897,7 @@ db.once("open", async () => {
 //         "target": "adductors"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0599.gif",
 //         "id": "0599",
@@ -7895,7 +7905,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0600.gif",
 //         "id": "0600",
@@ -7903,7 +7913,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0602.gif",
 //         "id": "0602",
@@ -7911,7 +7921,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0601.gif",
 //         "id": "0601",
@@ -7919,23 +7929,23 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1350.gif",
 //         "id": "1350",
 //         "name": "lever seated row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1454.gif",
 //         "id": "1454",
-//         "name": "lever seated shoulder press",
+//         "name": "lever seated categories[5]._id press",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1385.gif",
 //         "id": "1385",
@@ -7943,7 +7953,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1453.gif",
 //         "id": "1453",
@@ -7951,31 +7961,31 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0603.gif",
 //         "id": "0603",
-//         "name": "lever shoulder press ",
+//         "name": "lever categories[5]._id press ",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0869.gif",
 //         "id": "0869",
-//         "name": "lever shoulder press  v. 2",
+//         "name": "lever categories[5]._id press  v. 2",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2318.gif",
 //         "id": "2318",
-//         "name": "lever shoulder press  v. 3",
+//         "name": "lever categories[5]._id press  v. 3",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0604.gif",
 //         "id": "0604",
@@ -7983,7 +7993,7 @@ db.once("open", async () => {
 //         "target": "traps"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0605.gif",
 //         "id": "0605",
@@ -7991,31 +8001,31 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3758.gif",
 //         "id": "3758",
-//         "name": "lever standing chest press",
+//         "name": "lever standing categories[4]._id press",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0606.gif",
 //         "id": "0606",
 //         "name": "lever t bar row ",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1351.gif",
 //         "id": "1351",
 //         "name": "lever t-bar reverse grip row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0607.gif",
 //         "id": "0607",
@@ -8023,23 +8033,23 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1313.gif",
 //         "id": "1313",
 //         "name": "lever unilateral row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "rope",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0609.gif",
 //         "id": "0609",
 //         "name": "london bridge",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3013.gif",
 //         "id": "3013",
@@ -8047,15 +8057,15 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1352.gif",
 //         "id": "1352",
-//         "name": "lower back curl",
+//         "name": "lower categories[2]._id curl",
 //         "target": "spine"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3582.gif",
 //         "id": "3582",
@@ -8063,7 +8073,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1688.gif",
 //         "id": "1688",
@@ -8071,7 +8081,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0613.gif",
 //         "id": "0613",
@@ -8079,7 +8089,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2312.gif",
 //         "id": "2312",
@@ -8087,7 +8097,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0620.gif",
 //         "id": "0620",
@@ -8095,7 +8105,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0865.gif",
 //         "id": "0865",
@@ -8103,15 +8113,15 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1301.gif",
 //         "id": "1301",
-//         "name": "machine inner chest press",
+//         "name": "machine inner categories[4]._id press",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0624.gif",
 //         "id": "0624",
@@ -8119,7 +8129,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "medicine ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1353.gif",
 //         "id": "1353",
@@ -8127,47 +8137,47 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "medicine ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1302.gif",
 //         "id": "1302",
-//         "name": "medicine ball chest pass",
+//         "name": "medicine ball categories[4]._id pass",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "medicine ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1303.gif",
 //         "id": "1303",
-//         "name": "medicine ball chest push from 3 point stance",
+//         "name": "medicine ball categories[4]._id push from 3 point stance",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "medicine ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1304.gif",
 //         "id": "1304",
-//         "name": "medicine ball chest push multiple response",
+//         "name": "medicine ball categories[4]._id push multiple response",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "medicine ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1305.gif",
 //         "id": "1305",
-//         "name": "medicine ball chest push single response",
+//         "name": "medicine ball categories[4]._id push single response",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "medicine ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1312.gif",
 //         "id": "1312",
-//         "name": "medicine ball chest push with run release",
+//         "name": "medicine ball categories[4]._id push with run release",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "medicine ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1701.gif",
 //         "id": "1701",
@@ -8175,23 +8185,23 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "medicine ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1354.gif",
 //         "id": "1354",
 //         "name": "medicine ball overhead slam",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "medicine ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1750.gif",
 //         "id": "1750",
-//         "name": "medicine ball supine chest throw",
+//         "name": "medicine ball supine categories[4]._id throw",
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0627.gif",
 //         "id": "0627",
@@ -8199,7 +8209,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3217.gif",
 //         "id": "3217",
@@ -8207,15 +8217,15 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1421.gif",
 //         "id": "1421",
-//         "name": "modified push up to lower arms",
+//         "name": "modified push up to categories[7]._id",
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0628.gif",
 //         "id": "0628",
@@ -8223,15 +8233,15 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0630.gif",
 //         "id": "0630",
 //         "name": "mountain climber",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0631.gif",
 //         "id": "0631",
@@ -8239,7 +8249,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1401.gif",
 //         "id": "1401",
@@ -8247,7 +8257,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2328.gif",
 //         "id": "2328",
@@ -8263,7 +8273,7 @@ db.once("open", async () => {
 //         "target": "levator scapulae"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0634.gif",
 //         "id": "0634",
@@ -8271,7 +8281,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1495.gif",
 //         "id": "1495",
@@ -8279,7 +8289,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0635.gif",
 //         "id": "0635",
@@ -8287,7 +8297,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "olympic barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0636.gif",
 //         "id": "0636",
@@ -8295,7 +8305,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "olympic barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0637.gif",
 //         "id": "0637",
@@ -8303,7 +8313,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1355.gif",
 //         "id": "1355",
@@ -8311,7 +8321,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0638.gif",
 //         "id": "0638",
@@ -8319,7 +8329,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0639.gif",
 //         "id": "0639",
@@ -8327,7 +8337,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "medicine ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0640.gif",
 //         "id": "0640",
@@ -8335,15 +8345,15 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1773.gif",
 //         "id": "1773",
 //         "name": "one arm towel row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1386.gif",
 //         "id": "1386",
@@ -8351,7 +8361,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1387.gif",
 //         "id": "1387",
@@ -8359,7 +8369,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1476.gif",
 //         "id": "1476",
@@ -8367,7 +8377,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0641.gif",
 //         "id": "0641",
@@ -8375,7 +8385,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0642.gif",
 //         "id": "0642",
@@ -8383,7 +8393,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0643.gif",
 //         "id": "0643",
@@ -8391,7 +8401,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3147.gif",
 //         "id": "3147",
@@ -8399,7 +8409,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1422.gif",
 //         "id": "1422",
@@ -8407,7 +8417,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "rope",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1388.gif",
 //         "id": "1388",
@@ -8415,7 +8425,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3662.gif",
 //         "id": "3662",
@@ -8423,7 +8433,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1306.gif",
 //         "id": "1306",
@@ -8431,7 +8441,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1687.gif",
 //         "id": "1687",
@@ -8439,7 +8449,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "rope",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1389.gif",
 //         "id": "1389",
@@ -8447,7 +8457,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3119.gif",
 //         "id": "3119",
@@ -8455,7 +8465,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3132.gif",
 //         "id": "3132",
@@ -8463,7 +8473,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0648.gif",
 //         "id": "0648",
@@ -8471,7 +8481,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3665.gif",
 //         "id": "3665",
@@ -8479,7 +8489,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3203.gif",
 //         "id": "3203",
@@ -8487,7 +8497,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1707.gif",
 //         "id": "1707",
@@ -8495,7 +8505,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0651.gif",
 //         "id": "0651",
@@ -8503,7 +8513,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0650.gif",
 //         "id": "0650",
@@ -8511,7 +8521,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0652.gif",
 //         "id": "0652",
@@ -8519,7 +8529,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1689.gif",
 //         "id": "1689",
@@ -8527,15 +8537,15 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3638.gif",
 //         "id": "3638",
 //         "name": "push to run",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "bosu ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1307.gif",
 //         "id": "1307",
@@ -8543,7 +8553,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0662.gif",
 //         "id": "0662",
@@ -8551,7 +8561,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "bosu ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0653.gif",
 //         "id": "0653",
@@ -8559,7 +8569,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0655.gif",
 //         "id": "0655",
@@ -8567,7 +8577,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0656.gif",
 //         "id": "0656",
@@ -8575,7 +8585,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0659.gif",
 //         "id": "0659",
@@ -8583,7 +8593,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0658.gif",
 //         "id": "0658",
@@ -8591,7 +8601,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0660.gif",
 //         "id": "0660",
@@ -8599,7 +8609,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0661.gif",
 //         "id": "0661",
@@ -8607,7 +8617,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "medicine ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0663.gif",
 //         "id": "0663",
@@ -8615,15 +8625,15 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1467.gif",
 //         "id": "1467",
-//         "name": "push-up on lower arms",
+//         "name": "push-up on categories[7]._id",
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3145.gif",
 //         "id": "3145",
@@ -8631,7 +8641,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0664.gif",
 //         "id": "0664",
@@ -8639,7 +8649,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3533.gif",
 //         "id": "3533",
@@ -8647,7 +8657,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3201.gif",
 //         "id": "3201",
@@ -8655,7 +8665,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3552.gif",
 //         "id": "3552",
@@ -8663,7 +8673,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0666.gif",
 //         "id": "0666",
@@ -8671,7 +8681,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0668.gif",
 //         "id": "0668",
@@ -8679,7 +8689,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0669.gif",
 //         "id": "0669",
@@ -8687,7 +8697,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0670.gif",
 //         "id": "0670",
@@ -8695,7 +8705,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "rope",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1582.gif",
 //         "id": "1582",
@@ -8703,7 +8713,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "resistance band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3236.gif",
 //         "id": "3236",
@@ -8711,7 +8721,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "resistance band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3007.gif",
 //         "id": "3007",
@@ -8719,7 +8729,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "resistance band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3123.gif",
 //         "id": "3123",
@@ -8727,15 +8737,15 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "resistance band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3124.gif",
 //         "id": "3124",
-//         "name": "resistance band seated chest press",
+//         "name": "resistance band seated categories[4]._id press",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "resistance band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3006.gif",
 //         "id": "3006",
@@ -8743,23 +8753,23 @@ db.once("open", async () => {
 //         "target": "abductors"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "resistance band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3122.gif",
 //         "id": "3122",
-//         "name": "resistance band seated shoulder press",
+//         "name": "resistance band seated categories[5]._id press",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "resistance band",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3144.gif",
 //         "id": "3144",
-//         "name": "resistance band seated straight back row",
-//         "target": "upper back"
+//         "name": "resistance band seated straight categories[2]._id row",
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0872.gif",
 //         "id": "0872",
@@ -8767,7 +8777,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0672.gif",
 //         "id": "0672",
@@ -8775,7 +8785,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0673.gif",
 //         "id": "0673",
@@ -8783,7 +8793,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0674.gif",
 //         "id": "0674",
@@ -8791,7 +8801,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0675.gif",
 //         "id": "0675",
@@ -8799,7 +8809,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1423.gif",
 //         "id": "1423",
@@ -8807,7 +8817,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3663.gif",
 //         "id": "3663",
@@ -8815,7 +8825,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0677.gif",
 //         "id": "0677",
@@ -8823,7 +8833,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2571.gif",
 //         "id": "2571",
@@ -8831,7 +8841,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0678.gif",
 //         "id": "0678",
@@ -8839,15 +8849,15 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "roller",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2208.gif",
 //         "id": "2208",
-//         "name": "roller back stretch",
+//         "name": "roller categories[2]._id stretch",
 //         "target": "spine"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "roller",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2204.gif",
 //         "id": "2204",
@@ -8855,7 +8865,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "roller",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2205.gif",
 //         "id": "2205",
@@ -8863,7 +8873,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "roller",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2202.gif",
 //         "id": "2202",
@@ -8871,7 +8881,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "roller",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2206.gif",
 //         "id": "2206",
@@ -8879,23 +8889,23 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "roller",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2203.gif",
 //         "id": "2203",
-//         "name": "roller seated shoulder flexor depresor retractor",
+//         "name": "roller seated categories[5]._id flexor depresor retractor",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "roller",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2209.gif",
 //         "id": "2209",
-//         "name": "roller seated single leg shoulder flexor depresor retractor",
+//         "name": "roller seated single leg categories[5]._id flexor depresor retractor",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "roller",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2207.gif",
 //         "id": "2207",
@@ -8903,31 +8913,31 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "rope",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0680.gif",
 //         "id": "0680",
 //         "name": "rope climb",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0685.gif",
 //         "id": "0685",
 //         "name": "run",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0684.gif",
 //         "id": "0684",
 //         "name": "run (equipment)",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1585.gif",
 //         "id": "1585",
@@ -8935,7 +8945,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0687.gif",
 //         "id": "0687",
@@ -8943,7 +8953,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3012.gif",
 //         "id": "3012",
@@ -8951,7 +8961,7 @@ db.once("open", async () => {
 //         "target": "traps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3021.gif",
 //         "id": "3021",
@@ -8959,7 +8969,7 @@ db.once("open", async () => {
 //         "target": "serratus anterior"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0688.gif",
 //         "id": "0688",
@@ -8967,15 +8977,15 @@ db.once("open", async () => {
 //         "target": "traps"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3219.gif",
 //         "id": "3219",
 //         "name": "scissor jumps (male)",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1390.gif",
 //         "id": "1390",
@@ -8983,7 +8993,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1424.gif",
 //         "id": "1424",
@@ -8991,7 +9001,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0689.gif",
 //         "id": "0689",
@@ -8999,15 +9009,15 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0690.gif",
 //         "id": "0690",
-//         "name": "seated lower back stretch",
+//         "name": "seated lower categories[2]._id stretch",
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2567.gif",
 //         "id": "2567",
@@ -9015,7 +9025,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0691.gif",
 //         "id": "0691",
@@ -9023,7 +9033,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1587.gif",
 //         "id": "1587",
@@ -9031,7 +9041,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0697.gif",
 //         "id": "0697",
@@ -9039,7 +9049,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1766.gif",
 //         "id": "1766",
@@ -9047,7 +9057,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0696.gif",
 //         "id": "0696",
@@ -9055,47 +9065,47 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3222.gif",
 //         "id": "3222",
 //         "name": "semi squat jump (male)",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3656.gif",
 //         "id": "3656",
 //         "name": "short stride run",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1763.gif",
 //         "id": "1763",
-//         "name": "shoulder grip pull-up",
+//         "name": "categories[5]._id grip pull-up",
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3699.gif",
 //         "id": "3699",
-//         "name": "shoulder tap",
+//         "name": "categories[5]._id tap",
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0699.gif",
 //         "id": "0699",
-//         "name": "shoulder tap push-up",
+//         "name": "categories[5]._id tap push-up",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1774.gif",
 //         "id": "1774",
@@ -9103,7 +9113,7 @@ db.once("open", async () => {
 //         "target": "abductors"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0705.gif",
 //         "id": "0705",
@@ -9111,7 +9121,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0709.gif",
 //         "id": "0709",
@@ -9119,7 +9129,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0710.gif",
 //         "id": "0710",
@@ -9127,7 +9137,7 @@ db.once("open", async () => {
 //         "target": "abductors"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1358.gif",
 //         "id": "1358",
@@ -9135,7 +9145,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3667.gif",
 //         "id": "3667",
@@ -9143,7 +9153,7 @@ db.once("open", async () => {
 //         "target": "adductors"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1775.gif",
 //         "id": "1775",
@@ -9159,7 +9169,7 @@ db.once("open", async () => {
 //         "target": "levator scapulae"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0717.gif",
 //         "id": "0717",
@@ -9167,7 +9177,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0721.gif",
 //         "id": "0721",
@@ -9175,7 +9185,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0720.gif",
 //         "id": "0720",
@@ -9183,7 +9193,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3213.gif",
 //         "id": "3213",
@@ -9191,7 +9201,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0725.gif",
 //         "id": "0725",
@@ -9199,7 +9209,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3645.gif",
 //         "id": "3645",
@@ -9207,7 +9217,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0727.gif",
 //         "id": "0727",
@@ -9215,7 +9225,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0730.gif",
 //         "id": "0730",
@@ -9223,7 +9233,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1759.gif",
 //         "id": "1759",
@@ -9231,7 +9241,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1489.gif",
 //         "id": "1489",
@@ -9239,7 +9249,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0735.gif",
 //         "id": "0735",
@@ -9247,23 +9257,23 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3679.gif",
 //         "id": "3679",
-//         "name": "sit-up with arms on chest",
+//         "name": "sit-up with arms on categories[4]._id",
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3361.gif",
 //         "id": "3361",
 //         "name": "skater hops",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "skierg machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2142.gif",
 //         "id": "2142",
@@ -9271,23 +9281,23 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3671.gif",
 //         "id": "3671",
 //         "name": "ski step",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3304.gif",
 //         "id": "3304",
 //         "name": "skin the cat",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "sled machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1425.gif",
 //         "id": "1425",
@@ -9295,7 +9305,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "sled machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0738.gif",
 //         "id": "0738",
@@ -9303,7 +9313,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "sled machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0739.gif",
 //         "id": "0739",
@@ -9311,15 +9321,15 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "sled machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1464.gif",
 //         "id": "1464",
-//         "name": "sled 45в° leg press (back pov)",
+//         "name": "sled 45в° leg press (categories[2]._id pov)",
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "sled machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1463.gif",
 //         "id": "1463",
@@ -9327,7 +9337,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "sled machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0740.gif",
 //         "id": "0740",
@@ -9335,7 +9345,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "sled machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1391.gif",
 //         "id": "1391",
@@ -9343,7 +9353,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "sled machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0741.gif",
 //         "id": "0741",
@@ -9351,7 +9361,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "sled machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0742.gif",
 //         "id": "0742",
@@ -9359,7 +9369,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "sled machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0743.gif",
 //         "id": "0743",
@@ -9367,7 +9377,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "sled machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2334.gif",
 //         "id": "2334",
@@ -9375,7 +9385,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "sled machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0744.gif",
 //         "id": "0744",
@@ -9383,7 +9393,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "sled machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1392.gif",
 //         "id": "1392",
@@ -9391,7 +9401,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "hammer",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1496.gif",
 //         "id": "1496",
@@ -9399,15 +9409,15 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0746.gif",
 //         "id": "0746",
-//         "name": "smith back shrug",
+//         "name": "smith categories[2]._id shrug",
 //         "target": "traps"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0747.gif",
 //         "id": "0747",
@@ -9415,7 +9425,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0748.gif",
 //         "id": "0748",
@@ -9423,7 +9433,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0749.gif",
 //         "id": "0749",
@@ -9431,15 +9441,15 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1359.gif",
 //         "id": "1359",
 //         "name": "smith bent over row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0750.gif",
 //         "id": "0750",
@@ -9447,7 +9457,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0751.gif",
 //         "id": "0751",
@@ -9455,7 +9465,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0752.gif",
 //         "id": "0752",
@@ -9463,7 +9473,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0753.gif",
 //         "id": "0753",
@@ -9471,7 +9481,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0754.gif",
 //         "id": "0754",
@@ -9479,7 +9489,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1433.gif",
 //         "id": "1433",
@@ -9487,7 +9497,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3281.gif",
 //         "id": "3281",
@@ -9495,7 +9505,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0755.gif",
 //         "id": "0755",
@@ -9503,7 +9513,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0756.gif",
 //         "id": "0756",
@@ -9511,7 +9521,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0757.gif",
 //         "id": "0757",
@@ -9519,7 +9529,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0758.gif",
 //         "id": "0758",
@@ -9527,15 +9537,15 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0759.gif",
 //         "id": "0759",
-//         "name": "smith incline shoulder raises",
+//         "name": "smith incline categories[5]._id raises",
 //         "target": "serratus anterior"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0760.gif",
 //         "id": "0760",
@@ -9543,7 +9553,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1434.gif",
 //         "id": "1434",
@@ -9551,7 +9561,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1683.gif",
 //         "id": "1683",
@@ -9559,7 +9569,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1625.gif",
 //         "id": "1625",
@@ -9567,7 +9577,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1752.gif",
 //         "id": "1752",
@@ -9575,7 +9585,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1626.gif",
 //         "id": "1626",
@@ -9583,23 +9593,23 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0761.gif",
 //         "id": "0761",
 //         "name": "smith narrow row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1360.gif",
 //         "id": "1360",
 //         "name": "smith one arm row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1393.gif",
 //         "id": "1393",
@@ -9607,7 +9617,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0762.gif",
 //         "id": "0762",
@@ -9615,7 +9625,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0763.gif",
 //         "id": "0763",
@@ -9623,7 +9633,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1394.gif",
 //         "id": "1394",
@@ -9631,15 +9641,15 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1361.gif",
 //         "id": "1361",
 //         "name": "smith reverse grip bent over row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0764.gif",
 //         "id": "0764",
@@ -9647,7 +9657,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1395.gif",
 //         "id": "1395",
@@ -9655,15 +9665,15 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0765.gif",
 //         "id": "0765",
-//         "name": "smith seated shoulder press",
+//         "name": "smith seated categories[5]._id press",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1426.gif",
 //         "id": "1426",
@@ -9671,15 +9681,15 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0766.gif",
 //         "id": "0766",
-//         "name": "smith shoulder press",
+//         "name": "smith categories[5]._id press",
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0767.gif",
 //         "id": "0767",
@@ -9687,7 +9697,7 @@ db.once("open", async () => {
 //         "target": "traps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0768.gif",
 //         "id": "0768",
@@ -9695,7 +9705,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0769.gif",
 //         "id": "0769",
@@ -9703,7 +9713,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0770.gif",
 //         "id": "0770",
@@ -9711,15 +9721,15 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0771.gif",
 //         "id": "0771",
-//         "name": "smith standing back wrist curl",
+//         "name": "smith standing categories[2]._id wrist curl",
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0772.gif",
 //         "id": "0772",
@@ -9727,7 +9737,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0773.gif",
 //         "id": "0773",
@@ -9735,7 +9745,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0774.gif",
 //         "id": "0774",
@@ -9743,7 +9753,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3142.gif",
 //         "id": "3142",
@@ -9751,7 +9761,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1396.gif",
 //         "id": "1396",
@@ -9759,7 +9769,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0775.gif",
 //         "id": "0775",
@@ -9767,7 +9777,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1308.gif",
 //         "id": "1308",
@@ -9775,7 +9785,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "smith machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1309.gif",
 //         "id": "1309",
@@ -9783,7 +9793,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0776.gif",
 //         "id": "0776",
@@ -9791,7 +9801,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "dumbbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0777.gif",
 //         "id": "0777",
@@ -9799,7 +9809,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1362.gif",
 //         "id": "1362",
@@ -9807,7 +9817,7 @@ db.once("open", async () => {
 //         "target": "spine"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0778.gif",
 //         "id": "0778",
@@ -9815,7 +9825,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1363.gif",
 //         "id": "1363",
@@ -9823,7 +9833,7 @@ db.once("open", async () => {
 //         "target": "spine"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2329.gif",
 //         "id": "2329",
@@ -9831,7 +9841,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2368.gif",
 //         "id": "2368",
@@ -9839,7 +9849,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0786.gif",
 //         "id": "0786",
@@ -9847,7 +9857,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "bosu ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1705.gif",
 //         "id": "1705",
@@ -9855,7 +9865,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1685.gif",
 //         "id": "1685",
@@ -9863,7 +9873,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1686.gif",
 //         "id": "1686",
@@ -9871,7 +9881,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "stability ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2297.gif",
 //         "id": "2297",
@@ -9879,7 +9889,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3291.gif",
 //         "id": "3291",
@@ -9887,15 +9897,15 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3669.gif",
 //         "id": "3669",
 //         "name": "standing archer",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "barbell",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0788.gif",
 //         "id": "0788",
@@ -9903,7 +9913,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1490.gif",
 //         "id": "1490",
@@ -9911,7 +9921,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1397.gif",
 //         "id": "1397",
@@ -9919,7 +9929,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1398.gif",
 //         "id": "1398",
@@ -9927,7 +9937,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "rope",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1599.gif",
 //         "id": "1599",
@@ -9935,7 +9945,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0794.gif",
 //         "id": "0794",
@@ -9943,7 +9953,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1364.gif",
 //         "id": "1364",
@@ -9951,7 +9961,7 @@ db.once("open", async () => {
 //         "target": "spine"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0795.gif",
 //         "id": "0795",
@@ -9959,7 +9969,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "wheel roller",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0796.gif",
 //         "id": "0796",
@@ -9967,31 +9977,31 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3223.gif",
 //         "id": "3223",
 //         "name": "star jump (male)",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "stationary bike",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2138.gif",
 //         "id": "2138",
 //         "name": "stationary bike run v. 3",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0798.gif",
 //         "id": "0798",
 //         "name": "stationary bike walk",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3314.gif",
 //         "id": "3314",
@@ -9999,7 +10009,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3298.gif",
 //         "id": "3298",
@@ -10007,7 +10017,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1427.gif",
 //         "id": "1427",
@@ -10015,7 +10025,7 @@ db.once("open", async () => {
 //         "target": "abductors"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0803.gif",
 //         "id": "0803",
@@ -10023,7 +10033,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0805.gif",
 //         "id": "0805",
@@ -10031,7 +10041,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0806.gif",
 //         "id": "0806",
@@ -10039,7 +10049,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0807.gif",
 //         "id": "0807",
@@ -10047,15 +10057,15 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0808.gif",
 //         "id": "0808",
 //         "name": "suspended row",
-//         "target": "upper back"
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0809.gif",
 //         "id": "0809",
@@ -10063,7 +10073,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3433.gif",
 //         "id": "3433",
@@ -10071,15 +10081,15 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3318.gif",
 //         "id": "3318",
 //         "name": "swing 360",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1753.gif",
 //         "id": "1753",
@@ -10087,7 +10097,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "tire",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2459.gif",
 //         "id": "2459",
@@ -10095,7 +10105,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "trap bar",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0811.gif",
 //         "id": "0811",
@@ -10103,7 +10113,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0814.gif",
 //         "id": "0814",
@@ -10111,7 +10121,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0812.gif",
 //         "id": "0812",
@@ -10119,7 +10129,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0813.gif",
 //         "id": "0813",
@@ -10127,7 +10137,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0815.gif",
 //         "id": "0815",
@@ -10135,7 +10145,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0816.gif",
 //         "id": "0816",
@@ -10143,7 +10153,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0817.gif",
 //         "id": "0817",
@@ -10151,7 +10161,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0871.gif",
 //         "id": "0871",
@@ -10159,7 +10169,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "cable",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0818.gif",
 //         "id": "0818",
@@ -10167,7 +10177,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1466.gif",
 //         "id": "1466",
@@ -10175,7 +10185,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2802.gif",
 //         "id": "2802",
@@ -10183,7 +10193,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2801.gif",
 //         "id": "2801",
@@ -10191,7 +10201,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3231.gif",
 //         "id": "3231",
@@ -10199,15 +10209,15 @@ db.once("open", async () => {
 //         "target": "spine"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1365.gif",
 //         "id": "1365",
-//         "name": "upper back stretch",
-//         "target": "upper back"
+//         "name": "upper categories[2]._id stretch",
+//         "target": "upper categories[2]._id"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1366.gif",
 //         "id": "1366",
@@ -10215,7 +10225,7 @@ db.once("open", async () => {
 //         "target": "spine"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3420.gif",
 //         "id": "3420",
@@ -10223,7 +10233,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0826.gif",
 //         "id": "0826",
@@ -10231,23 +10241,23 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "elliptical machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2141.gif",
 //         "id": "2141",
 //         "name": "walk elliptical cross trainer",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3655.gif",
 //         "id": "3655",
 //         "name": "walking high knees lunge",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1460.gif",
 //         "id": "1460",
@@ -10255,23 +10265,23 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "leverage machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3666.gif",
 //         "id": "3666",
 //         "name": "walking on incline treadmill",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "stepmill machine",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2311.gif",
 //         "id": "2311",
 //         "name": "walking on stepmill",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0830.gif",
 //         "id": "0830",
@@ -10279,7 +10289,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2987.gif",
 //         "id": "2987",
@@ -10287,7 +10297,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3643.gif",
 //         "id": "3643",
@@ -10295,7 +10305,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0832.gif",
 //         "id": "0832",
@@ -10303,7 +10313,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3670.gif",
 //         "id": "3670",
@@ -10311,7 +10321,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "lower legs",
+//         "bodyPart": "categories[3]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0833.gif",
 //         "id": "0833",
@@ -10319,7 +10329,7 @@ db.once("open", async () => {
 //         "target": "calves"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1310.gif",
 //         "id": "1310",
@@ -10327,7 +10337,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2135.gif",
 //         "id": "2135",
@@ -10335,7 +10345,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0834.gif",
 //         "id": "0834",
@@ -10343,7 +10353,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0866.gif",
 //         "id": "0866",
@@ -10351,7 +10361,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0835.gif",
 //         "id": "0835",
@@ -10359,7 +10369,7 @@ db.once("open", async () => {
 //         "target": "spine"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3641.gif",
 //         "id": "3641",
@@ -10367,7 +10377,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3644.gif",
 //         "id": "3644",
@@ -10375,7 +10385,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3286.gif",
 //         "id": "3286",
@@ -10383,7 +10393,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3312.gif",
 //         "id": "3312",
@@ -10391,7 +10401,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3290.gif",
 //         "id": "3290",
@@ -10399,7 +10409,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0840.gif",
 //         "id": "0840",
@@ -10407,7 +10417,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0841.gif",
 //         "id": "0841",
@@ -10415,7 +10425,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "shoulders",
+//         "bodyPart": "categories[5]._ids",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0844.gif",
 //         "id": "0844",
@@ -10423,7 +10433,7 @@ db.once("open", async () => {
 //         "target": "delts"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0846.gif",
 //         "id": "0846",
@@ -10431,7 +10441,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0845.gif",
 //         "id": "0845",
@@ -10439,7 +10449,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2371.gif",
 //         "id": "2371",
@@ -10447,7 +10457,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "medicine ball",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0847.gif",
 //         "id": "0847",
@@ -10455,7 +10465,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0849.gif",
 //         "id": "0849",
@@ -10463,7 +10473,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0850.gif",
 //         "id": "0850",
@@ -10471,7 +10481,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0851.gif",
 //         "id": "0851",
@@ -10479,7 +10489,7 @@ db.once("open", async () => {
 //         "target": "quads"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0852.gif",
 //         "id": "0852",
@@ -10487,7 +10497,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0853.gif",
 //         "id": "0853",
@@ -10495,7 +10505,7 @@ db.once("open", async () => {
 //         "target": "biceps"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0854.gif",
 //         "id": "0854",
@@ -10503,7 +10513,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3313.gif",
 //         "id": "3313",
@@ -10511,7 +10521,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3642.gif",
 //         "id": "3642",
@@ -10519,7 +10529,7 @@ db.once("open", async () => {
 //         "target": "glutes"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0856.gif",
 //         "id": "0856",
@@ -10527,7 +10537,7 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1754.gif",
 //         "id": "1754",
@@ -10535,7 +10545,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1755.gif",
 //         "id": "1755",
@@ -10543,7 +10553,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "upper arms",
+//         "bodyPart": "categories[6]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1767.gif",
 //         "id": "1767",
@@ -10551,7 +10561,7 @@ db.once("open", async () => {
 //         "target": "triceps"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "wheel roller",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0857.gif",
 //         "id": "0857",
@@ -10559,15 +10569,15 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "cardio",
+//         "bodyPart": "categories[8]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/3637.gif",
 //         "id": "3637",
 //         "name": "wheel run",
-//         "target": "cardiovascular system"
+//         "target": "categories[8]._idvascular system"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1429.gif",
 //         "id": "1429",
@@ -10575,7 +10585,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "back",
+//         "bodyPart": "categories[2]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1367.gif",
 //         "id": "1367",
@@ -10583,7 +10593,7 @@ db.once("open", async () => {
 //         "target": "lats"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1311.gif",
 //         "id": "1311",
@@ -10591,15 +10601,15 @@ db.once("open", async () => {
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "chest",
+//         "bodyPart": "categories[4]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2363.gif",
 //         "id": "2363",
-//         "name": "wide-grip chest dip on high parallel bars",
+//         "name": "wide-grip categories[4]._id dip on high parallel bars",
 //         "target": "pectorals"
 //       },
 //       {
-//         "bodyPart": "waist",
+//         "bodyPart": "categories[0]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0858.gif",
 //         "id": "0858",
@@ -10607,7 +10617,7 @@ db.once("open", async () => {
 //         "target": "abs"
 //       },
 //       {
-//         "bodyPart": "upper legs",
+//         "bodyPart": "categories[1]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1604.gif",
 //         "id": "1604",
@@ -10615,7 +10625,7 @@ db.once("open", async () => {
 //         "target": "hamstrings"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "body weight",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1428.gif",
 //         "id": "1428",
@@ -10623,7 +10633,7 @@ db.once("open", async () => {
 //         "target": "forearms"
 //       },
 //       {
-//         "bodyPart": "lower arms",
+//         "bodyPart": "categories[7]._id",
 //         "equipment": "weighted",
 //         "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0859.gif",
 //         "id": "0859",
@@ -10635,15 +10645,22 @@ db.once("open", async () => {
   // console.log("workouts seeded");
 
   await User.deleteMany ();
-
-  await User.create({
+ 
+  const users = await User.create({
     username: 'gymbro1990',
     email: 'gymrat@testmail.com',
     password: 'password12345',
-    savedWorkouts: [0]
+    workouts: [
+      {
+        exercise: []
+      }
+    ]
   });
 
  console.log('user seeded');
+ console.log(users)
+ console.log(workouts);
+//  console.log(categories);
   process.exit();
 });
 
