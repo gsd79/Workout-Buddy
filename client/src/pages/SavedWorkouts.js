@@ -17,28 +17,28 @@ const SavedWorkouts = () => {
   const [removeWorkout] = useMutation(REMOVE_WORKOUT);
   const userData = data?.user || {};
 
-//   // create function that accepts the workout's mongo _id value as param and deletes the workout from the database
-//   const handleDeleteWorkout = async (workoutId) => {
-//     const token = Auth.loggedIn() ? Auth.getToken() : null;
+  // create function that accepts the workout's mongo _id value as param and deletes the workout from the database
+  const handleDeleteWorkout = async (workoutId) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-//     if (!token) {
-//       return false;
-//     }
+    if (!token) {
+      return false;
+    }
 
-//     // try {
-//     //   await removeWorkout({
-//     //     variables: { workoutId },
-//     //   });
+    // try {
+    //   await removeWorkout({
+    //     variables: { workoutId },
+    //   });
 
-//   //     // removeWorkoutId(workoutId);
-//   //   } catch (err) {
-//   //     console.error(err);
-//   //   }
-//   // };
+    //   removeWorkoutId(workoutId);
+    // } catch (err) {
+    //   console.error(err);
+    // }
+  };
 
-//   if (loading) {
-//     return <h2>LOADING...</h2>;
-//   }
+  if (loading) {
+    return <h2>LOADING...</h2>;
+  }
 
   return (
     <>
@@ -48,15 +48,15 @@ const SavedWorkouts = () => {
         </Container>
       </Jumbotron>
       <Container>
-        {/* TODO app does not like the savedWorkouts.length. gotta fix this */}
-        {/* <h2>
+        {/* TODO app does not like the savedWorkouts.length. gotta fix this  */}
+        { <h2>
           {userData.savedWorkouts.length
             ? `Viewing ${userData.savedWorkouts.length} saved ${
                 userData.savedWorkouts.length === 1 ? "workout" : "workouts"
               }:`
             : "You have no saved workouts!"}
-        </h2> */}
-        {/* <CardColumns>
+        </h2> }
+        <CardColumns>
           {userData.savedWorkouts.map((workout) => {
             return (
               <Card key={workout.workoutId} border="dark">
@@ -81,10 +81,10 @@ const SavedWorkouts = () => {
               </Card>
             );
           })}
-        </CardColumns> */}
+        </CardColumns>
       </Container>
     </>
   );
-};
+}; 
 
 export default SavedWorkouts;
