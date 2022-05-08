@@ -35,3 +35,11 @@ mutation saveWorkout($name: String!, $id: ID!) {
     _id
   }
 }`
+
+
+export const REMOVE_WORKOUT = gql `
+mutation removeWorkout($name: String!, $id: ID!) {
+  user{
+    _id
+  }
+}`
