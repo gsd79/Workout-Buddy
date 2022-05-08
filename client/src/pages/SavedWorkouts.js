@@ -3,7 +3,9 @@ import {
   Container,
   Card,
   Button,
-} from "react-bootstrap"; //does not like jumbotron or card column
+  Jumbotron,
+  CardColumns
+} from "react-bootstrap";
 import Auth from "../utils/auth";
 // import { removeWorkoutId } from "../utils/localStorage"; no localstorage created yet (will be using indexdb instead)
 import { useQuery, useMutation } from "@apollo/client";
@@ -13,7 +15,7 @@ import { REMOVE_WORKOUT } from "../utils/mutations";
 const SavedWorkouts = () => {
   const { loading, data } = useQuery(QUERY_USER);
   const [removeWorkout] = useMutation(REMOVE_WORKOUT);
-  const userData = data?.me || {};
+  const userData = data?.user || {};
 
   // create function that accepts the workout's mongo _id value as param and deletes the workout from the database
   const handleDeleteWorkout = async (workoutId) => {
@@ -40,21 +42,21 @@ const SavedWorkouts = () => {
 
   return (
     <>
-      {/* <Jumbotron fluid className="text-light bg-dark"> */}
+      <Jumbotron fluid className="text-light bg-dark">
         <Container>
           <h1>Viewing saved workouts!</h1>
         </Container>
-      {/* </Jumbotron> */}
+      </Jumbotron>
       <Container>
-        <h2>
+        {/* TODO app does not like the savedWorkouts.length. gotta fix this */}
+        {/* <h2>
           {userData.savedWorkouts.length
             ? `Viewing ${userData.savedWorkouts.length} saved ${
                 userData.savedWorkouts.length === 1 ? "workout" : "workouts"
               }:`
             : "You have no saved workouts!"}
-        </h2>
-        {/* <CardColumns> */}
-        <div>
+        </h2> */}
+        {/* <CardColumns>
           {userData.savedWorkouts.map((workout) => {
             return (
               <Card key={workout.workoutId} border="dark">
@@ -79,8 +81,7 @@ const SavedWorkouts = () => {
               </Card>
             );
           })}
-        {/* </CardColumns> */}
-        </div>
+        </CardColumns> */}
       </Container>
     </>
   );

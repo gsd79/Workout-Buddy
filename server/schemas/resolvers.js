@@ -7,6 +7,30 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
+    exercise: async () => {
+      return await Exercise.find();
+    },
+    // user: async (parent, args, context) => {
+    //   if (context.user) {
+    //     const user = await User.findById(context.user._id).populate({
+    //       path: 'workouts.exercise',
+    //       populate: 'category'
+    //     });
+    //     return user;
+    //   }
+
+    //   throw new AuthenticationError('Not logged in');
+    // },
+    user: async (parent, { username }) => {
+      return User.findOne({ username })
+        .select('-__v -password')
+        .populate('workouts');
+    },
+    users: async () => {
+      return User.find()
+        .select('-__v -password')
+        .populate('workouts');
+    },
     workouts: async (parent, { category, name }) => {
       const params = {};
 
@@ -25,17 +49,6 @@ const resolvers = {
     // workout: async (parent, { _id }) => {
     //   return await Exercise.findById(_id).populate('category');
     // },
-    user: async (parent, args, context) => {
-      if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: 'workouts.exercise',
-          populate: 'category'
-        });
-        return user;
-      }
-
-      throw new AuthenticationError('Not logged in');
-    },
     workouts: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({

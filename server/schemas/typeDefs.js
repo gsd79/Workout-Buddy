@@ -7,13 +7,13 @@ const typeDefs = gql`
   }
 
   type Exercise {
- bodyPart: String
- equipment: String 
- gifUrl: String
- id: String 
- name: String  
- target: String 
- _id: ID
+    bodyPart: String
+    equipment: String 
+    gifUrl: String
+    id: String 
+    name: String  
+    target: String 
+    _id: ID
   }
 
   type Workout {
@@ -22,10 +22,10 @@ const typeDefs = gql`
 
   type User {
     _id: ID
-   username: String  
-   email: String
-   password: String
-   savedworkouts: [Workout]
+    username: String  
+    email: String
+    password: String
+    savedworkouts: [Workout]
   }
 
   type Auth {
@@ -38,6 +38,7 @@ const typeDefs = gql`
     workouts: [Workout]
     exercise: [Exercise]
     user: [User]
+    users: [User]
   }
 
   type Mutation {
