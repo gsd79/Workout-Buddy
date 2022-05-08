@@ -14,7 +14,7 @@ export class Home extends Component {
               class="hs-item set-bg"
               data-setbg="../src/assets/img/hero/hero-1.jpg"
             > */}
-              <img src={pic} />
+              <img src={pic} alt=''/>
 
               <div class="container">
                 <div class="row">
