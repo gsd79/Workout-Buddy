@@ -25,15 +25,15 @@ const SavedWorkouts = () => {
       return false;
     }
 
-    try {
-      await removeWorkout({
-        variables: { workoutId },
-      });
+    // try {
+    //   await removeWorkout({
+    //     variables: { workoutId },
+    //   });
 
-      // removeWorkoutId(workoutId);
-    } catch (err) {
-      console.error(err);
-    }
+    //   removeWorkoutId(workoutId);
+    // } catch (err) {
+    //   console.error(err);
+    // }
   };
 
   if (loading) {
@@ -48,15 +48,15 @@ const SavedWorkouts = () => {
         </Container>
       </Jumbotron>
       <Container>
-        {/* TODO app does not like the savedWorkouts.length. gotta fix this */}
-        {/* <h2>
+        {/* TODO app does not like the savedWorkouts.length. gotta fix this  */}
+        { <h2>
           {userData.savedWorkouts.length
             ? `Viewing ${userData.savedWorkouts.length} saved ${
                 userData.savedWorkouts.length === 1 ? "workout" : "workouts"
               }:`
             : "You have no saved workouts!"}
-        </h2> */}
-        {/* <CardColumns>
+        </h2> }
+        <CardColumns>
           {userData.savedWorkouts.map((workout) => {
             return (
               <Card key={workout.workoutId} border="dark">
@@ -81,10 +81,10 @@ const SavedWorkouts = () => {
               </Card>
             );
           })}
-        </CardColumns> */}
+        </CardColumns>
       </Container>
     </>
   );
-};
+}; 
 
 export default SavedWorkouts;

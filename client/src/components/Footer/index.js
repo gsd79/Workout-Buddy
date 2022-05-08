@@ -3,15 +3,15 @@ import React, { Component } from "react";
 export class Footer extends Component {
     render() {
         return (
-            <footer class="py-5 bg-dark">
-                <section class="footer-section">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div class="fs-about"></div>
+            <footer className="py-5 bg-dark">
+                <section className="footer-section">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-lg-4">
+                                <div className="fs-about"></div>
                             </div>
-                            <div class="col-lg-2 col-md-3 col-sm-6">
-                                <div class="fs-widget">
+                            <div className="col-lg-2 col-md-3 col-sm-6">
+                                <div className="fs-widget">
                                     <ul>
                                         <li>
                                             <a href="/">Home</a>

@@ -9,7 +9,7 @@ import {
   CardColumns,
 } from "react-bootstrap";
 // figureout imports line 12 
-import { saveWorkOut, searchWorkOut } from "../utils/API";
+
 import Auth from "../utils/auth";
 import { saveWorkoutIds, getSavedWorkoutIds } from "../utils/localStorage";
 import { useMutation } from "@apollo/client";

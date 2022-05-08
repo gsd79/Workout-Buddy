@@ -1,39 +1,6 @@
 import { gql } from '@apollo/client';
 
 
-
-export const QUERY_WORKOUT = gql`
-  query getCheckout($products: [ID]!) {
-    checkout(products: $products) {
-      session
-    }
-  }
-`;
-// export const QUERY_CALORIES = gql`
-//   {
-//     categories {
-//       _id
-//       name
-//     }
-//   }
-// `;
-
-export const QUERY_PROGRESS= gql`
-  {
-    products {
-      _id
-      name
-      description
-      price
-      quantity
-      category {
-        name
-      }
-    }
-  }
-`;
-
-
 export const QUERY_USER = gql`
   {
     user {
@@ -55,3 +22,37 @@ export const QUERY_USER = gql`
     }
   }
 `;
+
+export const QUERY_USER_BRIEF = gql`
+query user($username: String!) {
+  user(username: $username) {
+    _id
+    username
+  }
+}`
+
+export const QUERY_WORKOUT = gql `
+query workout($id: ID!) {
+  workout(_id: $id) {
+    _id
+    name
+    exercises {
+      _id
+      bodyPart
+      equipment
+      gifUrl
+      name
+      target
+    }
+  }
+}`
+
+export const QUERY_CATEGORY = gql`
+  {
+    categories {
+      _id
+      name
+    }
+  }
+`;
+

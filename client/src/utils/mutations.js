@@ -27,38 +27,28 @@ export const ADD_USER = gql`
       }
     }
   }
+}
 `;
 
-// export const ADD_WORKOUT = gql`
-// mutation addWorkout($progress: [ID]!) {
-//   addWorkout(workouts: $workout) {
-//       difficulty
-//       muscle groups
-//       _id
-//     }
-//   }
-// `;
-
-// export const ADD_WORKOUT = gql`
-// mutation addWorkout($progress: [ID]!) {
-//   addWorkout(workouts: $workout) {
-//       difficulty
-//       muscle groups
-//       _id
-//     }
-//   }
-// `;
-
-
-export const REMOVE_WORKOUT = gql`
-  mutation removeWorkout($id: ID!) {
-    removeWorkout(id: $id) {
-      _id
-      username
-      workout {
-        _id
-        username
-      }
-    }
+export const SAVE_WORKOUT = gql`
+mutation saveWorkout($name: String!, $id: ID!) {
+  exercises{
+    bodyPart
+    equipment
+    gifUrl
+    id
+    name
+    target
   }
-`;
+  user{
+    _id
+  }
+}`
+
+
+export const REMOVE_WORKOUT = gql `
+mutation removeWorkout($name: String!, $id: ID!) {
+  user{
+    _id
+  }
+}`
