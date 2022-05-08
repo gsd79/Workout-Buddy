@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Exercise, Workout } = require("../models");
+const { User, Exercise, Workout, Category } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -39,7 +39,7 @@ const resolvers = {
     workout: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: 'exercise.workouts',
+          path: 'workouts.exercise',
           populate: 'category'
         });
 
@@ -56,7 +56,18 @@ const resolvers = {
 
       return { token, user };
     },
-   
+    addWorkout: async (parent, { exercise }, context) => {
+      console.log(context);
+      if (context.user) {
+        const workout = new Workout({ exercise });
+
+        await User.findByIdAndUpdate(context.user._id, { $push: { workouts: workout } });
+
+        return workout;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 

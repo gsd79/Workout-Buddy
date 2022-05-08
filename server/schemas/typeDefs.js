@@ -13,6 +13,7 @@ const typeDefs = gql`
  id: String 
  name: String  
  target: String 
+ _id: ID
   }
 
   type Workout {
@@ -24,7 +25,7 @@ const typeDefs = gql`
    username: String  
    email: String
    password: String
-   savedworkouts: []
+   savedworkouts: [Workout]
   }
 
   type Auth {
