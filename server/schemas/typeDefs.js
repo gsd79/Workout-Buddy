@@ -36,13 +36,13 @@ const typeDefs = gql`
   type Query {
     categories: [Category]
     workouts(category: ID, name: String): [Workout]
-    workouts(_id: ID!): Workout
+    workout(_id: ID!): Workout
     user: User
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    saveWorkout(workouts: [ID]!): Workout
+    addWorkout(workouts: [ID]!): Workout
     login(email: String!, password: String!): Auth
   }
 `;

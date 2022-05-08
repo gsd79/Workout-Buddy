@@ -22,7 +22,7 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
 `;
 
 export const SAVE_WORKOUT = gql`
-mutation saveWorkout($name: String!, []) {
+mutation saveWorkout($name: String!, $id: ID!) {
   exercises{
     bodyPart
     equipment
