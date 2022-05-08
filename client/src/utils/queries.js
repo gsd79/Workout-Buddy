@@ -37,18 +37,19 @@ export const QUERY_PROGRESS= gql`
 export const QUERY_USER = gql`
   {
     user {
-      firstName
-      lastName
-      orders {
+      _id
+      username
+      email
+      savedworkouts {
         _id
-        purchaseDate
-        products {
-          _id
+        excercise {
+          bodyPart
+          equipment
+          gifUrl
+          id 
           name
-          description
-          price
-          quantity
-          image
+          target
+          _id
         }
       }
     }

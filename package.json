@@ -2,7 +2,7 @@
   "name": "workout-buddy",
   "version": "1.0.0",
   "description": "Final Project Workout Tracker App",
-  "main": "server.js",
+  "main": "server/server.js",
   "scripts": {
     "test": "npm run test",
     "start": "node server/server.js",

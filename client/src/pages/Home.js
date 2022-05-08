@@ -8,7 +8,7 @@ export class Home extends Component {
       <>
         {/* <Jumbotron class="hero-section"> */}
         <div>
-          <Container class="hs-slider owl-carousel">
+          <Container className="hs-slider owl-carousel">
             <div>
             {/* <CardColumns
               class="hs-item set-bg"
@@ -16,15 +16,15 @@ export class Home extends Component {
             > */}
               <img src={pic} />
 
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-6 offset-lg-6">
-                    <div class="hi-text">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-6 offset-lg-6">
+                    <div className="hi-text">
                       <span>Shape your body</span>
                       <h1>
                         Be <strong>strong</strong> traning hard
                       </h1>
-                      <a href="/plans" class="primary-btn">
+                      <a href="/plans" className="primary-btn">
                         Get info
                       </a>
                     </div>

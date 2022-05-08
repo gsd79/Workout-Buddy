@@ -8,7 +8,6 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import Home from "./pages/Home";
-
 import SavedWorkouts from "./pages/SavedWorkouts";
 import AppNavbar from "./components/Navbar/Navbar";
 // import WorkoutPlan from "./components/WorkPlans/WorkoutPlan";
