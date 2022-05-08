@@ -12,43 +12,40 @@ const SignupForm = () => {
     email: "",
     password: "",
   });
+  const [addUser] = useMutation(ADD_USER);
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
-
-  const [addUser] = useMutation(ADD_USER);
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
-  };
-
+  
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    
     // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
-
+    
     try {
-      const { data } = await addUser({
+      const mutationResponse = await addUser({
         variables: { ...userFormData },
       });
-      console.log(data);
-      Auth.login(data.addUser.token);
+      // console.log(data);
+      const token = mutationResponse.data.addUser.token;
+      Auth.login(token);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
     }
-
-    setUserFormData({
-      username: "",
-      email: "",
-      password: "",
+  };
+  
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ 
+      ...userFormData, 
+      [name]: value 
     });
   };
 

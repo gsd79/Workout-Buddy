@@ -22,9 +22,9 @@ const resolvers = {
 
       return await Exercise.find(params).populate('category');
     },
-    workout: async (parent, { _id }) => {
-      return await Exercise.findById(_id).populate('category');
-    },
+    // workout: async (parent, { _id }) => {
+    //   return await Exercise.findById(_id).populate('category');
+    // },
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
@@ -36,7 +36,7 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    workout: async (parent, { _id }, context) => {
+    workouts: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
           path: 'workouts.exercise',
