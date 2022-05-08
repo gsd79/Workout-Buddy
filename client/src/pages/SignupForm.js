@@ -1,54 +1,34 @@
-import React, { useState } from "react";
-import { useMutation } from "@apollo/react-hooks";
-import { Form, Button, Alert } from "react-bootstrap";
+import React, { useState } from 'react';
+// import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import Auth from '../utils/auth';
+import { ADD_USER } from '../utils/mutations';
 
-import { ADD_USER } from "../utils/mutations";
-import Auth from "../utils/auth";
-
-const SignupForm = () => {
-  // set initial form state
-  const [userFormData, setUserFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
+function Signup(props) {
+  const [formState, setFormState] = useState({ email: '', password: '' });
   const [addUser] = useMutation(ADD_USER);
-  // set state for form validation
-  const [validated] = useState(false);
-  // set state for alert
-  const [showAlert, setShowAlert] = useState(false);
-  
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    
-    // check if form has everything (as per react-bootstrap docs)
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    
-    try {
-      const mutationResponse = await addUser({
-        variables: { ...userFormData },
-      });
-      // console.log(data);
-      const token = mutationResponse.data.addUser.token;
-      Auth.login(token);
-    } catch (err) {
-      console.error(err);
-      setShowAlert(true);
-    }
-  };
-  
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ 
-      ...userFormData, 
-      [name]: value 
+    const mutationResponse = await addUser({
+      variables: {
+        email: formState.email,
+        userName: formState.userName,
+        password: formState.password,
+        
+      },
     });
+    const token = mutationResponse.data.addUser.token;
+    Auth.login(token);
   };
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
   return (
     <>
       {/* This is needed for the validation functionality above */}
@@ -64,18 +44,20 @@ const SignupForm = () => {
         </Alert>
 
         <Form.Group>
+          <form onSubmit={handleFormSubmit}>
           <Form.Label htmlFor="username">Username</Form.Label>
           <Form.Control
             type="text"
             placeholder="Your username"
             name="username"
-            onChange={handleInputChange}
+            onChange={handleChange}
             value={userFormData.username}
             required
           />
           <Form.Control.Feedback type="invalid">
             Username is required!
           </Form.Control.Feedback>
+          </Form>
         </Form.Group>
 
         <Form.Group>
@@ -84,7 +66,7 @@ const SignupForm = () => {
             type="email"
             placeholder="Your email address"
             name="email"
-            onChange={handleInputChange}
+            onChange={handleChange}
             value={userFormData.email}
             required
           />
@@ -99,7 +81,7 @@ const SignupForm = () => {
             type="password"
             placeholder="Your password"
             name="password"
-            onChange={handleInputChange}
+            onChange={handleChange}
             value={userFormData.password}
             required
           />
@@ -125,4 +107,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default Signup;
