@@ -35,9 +35,9 @@ const typeDefs = gql`
 
   type Query {
     categories: [Category]
-    workouts(category: ID, name: String): [Exercise]
-    exercise(_id: ID!): Exercise
-    user: User
+    workouts: [Workout]
+    exercise: [Exercise]
+    user: [User]
   }
 
   type Mutation {

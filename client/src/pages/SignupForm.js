@@ -44,20 +44,20 @@ function Signup(props) {
         </Alert>
 
         <Form.Group>
-          <form onSubmit={handleFormSubmit}>
-          <Form.Label htmlFor="username">Username</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Your username"
-            name="username"
-            onChange={handleChange}
-            value={userFormData.username}
-            required
-          />
+          <form onSubmit={handleFormSubmit}> 
+            <Form.Label htmlFor="username">Username</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Your username"
+              name="username"
+              onChange={handleChange}
+              value={userFormData.username}
+              required
+            ></Form.Control>
+          </form>
           <Form.Control.Feedback type="invalid">
             Username is required!
           </Form.Control.Feedback>
-          </Form>
         </Form.Group>
 
         <Form.Group>
