@@ -11,8 +11,8 @@ import Home from "./pages/Home";
 
 import SavedWorkouts from "./pages/SavedWorkouts";
 import AppNavbar from "./components/Navbar/Navbar";
-import WorkoutPlan from "./components/WorkPlans/WorkoutPlan";
-import Footer from "./components/Footer/Footer";
+// import WorkoutPlan from "./components/WorkPlans/WorkoutPlan";
+import Footer from "./components/Footer";
 import ProgressBar from "./components/Progress/ProgressBar";
 
 const httpLink = createHttpLink({
@@ -43,7 +43,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/saved" component={SavedWorkouts} />
-            <Route exact path="/plans" component={WorkoutPlan} />
+            {/* <Route exact path="/plans" component={WorkoutPlan} /> */}
             <Route exact path="/progress" component={ProgressBar} />
             <Route
               render={() => <h1 className="display-2">Oops, wrong page!</h1>}

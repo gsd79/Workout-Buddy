@@ -12,8 +12,8 @@ export function idbPromise(storeName, method, object) {
     request.onupgradeneeded = function(e) {
       const db = request.result;
       db.createObjectStore('workouts', { keyPath: '_id' });
-      db.createObjectStore('calories', { keyPath: '_id' });
-      db.createObjectStore('water', { keyPath: '_id' });
+      // db.createObjectStore('calories', { keyPath: '_id' });
+      // db.createObjectStore('water', { keyPath: '_id' });
       db.createObjectStore('progress', { keyPath: '_id' });
     };
 
