@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Exercise = require('./Exercise');
 
 const { Schema } = mongoose;
 
@@ -9,12 +10,7 @@ const workoutSchema = new Schema(
     required: true,
     unique: true,
   },
-  workouts: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Exercise'
-    }
-  ]
+  exercises: [Exercise.schema]
 }
 );
 

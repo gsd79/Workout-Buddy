@@ -38,9 +38,9 @@ const typeDefs = gql`
   type Query {
     categories: [Category]
     workouts: [Workout]
-    exercise: [Exercise]
+    exercise: Exercise
     exercises: [Exercise]
-    user: [User]
+    user: User
     users: [User]
   }
 
