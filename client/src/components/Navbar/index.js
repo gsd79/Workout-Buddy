@@ -30,7 +30,7 @@ const Navheader = () => {
                 </>
               ) : (
                 <Nav.Link onClick={() => setShowModal(true)}>
-                  Login/Sign Up
+                  Login
                 </Nav.Link>
               )}
             </Nav>
@@ -52,9 +52,7 @@ const Navheader = () => {
                 <Nav.Item>
                   <Nav.Link eventKey="login">Login</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="signup">Sign Up</Nav.Link>
-                </Nav.Item>
+                
               </Nav>
             </Modal.Title>
           </Modal.Header>
@@ -63,9 +61,7 @@ const Navheader = () => {
               <Tab.Pane eventKey="login">
                 <LoginForm handleModalClose={() => setShowModal(false)} />
               </Tab.Pane>
-              <Tab.Pane eventKey="signup">
-                <SignUpForm handleModalClose={() => setShowModal(false)} />
-              </Tab.Pane>
+              
             </Tab.Content>
           </Modal.Body>
         </Tab.Container>
