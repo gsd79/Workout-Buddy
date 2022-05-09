@@ -8,6 +8,9 @@ const resolvers = {
       return await Category.find();
     },
     exercise: async () => {
+      return await Exercise.findone({ name });
+    },
+    exercises: async () => {
       return await Exercise.find();
     },
     // user: async (parent, args, context) => {
