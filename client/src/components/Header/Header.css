@@ -1,0 +1,31 @@
+header{
+   background-color:#429ca1; 
+   padding: 20px 0px 20px 10px;
+   width:100%;
+  }
+
+header h1{
+   text-decoration: none;
+   color: #c4b3a5;
+   font: 2em Notable;
+}
+
+.stroke-header{
+   
+  -webkit-text-fill-color: #429ca1; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #c4b3a5;
+}
+
+header a:hover, header h1:hover, .stroke-header:hover{
+   color: white;
+   text-decoration: none;
+}
+
+.nav-container{
+   display:flex;
+   justify-content: center;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Notable&display=swap');

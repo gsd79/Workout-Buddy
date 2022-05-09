@@ -9,9 +9,10 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import Home from "./pages/Home";
 import SavedWorkouts from "./pages/SavedWorkouts";
-import AppNavbar from "./components/Navbar/Navbar";
-// import WorkoutPlan from "./components/WorkPlans/WorkoutPlan";
+import AppNavbar from "./components/Navbar";
+import Header from "./components/Header"
 import Footer from "./components/Footer";
+// import WorkoutPlan from "./components/WorkPlans/WorkoutPlan";
 // import ProgressBar from "./components/Progress/ProgressBar";
 
 const httpLink = createHttpLink({
@@ -36,10 +37,11 @@ const client = new ApolloClient({
 
 function App() {
   return (
+    
     <ApolloProvider client={client}>
       <Router>
-        <>
-          <AppNavbar />
+        <Header/>
+          
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/saved" page={SavedWorkouts} />
@@ -50,7 +52,7 @@ function App() {
             />
           </Switch>
           <Footer />
-        </>
+        
       </Router>
     </ApolloProvider>
   );

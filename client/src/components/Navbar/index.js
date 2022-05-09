@@ -6,18 +6,14 @@ import LoginForm from "../../pages/LoginForm";
 
 import Auth from "../../utils/auth";
 
-const AppNavbar = () => {
+const Navheader = () => {
   // set modal display state
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar>
         <Container fluid>
-          <Navbar.Brand as={Link} to="/">
-            <img src={require("../../assets/img/logo.png")} alt="logo" />
-            Workout Buddy App
-          </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar" />
           <Navbar.Collapse id="navbar">
             <Nav className="ml-auto">
@@ -78,4 +74,4 @@ const AppNavbar = () => {
   );
 };
 
-export default AppNavbar;
+export default Navheader;

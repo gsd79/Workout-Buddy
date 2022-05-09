@@ -1,14 +1,21 @@
-  body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  background-color: #429ca1;
+}
+
+.body {
+  background-image: url("./assets/img/fitness-gym-girl-nb-1920x1080.jpg");
+  height: 100%;
+  width:100%;
+}
+
+.jumbotron-body{
+  background: silver;
+  opacity: 0;
+  height: 1000px;
+  width: 900px;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-

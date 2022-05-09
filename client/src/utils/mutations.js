@@ -25,13 +25,27 @@ export const ADD_USER = gql`
       user {
         _id
       }
-    }
+    
   }
 }
 `;
 
-export const SAVE_WORKOUT = gql`
-mutation saveWorkout($name: String!, $id: ID!) {
+export const ADD_WORKOUT = gql`
+mutation addWorkout($name: String!, $id: ID!) {
+  workoutname: String
+  
+  user{
+    _id
+    username
+  }
+}`
+
+//remove exercises in it
+export const REMOVE_WORKOUT = gql `
+mutation removeWorkout($name: String!, $id: ID!) { 
+  user{
+    _id
+  }
   exercises{
     bodyPart
     equipment
@@ -40,15 +54,8 @@ mutation saveWorkout($name: String!, $id: ID!) {
     name
     target
   }
-  user{
-    _id
-  }
 }`
 
 
-export const REMOVE_WORKOUT = gql `
-mutation removeWorkout($name: String!, $id: ID!) {
-  user{
-    _id
-  }
-}`
+//add exercise
+//remove exercise 
