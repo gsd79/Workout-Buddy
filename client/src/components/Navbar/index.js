@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
 import LoginForm from "../../pages/LoginForm";
+import Profile from "../../pages/Profile";
 import Auth from "../../utils/auth";
 import '../Header/Header.css';
 
@@ -22,7 +23,7 @@ const Navheader = () => {
               {/* if user is logged in show saved workouts and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to="/saved">
+                  <Nav.Link as={Link} to="/profile">
                     Profile
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>

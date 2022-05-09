@@ -8,9 +8,10 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import Home from "./pages/Home";
-import SavedWorkouts from "./pages/SavedWorkouts";
-import AppNavbar from "./components/Navbar";
-import Header from "./components/Header"
+import Profile from "./pages/Profile";
+import CreateWorkouts from "./pages/CreateWorkouts";
+import Contact from "./pages/Contact";
+import Header from "./components/Header";
 import Footer from "./components/Footer";
 // import WorkoutPlan from "./components/WorkPlans/WorkoutPlan";
 // import ProgressBar from "./components/Progress/ProgressBar";
@@ -44,14 +45,15 @@ function App() {
           
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/saved" page={SavedWorkouts} />
-            {/* <Route exact path="/plans" component={WorkoutPlan} /> */}
+            <Route exact path="/plans" page={CreateWorkouts} />
+            <Route exact path="/contact" page={Contact} />
+            <Route exact path="/profile" page={Profile} />
             {/* <Route exact path="/progress" component={ProgressBar} /> */}
             <Route
               render={() => <h1 className="display-2">Oops, wrong page!</h1>}
             />
           </Switch>
-          <Footer />
+          <Footer/>
         
       </Router>
     </ApolloProvider>

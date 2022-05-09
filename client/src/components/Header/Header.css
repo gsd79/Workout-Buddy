@@ -1,8 +1,7 @@
-header{
+header, footer{
    background-color:#429ca1; 
    padding: 10px 20px;
    width:100%;
-
 }
 
 header h1, .nav-link{
@@ -10,6 +9,11 @@ header h1, .nav-link{
    color: #c4b3a5 !important;
    font: 2em Notable;
    letter-spacing: 2px;
+}
+
+footer h1,h2, footer a{
+   color: #c4b3a5;
+   font-size: 1em;
 }
 
 .nav-link {   
