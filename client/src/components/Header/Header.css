@@ -5,11 +5,17 @@ header{
 
 }
 
-header h1{
+header h1, .nav-link{
    text-decoration: none;
-   color: #c4b3a5;
+   color: #c4b3a5 !important;
    font: 2em Notable;
+   letter-spacing: 2px;
 }
+
+.nav-link {   
+   font-size: 1em;
+}       
+
 header a:hover, header h1:hover{
    text-decoration: none;
    color: white;   
