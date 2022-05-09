@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
-import SignUpForm from "../../pages/SignupForm";
 import LoginForm from "../../pages/LoginForm";
-
+import Profile from "../../pages/Profile";
 import Auth from "../../utils/auth";
+import '../Header/Header.css';
 
 const Navheader = () => {
   // set modal display state
@@ -23,14 +23,14 @@ const Navheader = () => {
               {/* if user is logged in show saved workouts and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to="/saved">
+                  <Nav.Link as={Link} to="/profile">
                     Profile
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (
                 <Nav.Link onClick={() => setShowModal(true)}>
-                  Login/Sign Up
+                  Login
                 </Nav.Link>
               )}
             </Nav>
@@ -52,9 +52,7 @@ const Navheader = () => {
                 <Nav.Item>
                   <Nav.Link eventKey="login">Login</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="signup">Sign Up</Nav.Link>
-                </Nav.Item>
+                
               </Nav>
             </Modal.Title>
           </Modal.Header>
@@ -63,9 +61,7 @@ const Navheader = () => {
               <Tab.Pane eventKey="login">
                 <LoginForm handleModalClose={() => setShowModal(false)} />
               </Tab.Pane>
-              <Tab.Pane eventKey="signup">
-                <SignUpForm handleModalClose={() => setShowModal(false)} />
-              </Tab.Pane>
+              
             </Tab.Content>
           </Modal.Body>
         </Tab.Container>
