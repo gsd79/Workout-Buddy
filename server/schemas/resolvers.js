@@ -7,6 +7,7 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
+
     exerciseByName: async (parent, {name}) => {
       if (name) {
         const exerciseData = await Exercise.findOne({name})
@@ -14,6 +15,7 @@ const resolvers = {
         return exerciseData;
       }
     },
+
     exerciseByOther: async (parent, {equipment, bodyPart, target}) => {
       if (equipment) {
         const exerciseData = await Exercise.find({equipment})
@@ -31,67 +33,34 @@ const resolvers = {
         return exerciseData;
       }
     },
+
     exercises: async () => {
       return await Exercise.find();
     },
+
     user: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
-          .populate('workouts')
+          .populate('savedWorkouts')
     
         return userData;
       }
     
       throw new AuthenticationError('No user with that ID');
     },
+
     users: async () => {
       return User.find()
         .select('-__v -password')
-        .populate('workouts');
+        .populate('savedWorkouts');
     },
-    // workouts: async (parent, { category, name }) => {
-    //   const params = {};
 
-    //   if (category) {
-    //     params.category = category;
-    //   }
-
-    //   if (name) {
-    //     params.name = {
-    //       $regex: name
-    //     };
-    //   }
-
-    //   return await Exercise.find(params).populate('category');
-    // },
     workouts: async (parent, {username}) => {
       const userData = await User.findOne({username})
           .select('-__v -password')
           .populate('savedWorkouts')
       return userData;
-    },
-    // workouts: async (parent, args, context) => {
-    //   if (context.user) {
-    //     const userData = await Workout.find({_id: context.user._id})
-    //     .select('-__v -password')
-    //     .populate('savedWorkouts')
-
-    //     return userData;
-    //   }
-
-    //   throw new AuthenticationError('No saved workouts yet');
-    // },
-    user: async (parent, args, context) => {
-      if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id })
-          .select('-__v -password')
-          .populate('savedWorkouts')
-    
-        return userData;
-      }
-    
-      throw new AuthenticationError('No user with that ID');
     },
   },
   Mutation: {
@@ -101,7 +70,24 @@ const resolvers = {
 
       return { token, user };
     },
-    addWorkout: async (parent, { exercise }, context) => {
+
+    addWorkout: async (parent, {name}, context) => {
+      if (context.user) {
+        const workout = await Workout.create({ name });
+
+        await User.findByIdAndUpdate(context.user._id, { $push: { savedWorkouts: workout } });
+
+        return workout;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
+
+    removeWorkout: async (parent, args, context) => {
+      return this
+    },
+
+    addExercise: async (parent, args, context) => {
       console.log(context);
       if (context.user) {
         const workout = new Workout({ exercise });
@@ -113,6 +99,11 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+
+    removeExercise: async (parent, args, context) => {
+      return this
+    },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
