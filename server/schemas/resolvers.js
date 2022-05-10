@@ -91,10 +91,10 @@ const resolvers = {
       return this
     },
 
-    addExercise: async (parent, args, context) => {
+    addExerciseToWorkout: async (parent, args, context) => {
       console.log(context);
       if (context.user) {
-        const workout = new Workout({ exercise });
+        const workout = await Workout.findOne({ exercises });
 
         await User.findByIdAndUpdate(context.user._id, { $push: { workouts: workout } });
 
