@@ -36,12 +36,12 @@ const typeDefs = gql`
 
   type Query {
     categories: [Category]
-    exercise( 
-      name: String, 
+    exerciseByName(name: String!): Exercise
+    exerciseByOther(
       equipment: String,
       bodyPart: String,
       target: String
-      ): Exercise
+      ): [Exercise]
     exercises: [Exercise]
     workouts: [Workout]
     user: User

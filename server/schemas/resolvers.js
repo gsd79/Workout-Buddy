@@ -7,49 +7,30 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
-    exercise: async (parent, {name, equipment, bodyPart, target}) => {
+    exerciseByName: async (parent, {name}) => {
       if (name) {
         const exerciseData = await Exercise.findOne({name})
     
         return exerciseData;
       }
+    },
+    exerciseByOther: async (parent, {equipment, bodyPart, target}) => {
       if (equipment) {
-        const exerciseData = await Exercise.findOne({equipment})
+        const exerciseData = await Exercise.find({equipment})
     
         return exerciseData;
       }
       if (bodyPart) {
-        const exerciseData = await Exercise.findOne({bodyPart})
+        const exerciseData = await Exercise.find({bodyPart})
     
         return exerciseData;
       }
       if (target) {
-        const exerciseData = await Exercise.findOne({target})
+        const exerciseData = await Exercise.find({target})
     
         return exerciseData;
       }
     },
-    // exerciseByEquipment: async (parent, {name}) => {
-    //   if (name) {
-    //     const exerciseData = await Exercise.findOne({name})
-    
-    //     return exerciseData;
-    //   }
-    // },
-    // exerciseByBodyPart: async (parent, {name}) => {
-    //   if (name) {
-    //     const exerciseData = await Exercise.findOne({name})
-    
-    //     return exerciseData;
-    //   }
-    // },
-    // exerciseByName: async (parent, {name}) => {
-    //   if (name) {
-    //     const exerciseData = await Exercise.findOne({name})
-    
-    //     return exerciseData;
-    //   }
-    // },
     exercises: async () => {
       return await Exercise.find();
     },
