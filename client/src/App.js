@@ -9,7 +9,7 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import CreateWorkouts from "./pages/CreateWorkouts";
+import SearchWorkouts from "./pages/SearchWorkouts";
 import Contact from "./pages/Contact";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -45,7 +45,7 @@ function App() {
           
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/plans" page={CreateWorkouts} />
+            <Route exact path="/plans" component={CreateWorkouts} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/profile" component={Profile} />
             {/* <Route exact path="/progress" component={ProgressBar} /> */}
