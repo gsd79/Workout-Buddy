@@ -1,44 +1,60 @@
-import React, { Component } from "react";
-import { Container } from "react-bootstrap";//does not like jumbotron or card column
-import pic from "../assets/img/hero/VideoClipPic.png";
+import React, { useState } from "react";
 
-export class Home extends Component {
-  render() {
-    return (
-      <>
-        {/* <Jumbotron class="hero-section"> */}
-        <div>
-          <Container class="hs-slider owl-carousel">
-            <div>
-            {/* <CardColumns
-              class="hs-item set-bg"
-              data-setbg="../src/assets/img/hero/hero-1.jpg"
-            > */}
-              <img src={pic} />
+import { Link } from "react-router-dom";
+import { Nav, Modal, Tab } from "react-bootstrap";
+import SignUpForm from "../pages/SignupForm";
+import './Styles/Pages.css';
 
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-6 offset-lg-6">
-                    <div class="hi-text">
-                      <span>Shape your body</span>
-                      <h1>
-                        Be <strong>strong</strong> traning hard
-                      </h1>
-                      <a href="/plans" class="primary-btn">
-                        Get info
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* </CardColumns> */}
-          </Container>
+
+
+const HomePage = () => {
+  const [showModal, setShowModal] = useState(false);
+  return (
+    <>
+      <div className="wrapper">
+        <div className="jumbotron-home">
+          <h1>WORKOUT <span class="stroke-home">BUDDY</span></h1>
+          <h2>Get Organized. Train Hard. Stay Fit.</h2>
         </div>
-        {/* </Jumbotron> */}
-      </>
-    );
-  }
+        <div className="cta-contain">
+          <Link onClick={() => setShowModal(true)}>
+            <button>Get Started Today</button>
+          </Link>
+        </div>
+      </div>
+          {/* Modal for signup */}
+      <Modal
+        size="lg"
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        aria-labelledby="signup-modal"
+      >
+        <Tab.Container defaultActiveKey="signup">
+          <Modal.Header closeButton>
+            <Modal.Title id="signup-modal">
+              <Nav variant="pills">
+                <Nav.Item>
+                  <Nav.Link eventKey="signup">Sign Up</Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Tab.Content>
+                <Tab.Pane eventKey="signup">
+                <SignUpForm handleModalClose={() => setShowModal(false)} />
+              </Tab.Pane>
+            </Tab.Content>
+          </Modal.Body>
+        </Tab.Container>
+      </Modal>
+
+    </>
+
+
+
+  );
 }
 
-export default Home;
+
+export default HomePage;

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -8,12 +8,13 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import Home from "./pages/Home";
-
-import SavedWorkouts from "./pages/SavedWorkouts";
-import AppNavbar from "./components/Navbar/Navbar";
-import WorkoutPlan from "./components/WorkPlans/WorkoutPlan";
-import Footer from "./components/Footer/Footer";
-import ProgressBar from "./components/Progress/ProgressBar";
+import Profile from "./pages/Profile";
+import SearchWorkouts from "./pages/SearchWorkouts";
+import Contact from "./pages/Contact";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+// import WorkoutPlan from "./components/WorkPlans/WorkoutPlan";
+// import ProgressBar from "./components/Progress/ProgressBar";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -24,6 +25,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
+      //TODO are the `Bearer ${token}` the API key hidden in the .env??
       authorization: token ? `Bearer ${token}` : "",
     },
   };
@@ -36,21 +38,23 @@ const client = new ApolloClient({
 
 function App() {
   return (
+    
     <ApolloProvider client={client}>
       <Router>
-        <>
-          <AppNavbar />
-          <Routes>
+        <Header/>
+          
+          <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/saved" component={SavedWorkouts} />
-            <Route exact path="/plans" component={WorkoutPlan} />
-            <Route exact path="/progress" component={ProgressBar} />
+            <Route exact path="/plans" component={CreateWorkouts} />
+            <Route exact path="/contact" component={Contact} />
+            <Route exact path="/profile" component={Profile} />
+            {/* <Route exact path="/progress" component={ProgressBar} /> */}
             <Route
               render={() => <h1 className="display-2">Oops, wrong page!</h1>}
             />
-          </Routes>
-          <Footer />
-        </>
+          </Switch>
+          <Footer/>
+        
       </Router>
     </ApolloProvider>
   );
