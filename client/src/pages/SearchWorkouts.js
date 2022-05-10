@@ -1,8 +1,7 @@
 import React from "react";
-import {Form} from "react-bootstrap";
 
 
-import'./Search.css';
+import'./Styles/Pages.css';
 
 
 
@@ -24,26 +23,26 @@ function SearchWorkouts() {
     //group or groups (muscles)
     //exercises by name
     //to card
-    <>
-    <div className="wrapper">
+    
+    <div className="wrapper-search">
       <div className="jumbotron-home">
-        <Form>
-          <input
+        <form>
+          {/* <input
             type="text"
             placeholder="Search"
             // value={searchTerm}
-            // onChange={handleChange}
-          > 
+            // onChange={handleChange} */}
+          {/* >  */}
           sdfsafdsdf
-          </input>
+          {/* </input> */}
           <ul>
             {/* {searchResults.map((item) => ( */}
           {/* <li>{item}</li>  */}
           </ul>  
-        </Form>   
+        </form>   
       </div>
     </div>
-    </>
+    
   );
 }
 

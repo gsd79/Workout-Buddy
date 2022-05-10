@@ -1,66 +1,155 @@
-.wrapper, .profile-wrapper {
-    background-image: linear-gradient(
-        0deg,
-        rgba(255, 255, 255, 0.5),
-        rgba(66, 156, 161, 0.4)
+.wrapper,
+.profile-wrapper,
+.wrapper-search {
+  background-image: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.5),
+      rgba(66, 156, 161, 0.4)
     ),
     url("../../assets/img/fitness-gym-girl-nb-1920x1080.jpg");
-    height:817px;
-    padding-top: 300px;
+  height: 817px;
+  padding-top: 300px;
 }
 
-.profile-wrapper{
-    background-image: linear-gradient(
-        0deg,
-        rgba(255, 255, 255, 0.5),
-        rgba(66, 156, 161, 0.4)
+.profile-wrapper {
+  background-image: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.5),
+      rgba(66, 156, 161, 0.4)
     ),
     url("../../assets/img/52ec5f76e2a79ad25c1f507aa6ff74e3.jpg");
+  padding: 40px 0 0 40px;
 }
 
-.jumbotron-home {  
-    margin: auto;
-    width: fit-content;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-flow: column;
-    border: 10px double white;
-    outline: 8px solid rgba(255,255,255,.7);
-    background: rgba(255,255,255,.7);
-    box-shadow: 10px 0px 90px black;    
+.wrapper-search {
+  background-image: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.5),
+      rgba(66, 156, 161, 0.4)
+    ),
+    url("../../assets/img/hero/hero-2.jpg");
 }
 
-.jumbotron-home h1{
-    text-decoration: none;
-    color: rgba(252,139,0, .5);
-    font: 5em Notable;
-    
+.jumbotron-home {
+  margin: auto;
+  width: fit-content;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  border: 10px double white;
+  outline: 8px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 10px 0px 90px black;
+}
+
+.jumbotron-home h1 {
+  text-decoration: none;
+  color: rgba(252, 139, 0, 0.5);
+  font: 5em Notable;
 }
 
 .jumbotron-home h2 {
-    font: 1.8em Notable;
-    color: #429ca1;
-    letter-spacing: 3px;
+  font: 1.8em Notable;
+  color: #429ca1;
+  letter-spacing: 3px;
 }
 
-.stroke-home{    
-    -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #fc8b00;
+.profile-contain {
+  background: white;
+  padding: 50px 0 0 60px;
+  width: 90%;
+  margin: auto;
+  border: 10px double white;
+  outline: 8px solid rgba(66, 156, 161, 0.9);
+  background: rgba(66, 156, 161, 0.9);
 }
 
-.cta-contain{
-    margin: 3em auto;
-    width:fit-content;
+.profile-contain h1 {
+  font: 2.5em Notable;
+  color: rgba(252, 139, 0, 0.6);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: grey;
+  letter-spacing: 2px;
 }
 
-.cta-contain button{
-    padding: 10px;
-    font: 1em Notable;
-    background: #429ca1;
-    color: white;
-    border: none;
-    box-shadow: 10px 0px 30px black;    
+.profile-nav {
+  background: white;
+  width: 90%;
+  margin:0 auto;
+  margin-bottom: 50px;
+  padding: 10px 0 20px 10px;
+}
+/* list above content showing individual tabs */
+.react-tabs__tab-list {
+  border-bottom: 1px solid #aaa;
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.react-tabs__tab {
+  display: inline-block;
+  border: 1px solid transparent;
+  border-bottom: none;
+  bottom: -1px;
+  position: relative;
+  list-style: none;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.react-tabs__tab--selected {
+  background: #fff;
+  border-color: #aaa;
+  color: black;
+  border-radius: 5px 5px 0 0;
+}
+
+/* .react-tabs__tab--disabled {
+  color: GrayText;
+  cursor: default;
+} */
+
+.react-tabs__tab:focus {
+  outline: none;
+}
+
+.react-tabs__tab:focus:after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  left: -4px;
+  right: -4px;
+  bottom: -5px;
+  background: #fff;
+}
+
+/* content of tabs */
+.react-tabs__tab-panel {
+  display: none;
+}
+
+.react-tabs__tab-panel--selected {
+  display: block;
+}
+
+.stroke-home {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #fc8b00;
+}
+
+.cta-contain {
+  margin: 3em auto;
+  width: fit-content;
+}
+
+.cta-contain button {
+  padding: 10px;
+  font: 1em Notable;
+  background: #429ca1;
+  color: white;
+  border: none;
+  box-shadow: 10px 0px 30px black;
 }
