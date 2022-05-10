@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Nav, Modal, Tab } from "react-bootstrap";
 import SignUpForm from "../pages/SignupForm";
-import './Home.css';
+import './Styles/Pages.css';
 
 
 

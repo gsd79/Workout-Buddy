@@ -46,8 +46,8 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/plans" page={CreateWorkouts} />
-            <Route exact path="/contact" page={Contact} />
-            <Route exact path="/profile" page={Profile} />
+            <Route exact path="/contact" component={Contact} />
+            <Route exact path="/profile" component={Profile} />
             {/* <Route exact path="/progress" component={ProgressBar} /> */}
             <Route
               render={() => <h1 className="display-2">Oops, wrong page!</h1>}

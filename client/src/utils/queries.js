@@ -31,6 +31,7 @@ query user($username: String!) {
   }
 }`
 
+
 export const QUERY_WORKOUT = gql `
 query workout($id: ID!) {
   workout(_id: $id) {
@@ -46,6 +47,8 @@ query workout($id: ID!) {
     }
   }
 }`
+
+//query exercise (add and remove)
 
 export const QUERY_CATEGORY = gql`
   {

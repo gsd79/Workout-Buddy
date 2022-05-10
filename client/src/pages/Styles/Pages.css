@@ -1,17 +1,24 @@
-.wrapper {
+.wrapper, .profile-wrapper {
     background-image: linear-gradient(
         0deg,
         rgba(255, 255, 255, 0.5),
-        rgba(66, 156, 161, 0.3)
+        rgba(66, 156, 161, 0.4)
     ),
-    url("../assets/img/fitness-gym-girl-nb-1920x1080.jpg");
-    height: 900px;
-    padding-top: 400px;
+    url("../../assets/img/fitness-gym-girl-nb-1920x1080.jpg");
+    height:817px;
+    padding-top: 300px;
 }
 
+.profile-wrapper{
+    background-image: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.5),
+        rgba(66, 156, 161, 0.4)
+    ),
+    url("../../assets/img/52ec5f76e2a79ad25c1f507aa6ff74e3.jpg");
+}
 
 .jumbotron-home {  
-    
     margin: auto;
     width: fit-content;
     padding: 20px;
@@ -22,14 +29,14 @@
     border: 10px double white;
     outline: 8px solid rgba(255,255,255,.7);
     background: rgba(255,255,255,.7);
-    
+    box-shadow: 10px 0px 90px black;    
 }
 
 .jumbotron-home h1{
     text-decoration: none;
     color: rgba(252,139,0, .5);
     font: 5em Notable;
-     
+    
 }
 
 .jumbotron-home h2 {
@@ -55,4 +62,5 @@
     background: #429ca1;
     color: white;
     border: none;
+    box-shadow: 10px 0px 30px black;    
 }
