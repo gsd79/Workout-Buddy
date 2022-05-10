@@ -7,97 +7,60 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
-    exercise: async (parent, {name, equipment, bodyPart, target}) => {
+
+    exerciseByName: async (parent, {name}) => {
       if (name) {
         const exerciseData = await Exercise.findOne({name})
     
         return exerciseData;
       }
+    },
+
+    exerciseByOther: async (parent, {equipment, bodyPart, target}) => {
       if (equipment) {
-        const exerciseData = await Exercise.findOne({equipment})
+        const exerciseData = await Exercise.find({equipment})
     
         return exerciseData;
       }
       if (bodyPart) {
-        const exerciseData = await Exercise.findOne({bodyPart})
+        const exerciseData = await Exercise.find({bodyPart})
     
         return exerciseData;
       }
       if (target) {
-        const exerciseData = await Exercise.findOne({target})
+        const exerciseData = await Exercise.find({target})
     
         return exerciseData;
       }
     },
-    // exerciseByEquipment: async (parent, {name}) => {
-    //   if (name) {
-    //     const exerciseData = await Exercise.findOne({name})
-    
-    //     return exerciseData;
-    //   }
-    // },
-    // exerciseByBodyPart: async (parent, {name}) => {
-    //   if (name) {
-    //     const exerciseData = await Exercise.findOne({name})
-    
-    //     return exerciseData;
-    //   }
-    // },
-    // exerciseByName: async (parent, {name}) => {
-    //   if (name) {
-    //     const exerciseData = await Exercise.findOne({name})
-    
-    //     return exerciseData;
-    //   }
-    // },
+
     exercises: async () => {
       return await Exercise.find();
     },
+
     user: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
-          .populate('workouts')
+          .populate('savedWorkouts')
     
         return userData;
       }
     
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError('No user with that ID');
     },
+
     users: async () => {
       return User.find()
         .select('-__v -password')
-        .populate('workouts');
+        .populate('savedWorkouts');
     },
-    workouts: async (parent, { category, name }) => {
-      const params = {};
 
-      if (category) {
-        params.category = category;
-      }
-
-      if (name) {
-        params.name = {
-          $regex: name
-        };
-      }
-
-      return await Exercise.find(params).populate('category');
-    },
-    // workout: async (parent, { _id }) => {
-    //   return await Exercise.findById(_id).populate('category');
-    // },
-    workouts: async (parent, { _id }, context) => {
-      if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: 'workouts.exercise',
-          populate: 'category'
-        });
-
-        return user.exercise.id(_id);
-      }
-
-      throw new AuthenticationError('Not logged in');
+    workouts: async (parent, {username}) => {
+      const userData = await User.findOne({username})
+          .select('-__v -password')
+          .populate('savedWorkouts')
+      return userData;
     },
   },
   Mutation: {
@@ -107,7 +70,28 @@ const resolvers = {
 
       return { token, user };
     },
-    addWorkout: async (parent, { exercise }, context) => {
+
+    addWorkout: async (parent, args, context) => {
+      if (context.user) {
+        const workout = await Workout.create({ ...args });
+
+        await User.findByIdAndUpdate(
+          { _id: context.user._id }, 
+          { $addToSet: { savedWorkouts: workout } },
+          { new: true }
+          ).populate('savedWorkouts');;
+
+        return workout;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
+
+    removeWorkout: async (parent, args, context) => {
+      return this
+    },
+
+    addExercise: async (parent, args, context) => {
       console.log(context);
       if (context.user) {
         const workout = new Workout({ exercise });
@@ -119,6 +103,11 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+
+    removeExercise: async (parent, args, context) => {
+      return this
+    },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
