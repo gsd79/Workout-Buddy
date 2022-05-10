@@ -1,5 +1,5 @@
 const db = require("./connection");
-const { Exercise, User, Category } = require("../models");
+const { Exercise, User, Category, Workout } = require("../models");
 
 
 db.once("open", async () => {
@@ -23,7 +23,6 @@ db.once("open", async () => {
         bodyPart: categories[0]._id,
         equipment: "body weight",
         gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0001.gif",
-        id: "0001",
         name: "3/4 sit-up",
         target: "abs",
         
@@ -32,7 +31,6 @@ db.once("open", async () => {
         bodyPart: categories[0]._id,
         equipment: "body weight",
         gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0002.gif",
-        id: "0002",
         name: "45° side bend",
         target: "abs",
         
@@ -10644,6 +10642,19 @@ db.once("open", async () => {
 
   // console.log("workouts seeded");
 
+  await Workout.deleteMany ();
+
+  const workout = await Workout.create({
+    name: "testing",
+    exercises: [{
+      bodyPart: "waist",
+          equipment: "body weight",
+          gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0001.gif",
+          name: "3/4 sit-up",
+          target: "abs",
+    }]
+  })
+
   await User.deleteMany ();
  
   const users = await User.create({
@@ -10652,14 +10663,21 @@ db.once("open", async () => {
     password: 'password12345',
     workouts: [
       {
-        exercise: []
+        name: "testing",
+        exercises: [{
+          bodyPart: "waist",
+          equipment: "body weight",
+          gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0001.gif",
+          name: "3/4 sit-up",
+          target: "abs"
+        }]
       }
     ]
   });
 
- console.log('user seeded');
- console.log(users)
- console.log(workouts);
+console.log('user seeded');
+console.log(workout);
+console.log(users)
 //  console.log(categories);
   process.exit();
 });
