@@ -43,42 +43,55 @@ const resolvers = {
         return userData;
       }
     
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError('No user with that ID');
     },
     users: async () => {
       return User.find()
         .select('-__v -password')
         .populate('workouts');
     },
-    workouts: async (parent, { category, name }) => {
-      const params = {};
+    // workouts: async (parent, { category, name }) => {
+    //   const params = {};
 
-      if (category) {
-        params.category = category;
-      }
+    //   if (category) {
+    //     params.category = category;
+    //   }
 
-      if (name) {
-        params.name = {
-          $regex: name
-        };
-      }
+    //   if (name) {
+    //     params.name = {
+    //       $regex: name
+    //     };
+    //   }
 
-      return await Exercise.find(params).populate('category');
-    },
-    // workout: async (parent, { _id }) => {
-    //   return await Exercise.findById(_id).populate('category');
+    //   return await Exercise.find(params).populate('category');
     // },
-    workouts: async (parent, { _id }, context) => {
+    workouts: async (parent, {username}) => {
+      const userData = await User.findOne({username})
+          .select('-__v -password')
+          .populate('savedWorkouts')
+      return userData;
+    },
+    // workouts: async (parent, args, context) => {
+    //   if (context.user) {
+    //     const userData = await Workout.find({_id: context.user._id})
+    //     .select('-__v -password')
+    //     .populate('savedWorkouts')
+
+    //     return userData;
+    //   }
+
+    //   throw new AuthenticationError('No saved workouts yet');
+    // },
+    user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: 'workouts.exercise',
-          populate: 'category'
-        });
-
-        return user.exercise.id(_id);
+        const userData = await User.findOne({ _id: context.user._id })
+          .select('-__v -password')
+          .populate('savedWorkouts')
+    
+        return userData;
       }
-
-      throw new AuthenticationError('Not logged in');
+    
+      throw new AuthenticationError('No user with that ID');
     },
   },
   Mutation: {

@@ -10878,7 +10878,7 @@ db.once("open", async () => {
     username: 'gymbro1990',
     email: 'gymrat@testmail.com',
     password: 'password12345',
-    workouts: [
+    savedWorkouts: [
       {
         name: "testing",
         exercises: [{
@@ -10892,7 +10892,6 @@ db.once("open", async () => {
     ]
   });
 
-console.log('user seeded');
 console.log(workout);
 console.log(users)
 //  console.log(categories);
