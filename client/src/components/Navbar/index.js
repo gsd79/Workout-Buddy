@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
 import LoginForm from "../../pages/LoginForm";
-import Profile from "../../pages/Profile";
+
 import Auth from "../../utils/auth";
 import '../Header/Header.css';
 

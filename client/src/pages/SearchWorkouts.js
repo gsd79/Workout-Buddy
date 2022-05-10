@@ -1,36 +1,53 @@
 import React from "react";
-import { ReactDOM } from "react-dom";
+import {Form} from "react-bootstrap";
 
-const exercises = [];
 
-function App() {
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const [searchResults, setSearchResults] = React.useState([]);
-  const handleChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-  React.useEffect(() => {
-    const results = excercises.filter((exercise) =>
-      person.toLowerCase().includes(searchTerm)
-    );
-    setSearchResults(results);
-  }, [searchTerm]);
+import'./Search.css';
+
+
+
+function SearchWorkouts() {
+  // const [searchTerm, setSearchTerm] = React.useState("");
+  // const [searchResults, setSearchResults] = React.useState([]);
+  // const handleChange = (e) => {
+  //   setSearchTerm(e.target.value);
+  // };
+  // React.useEffect(() => {
+  //   const results = excercises.filter((exercise) =>
+  //     person.toLowerCase().includes(searchTerm)
+  //   );
+  //   setSearchResults(results);
+  // }, [searchTerm]);
   return (
-    <div className="App">
-      <input
-        type="text"
-        placeholder="Search"
-        value={searchTerm}
-        onChange={handleChange}
-      />
-      <ul>
-        {searchResults.map((item) => (
-          <li>{item}</li>
-        ))}
-      </ul>
+
+    //drop-down box-listed in the seeds
+    //group or groups (muscles)
+    //exercises by name
+    //to card
+    <>
+    <div className="wrapper">
+      <div className="jumbotron-home">
+        <Form>
+          <input
+            type="text"
+            placeholder="Search"
+            // value={searchTerm}
+            // onChange={handleChange}
+          > 
+          sdfsafdsdf
+          </input>
+          <ul>
+            {/* {searchResults.map((item) => ( */}
+          {/* <li>{item}</li>  */}
+          </ul>  
+        </Form>   
+      </div>
     </div>
+    </>
   );
 }
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+// const rootElement = document.getElementById("root");
+// ReactDOM.render(<App />, rootElement);
+
+export default SearchWorkouts;
