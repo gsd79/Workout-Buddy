@@ -71,11 +71,15 @@ const resolvers = {
       return { token, user };
     },
 
-    addWorkout: async (parent, {name}, context) => {
+    addWorkout: async (parent, args, context) => {
       if (context.user) {
-        const workout = await Workout.create({ name });
+        const workout = await Workout.create({ ...args });
 
-        await User.findByIdAndUpdate(context.user._id, { $push: { savedWorkouts: workout } });
+        await User.findByIdAndUpdate(
+          { _id: context.user._id }, 
+          { $addToSet: { savedWorkouts: workout } },
+          { new: true }
+          ).populate('savedWorkouts');;
 
         return workout;
       }
