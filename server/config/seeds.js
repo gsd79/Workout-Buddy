@@ -23,7 +23,6 @@ db.once("open", async () => {
         bodyPart: categories[0]._id,
         equipment: "body weight",
         gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0001.gif",
-        id: "0001",
         name: "3/4 sit-up",
         target: "abs",
         
@@ -32,7 +31,6 @@ db.once("open", async () => {
         bodyPart: categories[0]._id,
         equipment: "body weight",
         gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0002.gif",
-        id: "0002",
         name: "45° side bend",
         target: "abs",
         
@@ -10652,7 +10650,6 @@ db.once("open", async () => {
       bodyPart: "waist",
           equipment: "body weight",
           gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0001.gif",
-          id: "0001",
           name: "3/4 sit-up",
           target: "abs",
     }]
@@ -10671,7 +10668,6 @@ db.once("open", async () => {
           bodyPart: "waist",
           equipment: "body weight",
           gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0001.gif",
-          id: "0001",
           name: "3/4 sit-up",
           target: "abs"
         }]

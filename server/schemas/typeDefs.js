@@ -7,13 +7,12 @@ const typeDefs = gql`
   }
 
   type Exercise {
+    _id: ID
     bodyPart: String
     equipment: String 
     gifUrl: String
-    id: String 
     name: String  
     target: String 
-    _id: ID
   }
 
   type Workout {
@@ -37,9 +36,14 @@ const typeDefs = gql`
 
   type Query {
     categories: [Category]
-    workouts: [Workout]
-    exercise: Exercise
+    exercise( 
+      name: String, 
+      equipment: String,
+      bodyPart: String,
+      target: String
+      ): Exercise
     exercises: [Exercise]
+    workouts: [Workout]
     user: User
     users: [User]
   }
