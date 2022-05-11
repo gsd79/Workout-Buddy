@@ -62,6 +62,12 @@ const resolvers = {
           .populate('savedWorkouts')
       return userData;
     },
+
+    workout: async (parent, {name})=> {
+      const userData = await Workout.findOne({name})
+          .select('-__v -password')
+      return userData;
+    }
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -91,19 +97,23 @@ const resolvers = {
       return this
     },
 
-    addExercise: async (parent, args, context) => {
+    addExercise: async (parent, {exerciseid, name}, context) => {
       if (context.user) {
-        const updatedUser = 
-        await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { savedWorkouts: args} },
+        console.log(exerciseid + " " + name)
+        const addedExercise = await Exercise.findOne({exerciseid})
+        console.log(addedExercise)
+        const workout = await Workout.findOne({name});
+        console.log(workout)
+        const updatedWorkout = await Workout.findOneAndUpdate(
+          { _id: workout }, 
+          { $push: { exercises: addedExercise } },
           { new: true }
-        ).populate('savedWorkouts');
-
-        return updatedUser;
+          ).populate('exercises');;
+          console.log(updatedWorkout)
+        return updatedWorkout;
       }
 
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError('No workout or exercise with that id!');
     },
 
     removeExercise: async (parent, args, context) => {
