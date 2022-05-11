@@ -91,17 +91,19 @@ const resolvers = {
       return this
     },
 
-    addExerciseToWorkout: async (parent, args, context) => {
-      console.log(context);
+    addExercise: async (parent, args, context) => {
       if (context.user) {
-        const workout = await Workout.findOne({ exercises });
+        const updatedUser = 
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { savedWorkouts: args} },
+          { new: true }
+        ).populate('savedWorkouts');
 
-        await User.findByIdAndUpdate(context.user._id, { $push: { workouts: workout } });
-
-        return workout;
+        return updatedUser;
       }
 
-      throw new AuthenticationError('Not logged in');
+      throw new AuthenticationError('You need to be logged in!');
     },
 
     removeExercise: async (parent, args, context) => {
