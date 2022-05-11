@@ -2,19 +2,14 @@ import { gql } from '@apollo/client';
 
 // query one user
 export const QUERY_USER = gql`
-
-  query user  {
-      user {
-        _id
-        username
-        email
-        password
-        savedworkouts {
-          _name
-        }
-      }
-   
- 
+  query user{
+    user {
+      _id
+      username
+      email
+      password
+    }
+  }
 `;
 
 // query all users 
@@ -23,11 +18,7 @@ query users  {
     users {
       _id
       username
-      email
-      password
-      savedworkouts {
-        _name
-      }
+      email    
     }
   }
 `;
@@ -125,15 +116,4 @@ query exercise($Name: String!) {
 }`
 
 
-
-
-// don't think we need
-// export const QUERY_CATEGORY = gql`
-//   {
-//     categories {
-//       _id
-//       name
-//     }
-//   }
-// `;
 

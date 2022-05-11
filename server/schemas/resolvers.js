@@ -65,6 +65,12 @@ const resolvers = {
   },
   Mutation: {
     addUser: async (parent, args) => {
+      //This is a hack. A dirty, dirty hack
+      args.savedWorkouts = [{
+        name: args.username + 'default workout'
+      }];
+      console.log(args);
+
       const user = await User.create(args);
       const token = signToken(user);
 
@@ -79,7 +85,7 @@ const resolvers = {
           { _id: context.user._id }, 
           { $addToSet: { savedWorkouts: workout } },
           { new: true }
-          ).populate('savedWorkouts');;
+          ).populate('savedWorkouts');
 
         return workout;
       }
