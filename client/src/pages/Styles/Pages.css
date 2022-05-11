@@ -192,3 +192,31 @@ text-align: left;
 background-size: 10px 10px;
 
 };
+
+input.form-control {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+form {
+  background-image: initial;
+  background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+}
+
+input.form-control {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+a.nav-link.active {
+  background-color: initial;
+  color: #6E5D44;
+  border-color: rgba(100, 74, 51, 1);
+}
+
+div.modal-body {
+  background-image: radial-gradient(100% 100% at 50% 0%, #AD00FF 0%, #00FFE0 100%), radial-gradient(100% 100% at 50% 0%, #00FFE0 0%, #7300A9 80%), linear-gradient(30deg, #7ca304 0%, #2200AA 100%);
+  background-blend-mode: color-dodge, difference, normal;
+}
+
+div.modal-header {
+  background-image: linear-gradient(161.15deg, #E3EDFE 12.73%, #E7D9CD 72.95%);
+}
