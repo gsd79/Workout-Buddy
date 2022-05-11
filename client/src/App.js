@@ -9,10 +9,11 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import CreateWorkouts from "./pages/CreateWorkouts";
+// import CreateWorkouts from "./pages/CreateWorkouts";
 import Contact from "./pages/Contact";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import CreateWorkouts from "./pages/CreateWorkouts"
 // import WorkoutPlan from "./components/WorkPlans/WorkoutPlan";
 // import ProgressBar from "./components/Progress/ProgressBar";
 

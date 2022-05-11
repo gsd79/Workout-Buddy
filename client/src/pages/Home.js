@@ -13,7 +13,7 @@ const HomePage = () => {
     <>
       <div className="wrapper">
         <div className="jumbotron-home">
-          <h1>WORKOUT <span class="stroke-home">BUDDY</span></h1>
+          <h1>WORKOUT <span className="stroke-home">BUDDY</span></h1>
           <h2>Get Organized. Train Hard. Stay Fit.</h2>
         </div>
         <div className="cta-contain">

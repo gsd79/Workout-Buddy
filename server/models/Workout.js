@@ -7,8 +7,8 @@ const workoutSchema = new Schema(
   {
   name: {
     type: String,
-    required: true,
-    unique: true,
+    required: false,
+    unique: false,
   },
   exercises: [Exercise.schema]
 }
