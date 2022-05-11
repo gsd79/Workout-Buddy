@@ -10861,39 +10861,8 @@ db.once("open", async () => {
 
   await Workout.deleteMany ();
 
-  const workout = await Workout.create({
-    name: "testing",
-    exercises: [{
-      bodyPart: "waist",
-          equipment: "body weight",
-          gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0001.gif",
-          name: "3/4 sit-up",
-          target: "abs",
-    }]
-  })
 
   await User.deleteMany ();
- 
-  const users = await User.create({
-    username: 'gymbro1990',
-    email: 'gymrat@testmail.com',
-    password: 'password12345',
-    savedWorkouts: [
-      {
-        name: "testing",
-        exercises: [{
-          bodyPart: "waist",
-          equipment: "body weight",
-          gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0001.gif",
-          name: "3/4 sit-up",
-          target: "abs"
-        }]
-      }
-    ]
-  });
-
-console.log(workout);
-console.log(users)
 //  console.log(categories);
   process.exit();
 });
