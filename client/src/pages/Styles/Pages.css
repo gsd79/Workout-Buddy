@@ -1,5 +1,5 @@
 .wrapper,
-.profile-wrapper {
+.profile-wrapper, {
   background-image: linear-gradient(
       0deg,
       rgba(255, 255, 255, 0.5),
@@ -190,4 +190,5 @@ justify-content: flex-end;
 line-height: 24px;
 text-align: left;
 background-size: 10px 10px;
+
 };
