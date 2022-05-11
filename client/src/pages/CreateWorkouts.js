@@ -1,44 +1,53 @@
-import React, { Component } from "react";
+import { useState } from "react";
+import Card from "react-bootstrap/Card";
+import '../pages/Styles/Pages.css';
 
-import { Form } from "react-bootstrap";
-import "./Styles/Pages.css";
 
-export class SearchWorkouts extends Component {
-  render() {
-    return (
-      <contact class="py-5 bg-dark">
-        <div class="container">
-          <form id="contact-form">
-            <input
-              type="text"
-              name="name"
-              id="name-field"
-              class="contact-form-field"
-              placeholder="Jane Doe"
-            ></input>
-            <input
-              type="email"
-              name="email"
-              id="email-field"
-              class="email-form-field"
-              placeholder="janedoe@index.com"
-            ></input>
-            <input
-              type="text"
-              name="message"
-              id="message-field"
-              class="message-form-field"
-              placeholder="words go here"
-            ></input>
-            <input
-              type="submit"
-              value="send"
-              class="contact-form-submit"
-            ></input>
-          </form>
-        </div>
-      </contact>
-    );
-  }
+function MyForm() {
+  const [inputs, setInputs] = useState({});
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(inputs);
+  };
+
+  return (
+    <div id="form-wrapper">
+      <form>
+        {/* {" "}
+        {onSubmit={handleSubmit}
+} */}
+        <label>
+          Enter the name of your new workout:
+          <input
+            type="text"
+            name="Workout Name"
+            value={inputs.workoutName || ""}
+            onChange={handleChange}
+          />
+        </label>
+        <textarea
+          name="Workout Description"
+          value={inputs.description || ""}
+          onChange={handleChange}
+        />
+        <button type="submit">Submit</button>
+        <Card style={{ width: "18rem" }}>
+          <Card.Img variant="top" src="holder.js/100px180" />
+          <Card.Body>
+            <Card.Title>Gun It</Card.Title>
+            <Card.Text>bicep burnout</Card.Text>
+          </Card.Body>
+        </Card>
+      </form>
+    </div>
+  );
 }
-export default SearchWorkouts;
+
+export default MyForm;

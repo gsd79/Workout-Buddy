@@ -1,66 +1,135 @@
-.wrapper, .profile-wrapper {
-    background-image: linear-gradient(
-        0deg,
-        rgba(255, 255, 255, 0.5),
-        rgba(66, 156, 161, 0.4)
+.wrapper,
+.profile-wrapper {
+  background-image: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.5),
+      rgba(66, 156, 161, 0.4)
     ),
     url("../../assets/img/fitness-gym-girl-nb-1920x1080.jpg");
-    height:817px;
-    padding-top: 300px;
+  height: 817px;
+  padding-top: 300px;
 }
 
-.profile-wrapper{
-    background-image: linear-gradient(
-        0deg,
-        rgba(255, 255, 255, 0.5),
-        rgba(66, 156, 161, 0.4)
+.profile-wrapper,
+form {
+  background-image: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.5),
+      rgba(66, 156, 161, 0.4)
     ),
     url("../../assets/img/52ec5f76e2a79ad25c1f507aa6ff74e3.jpg");
 }
 
-.jumbotron-home {  
-    margin: auto;
-    width: fit-content;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-flow: column;
-    border: 10px double white;
-    outline: 8px solid rgba(255,255,255,.7);
-    background: rgba(255,255,255,.7);
-    box-shadow: 10px 0px 90px black;    
+.wrapper {
+  background-image: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.5),
+      rgba(66, 156, 161, 0.4)
+    ),
+    url(http://localhost:3000/static/media/fitness-gym-girl-nb-1920x1080.a2339aacf168ae16dc43.jpg);
+  box-sizing: border-box;
+  color: #212529;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  height: 817px;
+  line-height: 24px;
+  padding-top: 300px;
+  text-align: left;
 }
 
-.jumbotron-home h1{
-    text-decoration: none;
-    color: rgba(252,139,0, .5);
-    font: 5em Notable;
-    
+.jumbotron-home {
+  margin: auto;
+  width: fit-content;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  border: 10px double white;
+  outline: 8px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 10px 0px 90px black;
+}
+
+.jumbotron-home h1 {
+  text-decoration: none;
+  color: rgba(252, 139, 0, 0.5);
+  font: 5em Notable;
 }
 
 .jumbotron-home h2 {
-    font: 1.8em Notable;
-    color: #429ca1;
-    letter-spacing: 3px;
+  font: 1.8em Notable;
+  color: #429ca1;
+  letter-spacing: 3px;
 }
 
-.stroke-home{    
-    -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #fc8b00;
+.stroke-home {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #fc8b00;
 }
 
-.cta-contain{
-    margin: 3em auto;
-    width:fit-content;
+.cta-contain {
+  margin: 3em auto;
+  width: fit-content;
 }
 
-.cta-contain button{
-    padding: 10px;
-    font: 1em Notable;
-    background: #429ca1;
-    color: white;
-    border: none;
-    box-shadow: 10px 0px 30px black;    
+.cta-contain button {
+  padding: 10px;
+  font: 1em Notable;
+  background: #429ca1;
+  color: white;
+  border: none;
+  box-shadow: 10px 0px 30px black;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+header {
+  background-color: initial;
+  background-image: linear-gradient(161.15deg, #28A2B6 12.73%, #4CB879 72.95%);
+}
+
+footer {
+  background-color: initial;
+  background-image: linear-gradient(161.15deg, #28A2B6 12.73%, #4CB879 72.95%);
+}
+
+form {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  background-image: linear-gradient(to right, rgb(253, 230, 138), rgb(167, 243, 208), rgb(16, 185, 129));
+}
+
+div.card-body {
+  text-align: initial;
+  background-image: linear-gradient(180deg, #FFB7B7 0%, #727272 100%), radial-gradient(60.91% 100% at 50% 0%, #FFD1D1 0%, #260000 100%), linear-gradient(238.72deg, #FFDDDD 0%, #720066 100%), linear-gradient(127.43deg, #00FFFF 0%, #FF4444 100%), radial-gradient(100.22% 100% at 70.57% 0%, #FF0000 0%, #00FFE0 100%), linear-gradient(127.43deg, #B7D500 0%, #3300FF 100%);
+  background-blend-mode: screen, overlay, hard-light, color-burn, color-dodge, normal;
+}
+
+label {
+  padding-top: 50px;
+}
+
+nav.navbar.navbar-expand.navbar-light {
+  position: relative;
+  text-align: left;
+  text-align: initial;
+}
+
+button {
+  margin: initial;
+  padding-top: 1px;
+  padding-bottom: 0px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin: 40px 0 0px;
 }

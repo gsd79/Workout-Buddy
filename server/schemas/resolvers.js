@@ -87,17 +87,19 @@ const resolvers = {
     // workout: async (parent, { _id }) => {
     //   return await Exercise.findById(_id).populate('category');
     // },
-    workouts: async (parent, { _id }, context) => {
+    // workouts: async (parent, { _id }, context) => {
+    //   if (context.user) {
+    //     const user = await User.findById(context.user._id).populate({
+    //       path: 'workouts.exercise',
+    //       populate: 'category'
+    //     });
+
+    workouts: async ( { _id }, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: 'workouts.exercise',
-          populate: 'category'
-        });
-
+        const user = await User.findOne({ _id: context.user._id })
         return user.exercise.id(_id);
-      }
-
-      throw new AuthenticationError('Not logged in');
+      
+      } throw new AuthenticationError('Not logged in');
     },
   },
   Mutation: {
