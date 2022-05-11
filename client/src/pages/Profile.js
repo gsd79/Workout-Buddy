@@ -8,7 +8,7 @@ import './Styles/Pages.css';
 
 const Profile = (props) => {
     const { username: userParam } = useParams();
-    const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+    const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_USER, {
         variables: { username: userParam }
     });
     const user = data?.me || data?.user || {};

@@ -133,3 +133,61 @@ button {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   margin: 40px 0 0px;
 }
+
+button.btn.btn-primary {
+  background-color: initial;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin: initial;
+  margin: 40px 0 100px;
+  background-color: #B9A074;
+}
+
+input#name.form-control {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+input#email.form-control {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+textarea#message.form-control {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+label {
+  color: #B9A074;
+  font-weight: 900;
+}
+
+label {
+  color: #B9A074;
+  font-weight: 900;
+}
+
+label {
+  color: #B9A074;
+  font-weight: 900;
+}
+
+form#contact-form {
+  background-image: initial;
+  border-style: none;
+  background-image: radial-gradient(rgba(33, 37, 41, 0.4) 0.5px, rgba(255, 255, 255, 0) 0.5px);
+
+  
+}
+
+form #contact-form {
+align-items: center;
+border-style: none;
+box-sizing: border-box;
+color: #212529;
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+justify-content: flex-end;
+line-height: 24px;
+text-align: left;
+background-size: 10px 10px;
+};

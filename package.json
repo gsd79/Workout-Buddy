@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/gsd79/Workout-Buddy#readme",
   "dependencies": {
+    "axios": "^0.27.2",
     "concurrently": "^7.1.0"
   }
 }
