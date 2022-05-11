@@ -53,13 +53,11 @@ const resolvers = {
     users: async () => {
       return User.find()
         .select('-__v -password')
-        .populate('savedWorkouts');
     },
 
     workouts: async (parent, {username}) => {
       const userData = await User.findOne({username})
           .select('-__v -password')
-          .populate('savedWorkouts')
       return userData;
     },
 
@@ -87,7 +85,7 @@ const resolvers = {
           { _id: context.user._id }, 
           { $addToSet: { savedWorkouts: workout } },
           { new: true }
-          ).populate('savedWorkouts');;
+          ).populate('savedWorkouts');
 
         return workout;
       }
