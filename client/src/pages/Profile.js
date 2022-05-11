@@ -9,12 +9,13 @@ import {
     Button,
     Jumbotron,
     CardColumns
-  } from "react-bootstrap";
+} from "react-bootstrap";
 // functionality variables/queries/mutations
 import { QUERY_USER } from '../utils/queries';
 import { useQuery, useMutation } from '@apollo/client';
 import { ADD_WORKOUT } from "../utils/mutations";
-import { LoginForm } from "./LoginForm";
+import CreateWorkoutForm from '../components/CreateWorkoutForm';
+import SavedWorkouts from '../components/savedWorkouts';
 // in future {ADD_FRIEND, ADD_LOG, ADD_PROGRESS, ADD_PLAYLIST}
 
 
@@ -55,7 +56,7 @@ const Profile = (props) => {
     };
 
     return (
-    
+
         <div className="profile-wrapper">
             <div className="profile-contain">
                 <h1>Welcome Back {`${user.username}`}!</h1>
@@ -69,47 +70,10 @@ const Profile = (props) => {
                             <Tab>Friends</Tab>
                         </TabList>
 
-                        <TabPanel>
-                       
-                                {/*list of saved workouts for user*/}
-                                {user.savedWorkouts.length
-                        ? `Viewing ${user.savedWorkouts.length} saved ${user.savedWorkouts.length === 1 ? "workout" : "workouts"
-                        }:`
-                        : "You have no saved workouts!"}
-                
-                <CardColumns>
-                    {user.savedWorkouts.map((Workout) => {
-                        return (
-                            <Card key={workout.id} border="dark">
-                                {workout.image ? (
-                                    <Card.Img
-                                        src={workout.image}
-                                        alt={`The cover for ${workout.name}`}
-                                        variant="top"
-                                    />
-                                ) : null}
-                                {/* <Card.Body>
-                                    <Card.Title>{workout.name}</Card.Title>
-                                    <p className="small">Workouts: {workout.bodyParts}</p>
-                                    <Card.Text>{workout.equipment}</Card.Text>
-                                    <Button
-                                        className="btn-block btn-danger"
-                                        onClick={() => handleDeleteWorkout(workout.workoutId)}
-                                    >
-                                        Delete this Workout!
-                                    </Button>
-                                </Card.Body> */}
-                            </Card>
-                        );
-                    })}
-                </CardColumns>
-                                {/* //button prompt for adding new empty workout -- will be redirected to createWorkout   */}
-                                {user.username && (
-                                    <button className="btn ml-auto" onClick={handleClick}>
-                                        Add Workout
-                                    </button>
-                                )}
-                           
+                        <TabPanel> 
+                            
+
+                            {/* //button prompt for adding new empty workout -- will be redirected to createWorkout   */}
                         </TabPanel>
                         <TabPanel>
                             <h2>Coming Soon!</h2>
@@ -126,10 +90,11 @@ const Profile = (props) => {
                     </Tabs>
                 </div>
             </div>
+            
         </div >
     );
 
-                                }
+}
 
 
 export default Profile;

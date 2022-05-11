@@ -72,9 +72,9 @@ const resolvers = {
   Mutation: {
     addUser: async (parent, args) => {
       // This is a hack. A dirty, dirty hack
-      args.savedWorkouts = [{
-        name: args.username + " 's first workout" 
-      }];
+      // args.savedWorkouts = [{
+      //   name: args.username + " 's first workout" 
+      // }];
       console.log(args);
 
       const user = await User.create(args);

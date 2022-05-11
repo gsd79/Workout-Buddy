@@ -14,6 +14,7 @@ import Contact from "./pages/Contact";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CreateWorkouts from "./pages/CreateWorkouts"
+import CreateWorkoutForm from "./components/CreateWorkoutForm";
 // import WorkoutPlan from "./components/WorkPlans/WorkoutPlan";
 // import ProgressBar from "./components/Progress/ProgressBar";
 
@@ -54,6 +55,7 @@ function App() {
               render={() => <h1 className="display-2">Oops, wrong page!</h1>}
             />
           </Switch>
+          
           <Footer/>
         
       </Router>

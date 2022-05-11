@@ -15,31 +15,31 @@ import { REMOVE_WORKOUT } from "../../utils/mutations";
 const SavedWorkouts = () => {
     const { loading, data } = useQuery(QUERY_USER);
     const [removeWorkout] = useMutation(REMOVE_WORKOUT);
-    const userData = data?.user || {};
+    const userData = data?.user.savedWorkouts || {};
 
-    // create function that accepts the workout's mongo _id value as param and deletes the workout from the database
-    const handleDeleteWorkout = async (workoutId) => {
+      // create function that accepts the workout's mongo _id value as param and deletes the workout from the database
+      const handleDeleteWorkout = async (workoutId) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
         if (!token) {
-            return false;
+          return false;
         }
 
-        // try {
-        //   await removeWorkout({
-        //     variables: { workoutId },
-        //   });
+    // try {
+    //   await removeWorkout({
+    //     variables: { workoutId },
+    //   });
 
-        //   removeWorkoutId(workoutId);
-        // } catch (err) {
-        //   console.error(err);
-        // }
-    };
+    //   removeWorkoutId(workoutId);
+    // } catch (err) {
+    //   console.error(err);
+    // }
+    // };
 
-    if (loading) {
+      if (loading) {
         return <h2>LOADING...</h2>;
+      }
     }
-
     return (
         <>
             <Jumbotron fluid className="text-light bg-dark">
@@ -66,17 +66,17 @@ const SavedWorkouts = () => {
                                         variant="top"
                                     />
                                 ) : null}
-                                <Card.Body>
-                                    <Card.Title>{workout.name}</Card.Title>
-                                    <p className="small">Workouts: {workout.bodyParts}</p>
-                                    <Card.Text>{workout.equipment}</Card.Text>
-                                    <Button
-                                        className="btn-block btn-danger"
-                                        onClick={() => handleDeleteWorkout(workout.workoutId)}
-                                    >
-                                        Delete this Workout!
-                                    </Button>
-                                </Card.Body>
+                                {/* <Card.Body>
+                  <Card.Title>{workout.name}</Card.Title>
+                  <p className="small">Workouts: {workout.bodyParts}</p>
+                  <Card.Text>{workout.equipment}</Card.Text>
+                  <Button
+                    className="btn-block btn-danger"
+                    onClick={() => handleDeleteWorkout(workout.workoutId)}
+                  >
+                    Delete this Workout!
+                  </Button>
+                </Card.Body> */}
                             </Card>
                         );
                     })}
@@ -84,6 +84,7 @@ const SavedWorkouts = () => {
             </Container>
         </>
     );
-};
+}
+
 
 export default SavedWorkouts;
