@@ -63,8 +63,8 @@ const resolvers = {
       return userData;
     },
 
-    workout: async (parent, {name})=> {
-      const userData = await Workout.findOne({name})
+    workout: async (parent, {_id})=> {
+      const userData = await Workout.findOne({_id})
           .select('-__v -password')
       return userData;
     }
@@ -97,12 +97,12 @@ const resolvers = {
       return this
     },
 
-    addExercise: async (parent, {exerciseid, name}, context) => {
+    addExercise: async (parent, {exerciseid, _id}, context) => {
       if (context.user) {
-        console.log(exerciseid + " " + name)
+        console.log(exerciseid + " " + _id)
         const addedExercise = await Exercise.findOne({exerciseid})
         console.log(addedExercise)
-        const workout = await Workout.findOne({name});
+        const workout = await Workout.findOne({_id});
         console.log(workout)
         const updatedWorkout = await Workout.findOneAndUpdate(
           { _id: workout }, 
