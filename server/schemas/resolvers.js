@@ -71,9 +71,11 @@ const resolvers = {
   },
   Mutation: {
     addUser: async (parent, args) => {
+      args.savedWorkouts = [{
+        name: args.username + "'s First Workout"
+      }]
       const user = await User.create(args);
       const token = signToken(user);
-
       return { token, user };
     },
 
