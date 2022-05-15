@@ -9,24 +9,24 @@ const typeDefs = gql`
   type Exercise {
     _id: ID
     bodyPart: String
-    equipment: String 
+    equipment: String
     gifUrl: String
-    name: String  
-    target: String 
+    name: String
+    target: String
+    category: Category
   }
 
   type Workout {
     _id: ID
-    name: String
-    workouts: [Exercise]
+    workoutDate: String
+    exercises: [Exercise]
   }
 
   type User {
     _id: ID
-    username: String  
+    username: String
     email: String
-    password: String
-    savedworkouts: [Workout]
+    workouts: [Workout]
   }
 
   type Auth {
@@ -36,25 +36,23 @@ const typeDefs = gql`
 
   type Query {
     categories: [Category]
-    exercise( 
-      name: String, 
-      equipment: String,
-      bodyPart: String,
-      target: String
-      ): Exercise
-    exercises: [Exercise]
-    workouts: [Workout]
+    exercises(category: ID, name: String): [Exercise]
+    exercise(_id: ID!): Exercise
     user: User
-    users: [User]
+    workout(_id: ID!): Workout
+    checkout(exercises: [ID]!): Checkout
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
-    addWorkout(workouts: [ID]!): Workout
-    removeWorkout: Workout
-    addExercise: Exercise
-    removeExercise: Exercise
+    addWorkout(exercises: [ID]!): Workout
+    updateUser(username: String, email: String, password: String): User
+    updateExercise(_id: ID!, target: String!): Exercise
     login(email: String!, password: String!): Auth
+  }
+
+  type Checkout {
+    session: ID
   }
 `;
 

@@ -1,66 +1,74 @@
-.wrapper, .profile-wrapper {
-    background-image: linear-gradient(
-        0deg,
-        rgba(255, 255, 255, 0.5),
-        rgba(66, 156, 161, 0.4)
-    ),
-    url("../../assets/img/fitness-gym-girl-nb-1920x1080.jpg");
-    height:817px;
-    padding-top: 300px;
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Spartan", sans-serif;
 }
 
-.profile-wrapper{
-    background-image: linear-gradient(
-        0deg,
-        rgba(255, 255, 255, 0.5),
-        rgba(66, 156, 161, 0.4)
+.wrapper,
+.profile-wrapper {
+  background-image: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.5),
+      rgba(66, 156, 161, 0.4)
+    ),
+    url("../../assets/img/fitness-gym-girl-nb-1920x1080.jpg");
+  height: 817px;
+  padding-top: 300px;
+}
+
+.profile-wrapper {
+  background-image: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.5),
+      rgba(66, 156, 161, 0.4)
     ),
     url("../../assets/img/52ec5f76e2a79ad25c1f507aa6ff74e3.jpg");
 }
 
-.jumbotron-home {  
-    margin: auto;
-    width: fit-content;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-flow: column;
-    border: 10px double white;
-    outline: 8px solid rgba(255,255,255,.7);
-    background: rgba(255,255,255,.7);
-    box-shadow: 10px 0px 90px black;    
+.jumbotron-home {
+  margin: auto;
+  width: fit-content;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  border: 10px double white;
+  outline: 8px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 10px 0px 90px black;
 }
 
-.jumbotron-home h1{
-    text-decoration: none;
-    color: rgba(252,139,0, .5);
-    font: 5em Notable;
-    
+.jumbotron-home h1 {
+  text-decoration: none;
+  color: rgba(252, 139, 0, 0.5);
+  font: 5em Notable;
 }
 
 .jumbotron-home h2 {
-    font: 1.8em Notable;
-    color: #429ca1;
-    letter-spacing: 3px;
+  font: 1.8em Notable;
+  color: #429ca1;
+  letter-spacing: 3px;
 }
 
-.stroke-home{    
-    -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #fc8b00;
+.stroke-home {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #fc8b00;
 }
 
-.cta-contain{
-    margin: 3em auto;
-    width:fit-content;
+.cta-contain {
+  margin: 3em auto;
+  width: fit-content;
 }
 
-.cta-contain button{
-    padding: 10px;
-    font: 1em Notable;
-    background: #429ca1;
-    color: white;
-    border: none;
-    box-shadow: 10px 0px 30px black;    
+.cta-contain button {
+  padding: 10px;
+  font: 1em Notable;
+  background: #429ca1;
+  color: white;
+  border: none;
+  box-shadow: 10px 0px 30px black;
 }
