@@ -1,6 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Spartan", sans-serif;
+}
+
 .wrapper,
-.profile-wrapper,
-.wrapper-search {
+.profile-wrapper {
   background-image: linear-gradient(
       0deg,
       rgba(255, 255, 255, 0.5),
@@ -133,6 +141,18 @@
 .react-tabs__tab-panel--selected {
   display: block;
 }
+
+.stroke-home {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #fc8b00;
+}
+
+.cta-contain {
+  margin: 3em auto;
+  width: fit-content;
+}
+
 
 .stroke-home {
   -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */

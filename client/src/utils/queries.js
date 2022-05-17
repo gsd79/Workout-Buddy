@@ -1,10 +1,8 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
-// query one user
 export const QUERY_USER = gql`
   query user{
     user {
-      _id
       username
       email
       password
@@ -59,9 +57,18 @@ query exercises {
     equipment
     gifUrl
     name
-    target
+    target 
   }
 }`
+
+export const QUERY_USER_BRIEF = gql`
+  query user($username: String!) {
+    user(username: $username) {
+      _id
+      username
+    }
+  }
+`;
 
 // search for exercise by name
 export const QUERY_EXERCISE_NAME= gql `
@@ -112,8 +119,76 @@ query exercise($Name: String!) {
     gifUrl
     name
     target
+// export const QUERY_WORKOUT = gql`
+//   query workout($id: ID!) {
+//     workout(_id: $id) {
+//       _id
+//       name
+//       exercises {
+//         _id
+//         bodyPart
+//         equipment
+//         gifUrl
+//         name
+//         target
+//       }
+//     }
+//   }
+// `;
+
+//query exercise (add and remove)
+
+export const QUERY_CATEGORIES = gql`
+  {
+    categories {
+      _id
+      name
+    }
+  }
+`;
+
+export const QUERY_EXERCISES = gql`
+  query exercise {
+    exercises {
+      _id
+      bodyPart
+      equipment
+      gifUrl
+      target
+      name
+    }
+    categories {
+      _id
+      name
+    }
+  }
+`;
+
+export const GET_ME = gql`
+  {
+    me {
+      _id
+      username
+      email
+      workoutCount
+      savedWorkouts {
+        workoutId
+        bodyParts
+        name
+        equipment
+        gifUrl
+        target
+      }
+    }
   }
 }`
 
 
 
+// export const QUERY_WORKOUT = gql`
+//   query getWorkout($exercises: [ID]!) {
+//     checkout(exercises: $exercises) {
+//       session
+//     }
+//   }
+// `;
