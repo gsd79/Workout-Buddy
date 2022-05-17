@@ -119,6 +119,8 @@ query exercise($Name: String!) {
     gifUrl
     name
     target
+  }
+}`
 // export const QUERY_WORKOUT = gql`
 //   query workout($id: ID!) {
 //     workout(_id: $id) {
@@ -178,7 +180,7 @@ export const GET_ME = gql`
         equipment
         gifUrl
         target
-      }
+      
     }
   }
 }`

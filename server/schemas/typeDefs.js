@@ -1,11 +1,9 @@
 const { gql } = require("apollo-server-express");
-
 const typeDefs = gql`
   type Category {
     _id: ID
     name: String
   }
-
   type Exercise {
     _id: ID
     bodyPart: String
@@ -13,47 +11,44 @@ const typeDefs = gql`
     gifUrl: String
     name: String
     target: String
-    category: Category
   }
-
   type Workout {
     _id: ID
-    workoutDate: String
+    name: String
     exercises: [Exercise]
   }
-
   type User {
     _id: ID
     username: String
     email: String
-    workouts: [Workout]
+    password: String
+    savedWorkouts: [Workout]
   }
-
   type Auth {
     token: ID
     user: User
   }
-
   type Query {
     categories: [Category]
-    exercises(category: ID, name: String): [Exercise]
-    exercise(_id: ID!): Exercise
+    exerciseByName(name: String!): Exercise
+    exerciseByOther(
+      equipment: String,
+      bodyPart: String,
+      target: String
+      ): [Exercise]
+    exercises: [Exercise]
+    workout(_id:ID): Workout
+    workouts(username: String): User
     user: User
-    workout(_id: ID!): Workout
-    checkout(exercises: [ID]!): Checkout
+    users: [User]
   }
-
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
-    addWorkout(exercises: [ID]!): Workout
-    updateUser(username: String, email: String, password: String): User
-    updateExercise(_id: ID!, target: String!): Exercise
+    addWorkout(name: String!): Workout
+    removeWorkout: User
+    addExercise(_id: ID!, exerciseid: ID!): Workout
+    removeExercise: Exercise
     login(email: String!, password: String!): Auth
   }
-
-  type Checkout {
-    session: ID
-  }
 `;
-
 module.exports = typeDefs;

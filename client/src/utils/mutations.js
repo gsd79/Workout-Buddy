@@ -53,7 +53,7 @@ export const REMOVE_WORKOUT = gql`
       name
       target
     }
-  }
+  
 }`
 
 
