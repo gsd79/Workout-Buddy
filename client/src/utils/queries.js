@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
-  query user{
+  query user {
     user {
       username
       email
@@ -10,13 +10,13 @@ export const QUERY_USER = gql`
   }
 `;
 
-// query all users 
+// query all users
 export const QUERY_USERS = gql`
-query users  {
+  query users {
     users {
       _id
       username
-      email    
+      email
     }
   }
 `;
@@ -31,22 +31,23 @@ query users  {
 // }`
 
 // query all workouts for user
-export const QUERY_WORKOUT = gql `
-query workouts ($username: String!) {
-  workouts (username: $username) {
-    savedWorkouts {
-      name    
-      exercises {
-        _id
-        bodyPart
-        equipment
-        gifUrl
+export const QUERY_WORKOUT = gql`
+  query workouts($username: String!) {
+    workouts(username: $username) {
+      savedWorkouts {
         name
-        target
+        exercises {
+          _id
+          bodyPart
+          equipment
+          gifUrl
+          name
+          target
+        }
       }
     }
   }
-}`
+`;
 
 // query all exercises
 export const QUERY_EXERCISE= gql `
@@ -59,7 +60,8 @@ query exercises {
     name
     target 
   }
-}`
+}
+`;
 
 export const QUERY_USER_BRIEF = gql`
   query user($username: String!) {
@@ -71,54 +73,57 @@ export const QUERY_USER_BRIEF = gql`
 `;
 
 // search for exercise by name
-export const QUERY_EXERCISE_NAME= gql `
-query exercise($Name: String!) {
-  exerciseByName(name: $name) {
-    _id
-    bodyPart
-    equipment
-    gifUrl
-    name
-    target
+export const QUERY_EXERCISE_NAME = gql`
+  query exercise($Name: String!) {
+    exerciseByName(name: $name) {
+      _id
+      bodyPart
+      equipment
+      gifUrl
+      name
+      target
+    }
   }
-}`
+`;
 
 // search for exercise by equipment
-export const QUERY_EQUIPMENT= gql `
-query exercise($Name: String!) {
-  exerciseByOther(equipment: $ID) {
-    _id
-    bodyPart
-    equipment
-    gifUrl
-    name
-    target
+export const QUERY_EQUIPMENT = gql`
+  query exercise($Name: String!) {
+    exerciseByOther(equipment: $ID) {
+      _id
+      bodyPart
+      equipment
+      gifUrl
+      name
+      target
+    }
   }
-}`
+`;
 
 // search for exercise by bodypart
-export const QUERY_BODYPART= gql `
-query exercise($Name: String!) {
-  exerciseByOther(bodyPart: $ID) {
-    _id
-    bodyPart
-    equipment
-    gifUrl
-    name
-    target
+export const QUERY_BODYPART = gql`
+  query exercise($Name: String!) {
+    exerciseByOther(bodyPart: $ID) {
+      _id
+      bodyPart
+      equipment
+      gifUrl
+      name
+      target
+    }
   }
-}`
+`;
 
 // query exercise by target
-export const QUERY_TARGET= gql `
-query exercise($Name: String!) {
-  exerciseByOther(target: $ID) {
-    _id
-    bodyPart
-    equipment
-    gifUrl
-    name
-    target
+export const QUERY_TARGET = gql`
+  query exercise($Name: String!) {
+    exerciseByOther(target: $ID) {
+      _id
+      bodyPart
+      equipment
+      gifUrl
+      name
+      target    
   }
 }`
 // export const QUERY_WORKOUT = gql`

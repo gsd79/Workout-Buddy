@@ -1,27 +1,19 @@
 // react imports
 import React from "react";
-import { Redirect, useParams } from 'react-router-dom';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
-import {
-    Container,
-    Card,
-    Button,
-    Jumbotron,
-    CardColumns
-} from "react-bootstrap";
+import { Redirect, useParams } from "react-router-dom";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+
 // functionality variables/queries/mutations
-import { QUERY_USER } from '../utils/queries';
-import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_USER } from "../utils/queries";
+import { useQuery, useMutation } from "@apollo/client";
 import { ADD_WORKOUT } from "../utils/mutations";
 import CreateWorkoutForm from '../components/CreateWorkoutForm';
 import SavedWorkouts from '../components/savedWorkouts';
 // in future {ADD_FRIEND, ADD_LOG, ADD_PROGRESS, ADD_PLAYLIST}
 
-
-import Auth from '../utils/auth';
-import './Styles/Pages.css';
-
+import Auth from "../utils/auth";
+import "./Styles/Pages.css";
 
 const Profile = (props) => {
     const { username: userParam } = useParams();
@@ -30,11 +22,8 @@ const Profile = (props) => {
         variables: { username: userParam }
     });
 
-    const user = data?.user || {};
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+ 
+  const user = data?.user || {};
 
     if (!user?.username) {
         return (
@@ -55,6 +44,7 @@ const Profile = (props) => {
         }
     };
 
+  if (!user?.username) {
     return (
 
         <div className="profile-wrapper">
@@ -93,7 +83,7 @@ const Profile = (props) => {
             
         </div >
     );
-
+    }
 }
 
 
