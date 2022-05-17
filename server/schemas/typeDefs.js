@@ -40,7 +40,8 @@ const typeDefs = gql`
     exerciseByOther(
       equipment: String,
       bodyPart: String,
-      target: String
+      target: String,
+      _id: ID
       ): [Exercise]
     exercises: [Exercise]
     workout(_id:ID): Workout
@@ -52,9 +53,9 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     addWorkout(name: String!): Workout
-    removeWorkout: User
+    removeWorkout(_id: ID!): Workout
     addExercise(_id: ID!, exerciseid: ID!): Workout
-    removeExercise: Exercise
+    removeExercise(_id: ID!, exerciseid: ID!): Workout
     login(email: String!, password: String!): Auth
   }
 `;
