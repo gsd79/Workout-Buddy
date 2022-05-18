@@ -13,6 +13,9 @@ const resolvers = {
 
         return exerciseData;
       }
+    },
+
+    exerciseByOther: async (parent, {equipment, bodyPart, target}) => {
       if (equipment) {
         const exerciseData = await Exercise.findOne({ equipment });
 
@@ -53,6 +56,7 @@ const resolvers = {
     exercises: async () => {
       return await Exercise.find();
     },
+
     user: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
@@ -105,10 +109,10 @@ const resolvers = {
 
       return { token, user };
     },
-    addWorkout: async (parent, { exercise }, context) => {
-      console.log(context);
+
+    addWorkout: async (parent, args, context) => {
       if (context.user) {
-        const workout = new Workout({ exercise });
+        const workout = await Workout.create({ ...args });
 
         await User.findByIdAndUpdate(context.user._id, {
           $push: { workouts: workout },
@@ -119,6 +123,34 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
+
+    removeWorkout: async (parent, args, context) => {
+      return this
+    },
+
+    addExercise: async (parent, {exerciseid, _id}, context) => {
+      if (context.user) {
+        console.log(exerciseid + " " + _id)
+        const addedExercise = await Exercise.findOne({exerciseid})
+        console.log(addedExercise)
+        const workout = await Workout.findOne({_id});
+        console.log(workout)
+        const updatedWorkout = await Workout.findOneAndUpdate(
+          { _id: workout }, 
+          { $push: { exercises: addedExercise } },
+          { new: true }
+          ).populate('exercises');;
+          console.log(updatedWorkout)
+        return updatedWorkout;
+      }
+
+      throw new AuthenticationError('No workout or exercise with that id!');
+    },
+
+    removeExercise: async (parent, args, context) => {
+      return this
+    },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 

@@ -14,7 +14,6 @@ import SearchWorkouts from "./pages/SearchWorkouts";
 import Contact from "./pages/Contact";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
 // import WorkoutPlan from "./components/WorkPlans/WorkoutPlan";
 // import ProgressBar from "./components/Progress/ProgressBar";
 

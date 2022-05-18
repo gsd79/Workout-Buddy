@@ -21,7 +21,7 @@ const userSchema = new Schema(
       minlength: 5,
     },
     // set savedWorkouts to be an array of data that adheres to the workoutSchema
-    workouts: [Workout.schema],
+    savedWorkouts: [Workout.schema],
     //TODOhydration/nutrition goes here
   },
 
