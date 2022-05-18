@@ -42,7 +42,7 @@ form {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  height: 817px;
+  height: 795px;
   line-height: 24px;
   padding-top: 300px;
   text-align: left;
@@ -274,6 +274,7 @@ div.modal-header {
   margin-bottom: 50px;
   padding: 10px 0 20px 10px;
 }
+<<<<<<< HEAD
 /* list above content showing individual tabs */
 .react-tabs__tab-list {
   border-bottom: 1px solid #aaa;
@@ -327,3 +328,5 @@ div.modal-header {
   display: block;
 }
 >>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
+=======
+>>>>>>> eebc6290a94ff13f844d543e10d34e350560a2cd
