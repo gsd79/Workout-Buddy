@@ -53,8 +53,10 @@ export const REMOVE_WORKOUT = gql`
       name
       target
     }
-  }
-`;
+  
+}`
+
+
 
 //add exercise
 
@@ -73,6 +75,7 @@ export const ADD_EXERCISE = gql`
     }
   }
 `;
+
 //remove exercise
 export const REMOVE_EXERCISE = gql`
   mutation removeExercise($name: String!, $id: ID!) {
