@@ -21,7 +21,7 @@
 // export default Contact;
 
 import React from "react";
-import axios from "axios";
+// import axios from "axios";
 
 class App extends React.Component {
   constructor(props) {
@@ -35,7 +35,7 @@ class App extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    axios({
+    ({
       method: "POST",
       url: "http://localhost:3000/send",
       data: this.state,
