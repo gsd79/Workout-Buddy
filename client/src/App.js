@@ -26,7 +26,6 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      //TODO are the `Bearer ${token}` the API key hidden in the .env??
       authorization: token ? `Bearer ${token}` : "",
     },
   };
