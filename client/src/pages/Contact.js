@@ -33,6 +33,7 @@ class App extends React.Component {
     };
   }
 
+<<<<<<< HEAD
   handleSubmit(e) {
     e.preventDefault();
     ({
@@ -48,6 +49,23 @@ class App extends React.Component {
       }
     });
   }
+=======
+  // handleSubmit(e) {
+  //   e.preventDefault();
+  //   axios({
+  //     method: "POST",
+  //     url: "http://localhost:3000/send",
+  //     data: this.state,
+  //   }).then((response) => {
+  //     if (response.data.status === "success") {
+  //       alert("Message Sent.");
+  //       this.resetForm();
+  //     } else if (response.data.status === "fail") {
+  //       alert("Message failed to send.");
+  //     }
+  //   });
+  // }
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
 
   //   resetForm(){
   //     this.setState({name: ‘’, email: ‘’, message: ‘’})

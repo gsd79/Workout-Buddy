@@ -9,11 +9,18 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
+<<<<<<< HEAD
 // import CreateWorkouts from "./pages/CreateWorkouts";
 import Contact from "./pages/Contact";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CreateWorkouts from "./pages/CreateWorkouts"
+=======
+// import SearchWorkouts from "./pages/SearchWorkouts";
+import Contact from "./pages/Contact";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
 // import WorkoutPlan from "./components/WorkPlans/WorkoutPlan";
 // import ProgressBar from "./components/Progress/ProgressBar";
 
@@ -46,7 +53,11 @@ function App() {
           
           <Switch>
             <Route exact path="/" component={Home} />
+<<<<<<< HEAD
             <Route exact path="/plans" component={CreateWorkouts} />
+=======
+            {/* <Route exact path="/plans" component={SearchWorkouts} /> */}
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/profile" component={Profile} />
             {/* <Route exact path="/progress" component={ProgressBar} /> */}
