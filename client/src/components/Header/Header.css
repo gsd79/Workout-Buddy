@@ -8,7 +8,7 @@ footer {
 header h1,
 .nav-link {
   text-decoration: none;
-  color: #c4b3a5 !important;
+  color: #5f5f5f !important;
   font: 2em Notable;
   letter-spacing: 2px;
 }
@@ -16,7 +16,7 @@ header h1,
 footer h1,
 h2,
 footer a {
-  color: #c4b3a5;
+  color: #5f5f5f;
   font-size: 1em;
 }
 

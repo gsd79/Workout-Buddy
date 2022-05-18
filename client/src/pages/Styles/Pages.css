@@ -39,7 +39,7 @@ form {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  height: 817px;
+  height: 795px;
   line-height: 24px;
   padding-top: 300px;
   text-align: left;
@@ -262,56 +262,4 @@ div.modal-header {
   margin:0 auto;
   margin-bottom: 50px;
   padding: 10px 0 20px 10px;
-}
-/* list above content showing individual tabs */
-.react-tabs__tab-list {
-  border-bottom: 1px solid #aaa;
-  margin: 0 0 10px;
-  padding: 0;
-}
-
-.react-tabs__tab {
-  display: inline-block;
-  border: 1px solid transparent;
-  border-bottom: none;
-  bottom: -1px;
-  position: relative;
-  list-style: none;
-  padding: 6px 12px;
-  cursor: pointer;
-}
-
-.react-tabs__tab--selected {
-  background: #fff;
-  border-color: #aaa;
-  color: black;
-  border-radius: 5px 5px 0 0;
-}
-
-/* .react-tabs__tab--disabled {
-  color: GrayText;
-  cursor: default;
-} */
-
-.react-tabs__tab:focus {
-  outline: none;
-}
-
-.react-tabs__tab:focus:after {
-  content: "";
-  position: absolute;
-  height: 5px;
-  left: -4px;
-  right: -4px;
-  bottom: -5px;
-  background: #fff;
-}
-
-/* content of tabs */
-.react-tabs__tab-panel {
-  display: none;
-}
-
-.react-tabs__tab-panel--selected {
-  display: block;
 }

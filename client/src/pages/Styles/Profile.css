@@ -1,8 +1,19 @@
+.profile-wrapper {
+  background-image: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.5),
+      rgba(66, 156, 161, 0.4)
+    ),
+    url("../../assets/img/52ec5f76e2a79ad25c1f507aa6ff74e3.jpg");
+  height: 795px;
+  padding-top: 250px;
+}
+
 .profile-contain {
   background: white;
   padding: 50px 0 0 60px;
   width: 90%;
-  margin: auto;
+  margin: 0 auto;
   border: 10px double white;
   outline: 8px solid rgba(66, 156, 161, 0.9);
   background: rgba(66, 156, 161, 0.9);
@@ -10,7 +21,7 @@
 
 .profile-contain h1 {
   font: 2.5em Notable;
-  color: rgba(252, 139, 0, 0.6);
+  color: whitesmoke;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: grey;
   letter-spacing: 2px;
