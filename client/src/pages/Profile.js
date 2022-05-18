@@ -1,26 +1,19 @@
 // react imports
 import React from "react";
-import { Redirect, useParams } from 'react-router-dom';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
-import {
-    Container,
-    Card,
-    Button,
-    Jumbotron,
-    CardColumns
-  } from "react-bootstrap";
+import { Redirect, useParams } from "react-router-dom";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+
 // functionality variables/queries/mutations
-import { QUERY_USER } from '../utils/queries';
-import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_USER } from "../utils/queries";
+import { useQuery, useMutation } from "@apollo/client";
 import { ADD_WORKOUT } from "../utils/mutations";
-import { LoginForm } from "./LoginForm";
+import CreateWorkoutForm from '../components/CreateWorkoutForm';
+import SavedWorkouts from '../components/savedWorkouts';
 // in future {ADD_FRIEND, ADD_LOG, ADD_PROGRESS, ADD_PLAYLIST}
 
-
-import Auth from '../utils/auth';
-import './Styles/Pages.css';
-
+import Auth from "../utils/auth";
+import "./Styles/Pages.css";
 
 const Profile = (props) => {
     const { username: userParam } = useParams();
@@ -29,11 +22,8 @@ const Profile = (props) => {
         variables: { username: userParam }
     });
 
-    const user = data?.user || {};
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+ 
+  const user = data?.user || {};
 
     if (!user?.username) {
         return (
@@ -54,8 +44,9 @@ const Profile = (props) => {
         }
     };
 
+  if (!user?.username) {
     return (
-    
+
         <div className="profile-wrapper">
             <div className="profile-contain">
                 <h1>Welcome Back {`${user.username}`}!</h1>
@@ -69,47 +60,10 @@ const Profile = (props) => {
                             <Tab>Friends</Tab>
                         </TabList>
 
-                        <TabPanel>
-                       
-                                {/*list of saved workouts for user*/}
-                                {user.savedWorkouts.length
-                        ? `Viewing ${user.savedWorkouts.length} saved ${user.savedWorkouts.length === 1 ? "workout" : "workouts"
-                        }:`
-                        : "You have no saved workouts!"}
-                
-                <CardColumns>
-                    {user.savedWorkouts.map((Workout) => {
-                        return (
-                            <Card key={workout.id} border="dark">
-                                {workout.image ? (
-                                    <Card.Img
-                                        src={workout.image}
-                                        alt={`The cover for ${workout.name}`}
-                                        variant="top"
-                                    />
-                                ) : null}
-                                {/* <Card.Body>
-                                    <Card.Title>{workout.name}</Card.Title>
-                                    <p className="small">Workouts: {workout.bodyParts}</p>
-                                    <Card.Text>{workout.equipment}</Card.Text>
-                                    <Button
-                                        className="btn-block btn-danger"
-                                        onClick={() => handleDeleteWorkout(workout.workoutId)}
-                                    >
-                                        Delete this Workout!
-                                    </Button>
-                                </Card.Body> */}
-                            </Card>
-                        );
-                    })}
-                </CardColumns>
-                                {/* //button prompt for adding new empty workout -- will be redirected to createWorkout   */}
-                                {user.username && (
-                                    <button className="btn ml-auto" onClick={handleClick}>
-                                        Add Workout
-                                    </button>
-                                )}
-                           
+                        <TabPanel> 
+                            
+
+                            {/* //button prompt for adding new empty workout -- will be redirected to createWorkout   */}
                         </TabPanel>
                         <TabPanel>
                             <h2>Coming Soon!</h2>
@@ -126,12 +80,46 @@ const Profile = (props) => {
                     </Tabs>
                 </div>
             </div>
+            
         </div >
     );
+    }
+}
 
-                                }
 
+// import { Redirect, useParams } from "react-router-dom";
+// import { QUERY_USER, GET_ME } from "../utils/queries";
+// import { useQuery, useMutation } from "@apollo/client";
+// import Auth from "../utils/auth";
+// import "./Styles/Pages.css";
 
+// const Profile = (props) => {
+//   const { username: userParam } = useParams();
+//   const { loading, data } = useQuery(userParam ? QUERY_USER : GET_ME, {
+//     variables: { username: userParam },
+//   });
+//   const user = data?.me || data?.user || {};
+
+//   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+//     return <Redirect to="/profile" />;
+//   }
+
+//   if (loading) {
+//     return <div>Loading...</div>;
+//   }
+
+//   // if (!user?.username) {
+//   //     return (
+//   //         <h4>
+//   //             You need to be logged in to see this. Use the navigation links above to
+//   //             sign up or log in!
+//   //         </h4>
+//   //     );
+
+//   return (
+//     <div className="profile-wrapper">
+//       <h1>Welcome Back,{userParam`${user.username}`}</h1>
+//     </div>
+//   );
+// };
 export default Profile;
-
-
