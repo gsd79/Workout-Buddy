@@ -116,19 +116,35 @@ const resolvers = {
 
     addExercise: async (parent, args, context) => {
       if (context.user) {
+
         console.log(args)
+
         const addedExercise = await Exercise.findById(args.exerciseid)
+
         console.log(addedExercise)
+
         const workout = await Workout.findById(args._id);
         
         const updatedWorkout = await Workout.findOneAndUpdate(
           { _id: workout }, 
           { $addToSet: { exercises: addedExercise } },
           { new: true }
-          )
+          );
           console.log(updatedWorkout)
-        
-        // await User.findOneAndUpdate
+          //$push: {savedWorkouts: workout}
+
+        await User.findByIdAndUpdate(
+            { _id: context.user._id }, 
+            { $pull: { savedWorkouts: workout },
+               }, // TODO does this duplicate the workout? how to update exercises to the user?
+            { new: true }
+            )
+        await User.findByIdAndUpdate(
+          { _id: context.user._id }, 
+          { $push: { savedWorkouts: workout },
+              }, // TODO does this duplicate the workout? how to update exercises to the user?
+          { new: true }
+          )
       
         return updatedWorkout;
       }
