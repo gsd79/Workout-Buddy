@@ -5,13 +5,16 @@
   position: fixed;
   top: 0;
   right: 0;
-  min-width: 20%;
+  max-width: 18%;
   max-height: 60%;
   background-color: var(--light);
   overflow: auto;
   padding: 0.5rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   border-bottom-left-radius: 0.5rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 }
 
 .cart .close {
@@ -64,4 +67,12 @@
     position: relative;
     margin: 0 auto;
   }
+}
+
+.flex-row img{
+  width: 40%;
+}
+
+.flex-row input{
+  width: 30%;
 }

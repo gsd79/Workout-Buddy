@@ -8,8 +8,8 @@ import "react-tabs/style/react-tabs.css";
 import { QUERY_USER } from "../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
 import { ADD_WORKOUT } from "../utils/mutations";
-import CreateWorkoutForm from '../components/CreateWorkoutForm';
-import SavedWorkouts from '../components/savedWorkouts';
+// import CreateWorkoutForm from '../components/CreateWorkoutForm';
+import SavedWorkouts from '../pages/SavedWorkouts';
 // in future {ADD_FRIEND, ADD_LOG, ADD_PROGRESS, ADD_PLAYLIST}
 
 // import Auth from "../utils/auth";
@@ -44,7 +44,7 @@ const Profile = () => {
     //     }
     // };
 
-
+    console.log(user);
     return (
 
         <div className="profile-wrapper">
@@ -61,21 +61,23 @@ const Profile = () => {
                         </TabList>
 
                         <TabPanel> 
-                            
+                            {/* Saved Workouts to appear here */}
+
+                            <SavedWorkouts/>
 
                             {/* //button prompt for adding new empty workout -- will be redirected to createWorkout   */}
                         </TabPanel>
                         <TabPanel>
-                            <h2>Coming Soon!</h2>
+                            <h2> Edit Profile Coming Soon!</h2>
                         </TabPanel>
                         <TabPanel>
-                            <h2>Coming Soon!</h2>
+                            <h2>Goal Setting Coming Soon!</h2>
                         </TabPanel>
                         <TabPanel>
-                            <h2>Coming Soon!</h2>
+                            <h2>Logs Coming Soon!</h2>
                         </TabPanel>
                         <TabPanel>
-                            <h2>Coming Soon!</h2>
+                            <h2>Social Coming Soon!</h2>
                         </TabPanel>
                     </Tabs>
                 </div>

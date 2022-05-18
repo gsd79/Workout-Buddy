@@ -55,9 +55,9 @@ const Cart = () => {
       }
     });
 
-    getWorkout({
-      variables: { exercises: workoutIds },
-    });
+    // getWorkout({
+    //   variables: { exercises: workoutIds },
+    // });
   }
 
   if (!state.cartOpen) {

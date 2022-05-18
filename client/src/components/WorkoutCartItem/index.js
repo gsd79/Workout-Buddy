@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { REMOVE_FROM_CART, UPDATE_CART_EQUIPMENT } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 
+
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
 
@@ -45,8 +46,9 @@ const CartItem = ({ item }) => {
         <img src={`${item.gifUrl}`} alt="" />
       </div>
       <div>
+      {item.name}, 
         <div>
-          {item.name}, {item.target}
+          Target: {item.target}
         </div>
         <div>
           <span>Reps:</span>
