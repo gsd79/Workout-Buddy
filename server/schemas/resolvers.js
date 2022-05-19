@@ -97,29 +97,22 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
 
-    removeWorkout: async (parent, { user_id, workout_id }, context) => {
+    removeWorkout: async (parent, args, context) => {
       if (context.user) {
 
-        const removedWorkout = await Workout.findOne({workout_id})
+        const removedWorkout = await Workout.findById(args.workout_id)
 
         console.log(removedWorkout + " this is the workout to be removed");
         
-        await User.updateOne(
-          { _id: user_id }, 
+        await Workout.findByIdAndDelete(args.workout_id);
+
+        const updatedUser = await User.updateOne(
+          { _id: args.user_id }, 
           { $pull: { savedWorkouts: removedWorkout } },
           { new: true }
         )
-        console.log(context.user._id + "this is context user");
-        console.log(JSON.stringify(context.user));
 
-        // await Workout.findOneAndDelete({ _id });
-
-        // db.posts.updateOne( 
-        //   { _id" : ObjectId("5ec55af811ac5e2e2aafb2b9") },
-        //   { $pull: { comments: { user: "Database Rebel" } } }
-        // )
-
-        return "yes";
+        return console.log(context.user.username + "'s workout " + removedWorkout.name + " has been deleted");
       }
 
       throw new AuthenticationError('No Workout with that ID');
