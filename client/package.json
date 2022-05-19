@@ -6,9 +6,6 @@
   "dependencies": {
     "@apollo/client": "^3.5.10",
     "@apollo/react-hooks": "^4.0.0",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.1.1",
-    "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^4.4.1",
     "graphql": "^16.4.0",
     "graphql-tag": "^2.12.6",
