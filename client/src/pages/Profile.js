@@ -1,6 +1,7 @@
 // react imports
 import React from "react";
-import { Redirect, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
@@ -44,7 +45,7 @@ const Profile = () => {
     //     }
     // };
 
-    console.log(user);
+    
     return (
 
         <div className="profile-wrapper">
@@ -62,10 +63,13 @@ const Profile = () => {
 
                         <TabPanel> 
                             {/* Saved Workouts to appear here */}
-
                             <SavedWorkouts/>
 
-                            {/* //button prompt for adding new empty workout -- will be redirected to createWorkout   */}
+                            {/* //button prompt for adding new empty workout -- will be redirected to 'Build A Workout'   */}
+                            <Link as={Link} to= "/plans">
+                                <button className="add-workout">Add Workout</button>
+                            </Link>
+
                         </TabPanel>
                         <TabPanel>
                             <h2> Edit Profile Coming Soon!</h2>
