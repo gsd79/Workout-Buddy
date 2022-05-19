@@ -263,3 +263,13 @@ div.modal-header {
   margin-bottom: 50px;
   padding: 10px 0 20px 10px;
 }
+button {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+button {
+  background-color: initial;
+  background-image: radial-gradient(65% 100% at 50% 0%, #00FF94 0%, rgba(0, 255, 148, 0.25) 100%);
+  background-blend-mode: soft-light;
+}
+
