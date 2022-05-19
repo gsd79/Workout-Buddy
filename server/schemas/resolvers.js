@@ -1,17 +1,14 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Exercise, Workout, Category } = require("../models");
 const { signToken } = require("../utils/auth");
-
 const resolvers = {
   Query: {
     categories: async () => {
       return await Category.find();
     },
-
     exerciseByName: async (parent, {name}) => {
       if (name) {
         const exerciseData = await Exercise.findOne({name})
-    
         return exerciseData;
       }
     },
@@ -19,17 +16,14 @@ const resolvers = {
     exerciseByOther: async (parent, {equipment, bodyPart, target, _id}) => {
       if (equipment) {
         const exerciseData = await Exercise.find({equipment})
-    
         return exerciseData;
       }
       if (bodyPart) {
         const exerciseData = await Exercise.find({bodyPart})
-    
         return exerciseData;
       }
       if (target) {
         const exerciseData = await Exercise.find({target})
-    
         return exerciseData;
       }
       if (_id) {
@@ -38,7 +32,6 @@ const resolvers = {
         return exerciseData;
       }
     },
-
     exercises: async () => {
       return await Exercise.find();
     },
@@ -50,21 +43,17 @@ const resolvers = {
     
         return userData;
       }
-    
       throw new AuthenticationError('No user with that ID');
     },
-
     users: async () => {
       return User.find()
         .select('-__v -password')
     },
-
     workouts: async (parent, {username}) => {
       const userData = await User.findOne({username})
           .select('-__v -password')
       return userData;
     },
-
     workout: async (parent, {_id})=> {
       const userData = await Workout.findOne({_id})
           .select('-__v -password')
@@ -80,20 +69,17 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-
     addWorkout: async (parent, args, context) => {
       if (context.user) {
         const workout = await Workout.create({ ...args });
-
         await User.findByIdAndUpdate(
-          { _id: context.user._id }, 
+          { _id: context.user._id },
           { $addToSet: { savedWorkouts: workout } },
           { new: true }
           )
 
         return workout;
       }
-
       throw new AuthenticationError('Not logged in');
     },
 
@@ -146,7 +132,6 @@ const resolvers = {
       
         return updatedWorkout;
       }
-
       throw new AuthenticationError('No workout or exercise with that id!');
     },
 
@@ -165,25 +150,18 @@ const resolvers = {
   
         throw new AuthenticationError('No Exercise or Workout with that ID');
     },
-
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
-
       if (!user) {
         throw new AuthenticationError('Incorrect credentials');
       }
-
       const correctPw = await user.isCorrectPassword(password);
-
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
       }
-
       const token = signToken(user);
-
       return { token, user };
     }
   }
 };
-
 module.exports = resolvers;

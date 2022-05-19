@@ -17,13 +17,13 @@ const SavedWorkouts = () => {
   const [removeWorkout] = useMutation(REMOVE_WORKOUT);
   const userData = data?.user || {};
 
-  // create function that accepts the workout's mongo _id value as param and deletes the workout from the database
-  const handleDeleteWorkout = async (workoutId) => {
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
+//   // create function that accepts the workout's mongo _id value as param and deletes the workout from the database
+//   const handleDeleteWorkout = async (workoutId) => {
+//     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    if (!token) {
-      return false;
-    }
+//     if (!token) {
+//       return false;
+//     }
 
     // try {
     //   await removeWorkout({
@@ -34,11 +34,11 @@ const SavedWorkouts = () => {
     // } catch (err) {
     //   console.error(err);
     // }
-  };
+  // };
 
-  if (loading) {
-    return <h2>LOADING...</h2>;
-  }
+//   if (loading) {
+//     return <h2>LOADING...</h2>;
+//   }
 
   return (
     <>
@@ -67,7 +67,7 @@ const SavedWorkouts = () => {
                     variant="top"
                   />
                 ) : null}
-                <Card.Body>
+                {/* <Card.Body>
                   <Card.Title>{workout.name}</Card.Title>
                   <p className="small">Workouts: {workout.bodyParts}</p>
                   <Card.Text>{workout.equipment}</Card.Text>
@@ -77,7 +77,7 @@ const SavedWorkouts = () => {
                   >
                     Delete this Workout!
                   </Button>
-                </Card.Body>
+                </Card.Body> */}
               </Card>
             );
           })}
@@ -85,6 +85,6 @@ const SavedWorkouts = () => {
       </Container>
     </>
   );
-}; 
+        }
 
 export default SavedWorkouts;
