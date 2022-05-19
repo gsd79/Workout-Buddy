@@ -43,11 +43,10 @@ const resolvers = {
       return await Exercise.find();
     },
 
-    user: async (parent, args, context) => {
+    user: async (parent, {_id}, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id })
+        const userData = await User.findOne({_id})
           .select('-__v -password')
-          .populate('savedWorkouts')
     
         return userData;
       }
@@ -74,9 +73,9 @@ const resolvers = {
   },
   Mutation: {
     addUser: async (parent, args) => {
-      args.savedWorkouts = [{
-        name: args.username + "'s First Workout"
-      }]
+      // args.savedWorkouts = [{
+      //   name: args.username + "'s First Workout"
+      // }]
       const user = await User.create(args);
       const token = signToken(user);
       return { token, user };
@@ -98,17 +97,29 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
 
-    removeWorkout: async (parent, { _id }, context) => {
+    removeWorkout: async (parent, { user_id, workout_id }, context) => {
       if (context.user) {
-        const workout = await Workout.findOneAndDelete({ _id });
 
-        await User.findByIdAndUpdate(
-          { _id: context.user._id }, 
-          { $pull: { savedWorkouts: workout } },
+        const removedWorkout = await Workout.findOne({workout_id})
+
+        console.log(removedWorkout + " this is the workout to be removed");
+        
+        await User.updateOne(
+          { _id: user_id }, 
+          { $pull: { savedWorkouts: removedWorkout } },
           { new: true }
-          )
+        )
+        console.log(context.user._id + "this is context user");
+        console.log(JSON.stringify(context.user));
 
-        return workout;
+        // await Workout.findOneAndDelete({ _id });
+
+        // db.posts.updateOne( 
+        //   { _id" : ObjectId("5ec55af811ac5e2e2aafb2b9") },
+        //   { $pull: { comments: { user: "Database Rebel" } } }
+        // )
+
+        return "yes";
       }
 
       throw new AuthenticationError('No Workout with that ID');
@@ -130,21 +141,15 @@ const resolvers = {
           { $addToSet: { exercises: addedExercise } },
           { new: true }
           );
-          console.log(updatedWorkout)
+          console.log(updatedWorkout + "this is updated workout")
           //$push: {savedWorkouts: workout}
 
-        await User.findByIdAndUpdate(
-            { _id: context.user._id }, 
-            { $pull: { savedWorkouts: workout },
-               }, // TODO does this duplicate the workout? how to update exercises to the user?
-            { new: true }
-            )
-        await User.findByIdAndUpdate(
-          { _id: context.user._id }, 
-          { $push: { savedWorkouts: workout },
-              }, // TODO does this duplicate the workout? how to update exercises to the user?
-          { new: true }
-          )
+        // await User.findByIdAndUpdate(
+        //     { _id: context.user._id }, 
+        //     { $pull: { savedWorkouts: workout },
+        //        }, // TODO does this duplicate the workout? how to update exercises to the user?
+        //     { new: true }
+        //     )
       
         return updatedWorkout;
       }
