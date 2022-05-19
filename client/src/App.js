@@ -9,7 +9,7 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import Detail from "./pages/Detail";
+// import Detail from "./pages/Detail";
 import Contact from "./pages/Contact";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -17,8 +17,8 @@ import Footer from "./components/Footer";
 // import ProgressBar from "./components/Progress/ProgressBar";
 // redux hook and store
 import { Provider } from "react-redux";
-import store from "./redux/store";
-import WorkoutPlan from "./components/WorkPlans/WorkoutPlan";
+// import store from "./redux/store";
+import WorkoutPlan from "./components/WorkoutPlans/WorkoutPlan";
 import SavedWorkouts from "./pages/SavedWorkouts";
 const httpLink = createHttpLink({
   uri: "/graphql",
