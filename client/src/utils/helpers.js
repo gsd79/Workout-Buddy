@@ -7,6 +7,18 @@ export function pluralize(name, count) {
 
 export function idbPromise(storeName, method, object) {
   return new Promise((resolve, reject) => {
+<<<<<<< HEAD
+    const request = window.indexedDB.open("workout-buddy", 1);
+    let db, tx, store;
+    request.onupgradeneeded = function (e) {
+      const db = request.result;
+      db.createObjectStore("workouts", { keyPath: "_id" });
+      // db.createObjectStore('calories', { keyPath: '_id' });
+      // db.createObjectStore('water', { keyPath: '_id' });
+      db.createObjectStore("progress", { keyPath: "_id" });
+    };
+
+=======
     // open connection to the database `sworkout-buddy` with the version of 1
     const request = window.indexedDB.open("workout-buddy", 1);
 
@@ -35,10 +47,18 @@ export function idbPromise(storeName, method, object) {
     };
 
     // handle any errors with connecting
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
     request.onerror = function (e) {
       console.log("There was an error");
     };
 
+<<<<<<< HEAD
+    request.onsuccess = function (e) {
+      db = request.result;
+      tx = db.transaction(storeName, "readwrite");
+      store = tx.objectStore(storeName);
+
+=======
     // on database open success
     request.onsuccess = function (e) {
       // save a reference of the database to the `db` variable
@@ -49,14 +69,10 @@ export function idbPromise(storeName, method, object) {
       store = tx.objectStore(storeName);
 
       // if there's any errors, let us know
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
       db.onerror = function (e) {
         console.log("error", e);
       };
-
-      /*
-      check which value we passed into the function as a method and perform 
-      that method on the object store:
-      */
 
       switch (method) {
         case "put":
@@ -77,7 +93,10 @@ export function idbPromise(storeName, method, object) {
           break;
       }
 
+<<<<<<< HEAD
+=======
       // when the transaction is complete, close the connection
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
       tx.oncomplete = function () {
         db.close();
       };

@@ -22,6 +22,12 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_WORKOUT = gql`
+<<<<<<< HEAD
+  mutation addWorkout($workouts: String!) {
+    addWorkout(name: $workouts) {
+      _id
+      name
+=======
   mutation addWorkout($exercises: [ID]!) {
     addWorkout(exercises: $exercises) {
       workoutDate
@@ -35,6 +41,7 @@ export const ADD_WORKOUT = gql`
           name
         }
       }
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
     }
   }
 `;
@@ -56,6 +63,30 @@ export const REMOVE_WORKOUT = gql`
   
 }`
 
+<<<<<<< HEAD
+//add exercise
+export const ADD_EXERCISE_TO_WORKOUT = gql`
+  mutation addExerciseToWorkout($id: ID!) {
+    workouts {
+      _id
+      name
+    }
+    exercises {
+      _id
+      name
+    }
+  }
+`;
+
+//remove exercise
+export const REMOVE_EXERCISE_TO_WORKOUT = gql`
+  mutation removeExerciseToWorkout($id: ID!) {
+    workouts {
+      _id
+    }
+    exercises {
+      _id
+=======
 
 
 //add exercise
@@ -89,6 +120,7 @@ export const REMOVE_EXERCISE = gql`
       id
       name
       target
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
     }
   }
 `;

@@ -7,10 +7,15 @@ const typeDefs = gql`
   type Exercise {
     _id: ID
     bodyPart: String
-    equipment: String
+    equipment: String 
     gifUrl: String
+<<<<<<< HEAD
+    name: String  
+    target: String 
+=======
     name: String
     target: String
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
   }
   type Workout {
     _id: ID
@@ -19,7 +24,7 @@ const typeDefs = gql`
   }
   type User {
     _id: ID
-    username: String
+    username: String  
     email: String
     password: String
     savedWorkouts: [Workout]

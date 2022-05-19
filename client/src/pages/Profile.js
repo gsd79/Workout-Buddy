@@ -12,39 +12,46 @@ import CreateWorkoutForm from '../components/CreateWorkoutForm';
 import SavedWorkouts from '../components/savedWorkouts';
 // in future {ADD_FRIEND, ADD_LOG, ADD_PROGRESS, ADD_PLAYLIST}
 
-import Auth from "../utils/auth";
-import "./Styles/Pages.css";
+// import Auth from "../utils/auth";
+import "./Styles/Profile.css";
 
-const Profile = (props) => {
+const Profile = () => {
     const { username: userParam } = useParams();
-    const [addWorkout] = useMutation(ADD_WORKOUT);
+    // const [addWorkout] = useMutation(ADD_WORKOUT);
     const { loading, data } = useQuery(QUERY_USER, {
         variables: { username: userParam }
     });
 
  
   const user = data?.user || {};
+<<<<<<< HEAD
+=======
 
-    if (!user?.username) {
-        return (
-            <h4>
-                You need to be logged in to see this. Use the navigation links above to
-                sign up or log in!
-            </h4>
-        );
-    }
+    // if (!user?.username) {
+    //     return (
+    //         <h4>
+    //             You need to be logged in to see this. Use the navigation links above to
+    //             sign up or log in!
+    //         </h4>
+    //     );
+    // }
 
-    const handleClick = async () => {
-        try {
-            await addWorkout({
-                variables: { name: user.savedWorkouts.name },
-            });
-        } catch (e) {
-            console.error(e);
-        }
-    };
+    // const handleClick = async () => {
+    //     try {
+    //         await addWorkout({
+    //             variables: { name: user.savedWorkouts.name },
+    //         });
+    //     } catch (e) {
+    //         console.error(e);
+    //     }
+    // };
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
 
+
+<<<<<<< HEAD
   if (!user?.username) {
+=======
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
     return (
 
         <div className="profile-wrapper">
@@ -84,42 +91,10 @@ const Profile = (props) => {
         </div >
     );
     }
-}
 
-
-// import { Redirect, useParams } from "react-router-dom";
-// import { QUERY_USER, GET_ME } from "../utils/queries";
-// import { useQuery, useMutation } from "@apollo/client";
-// import Auth from "../utils/auth";
-// import "./Styles/Pages.css";
-
-// const Profile = (props) => {
-//   const { username: userParam } = useParams();
-//   const { loading, data } = useQuery(userParam ? QUERY_USER : GET_ME, {
-//     variables: { username: userParam },
-//   });
-//   const user = data?.me || data?.user || {};
-
-//   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-//     return <Redirect to="/profile" />;
-//   }
-
-//   if (loading) {
-//     return <div>Loading...</div>;
-//   }
-
-//   // if (!user?.username) {
-//   //     return (
-//   //         <h4>
-//   //             You need to be logged in to see this. Use the navigation links above to
-//   //             sign up or log in!
-//   //         </h4>
-//   //     );
-
-//   return (
-//     <div className="profile-wrapper">
-//       <h1>Welcome Back,{userParam`${user.username}`}</h1>
-//     </div>
-//   );
-// };
+<<<<<<< HEAD
 export default Profile;
+=======
+
+export default Profile;
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6

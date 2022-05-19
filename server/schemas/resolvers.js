@@ -6,9 +6,17 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
+<<<<<<< HEAD
+
     exerciseByName: async (parent, {name}) => {
       if (name) {
         const exerciseData = await Exercise.findOne({name})
+    
+=======
+    exerciseByName: async (parent, {name}) => {
+      if (name) {
+        const exerciseData = await Exercise.findOne({name})
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
         return exerciseData;
       }
     },
@@ -26,6 +34,10 @@ const resolvers = {
         return exerciseData;
       }
     },
+<<<<<<< HEAD
+
+=======
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
     exercises: async () => {
       return await Exercise.find();
     },
@@ -65,13 +77,24 @@ const resolvers = {
     addWorkout: async (parent, args, context) => {
       if (context.user) {
         const workout = await Workout.create({ ...args });
+<<<<<<< HEAD
+
+=======
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
         await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $addToSet: { savedWorkouts: workout } },
           { new: true }
           ).populate('savedWorkouts');
+<<<<<<< HEAD
+
         return workout;
       }
+
+=======
+        return workout;
+      }
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
       throw new AuthenticationError('Not logged in');
     },
     removeWorkout: async (parent, args, context) => {

@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 * {
@@ -7,6 +9,7 @@
   /* font-family: "Spartan", sans-serif; */
 }
 
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
 .wrapper,
 .profile-wrapper {
   background-image: linear-gradient(
@@ -39,7 +42,7 @@ form {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  height: 817px;
+  height: 795px;
   line-height: 24px;
   padding-top: 300px;
   text-align: left;
@@ -73,6 +76,8 @@ form {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #fc8b00;
 }
+<<<<<<< HEAD
+=======
 .cta-contain {
   margin: 3em auto;
   width: fit-content;
@@ -85,11 +90,15 @@ form {
   -webkit-text-stroke-color: #fc8b00;
 }
 
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
 .cta-contain {
   margin: 3em auto;
   width: fit-content;
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
 .cta-contain button {
   padding: 10px;
   font: 1em Notable;
@@ -237,3 +246,87 @@ div.modal-body {
 div.modal-header {
   background-image: linear-gradient(161.15deg, #e3edfe 12.73%, #e7d9cd 72.95%);
 }
+<<<<<<< HEAD
+=======
+
+.profile-contain {
+  background: white;
+  padding: 50px 0 0 60px;
+  width: 90%;
+  margin: auto;
+  border: 10px double white;
+  outline: 8px solid rgba(66, 156, 161, 0.9);
+  background: rgba(66, 156, 161, 0.9);
+}
+
+.profile-contain h1 {
+  font: 2.5em Notable;
+  color: rgba(252, 139, 0, 0.6);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: grey;
+  letter-spacing: 2px;
+}
+
+.profile-nav {
+  background: white;
+  width: 90%;
+  margin:0 auto;
+  margin-bottom: 50px;
+  padding: 10px 0 20px 10px;
+}
+<<<<<<< HEAD
+/* list above content showing individual tabs */
+.react-tabs__tab-list {
+  border-bottom: 1px solid #aaa;
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.react-tabs__tab {
+  display: inline-block;
+  border: 1px solid transparent;
+  border-bottom: none;
+  bottom: -1px;
+  position: relative;
+  list-style: none;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.react-tabs__tab--selected {
+  background: #fff;
+  border-color: #aaa;
+  color: black;
+  border-radius: 5px 5px 0 0;
+}
+
+/* .react-tabs__tab--disabled {
+  color: GrayText;
+  cursor: default;
+} */
+
+.react-tabs__tab:focus {
+  outline: none;
+}
+
+.react-tabs__tab:focus:after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  left: -4px;
+  right: -4px;
+  bottom: -5px;
+  background: #fff;
+}
+
+/* content of tabs */
+.react-tabs__tab-panel {
+  display: none;
+}
+
+.react-tabs__tab-panel--selected {
+  display: block;
+}
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
+=======
+>>>>>>> eebc6290a94ff13f844d543e10d34e350560a2cd

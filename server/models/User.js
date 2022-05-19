@@ -1,6 +1,6 @@
-const { Schema, model } = require("mongoose");
-const bcrypt = require("bcrypt");
-const Workout = require("./Workout");
+const { Schema, model } = require('mongoose');
+const bcrypt = require('bcrypt');
+const Workout = require('./Workout');
 
 const userSchema = new Schema(
   {
@@ -12,13 +12,12 @@ const userSchema = new Schema(
     email: {
       type: String,
       required: true,
-
+      unique: true,
       match: [/.+@.+\..+/, "Must use a valid email address"],
     },
     password: {
       type: String,
       required: true,
-      minlength: 5,
     },
     // set savedWorkouts to be an array of data that adheres to the workoutSchema
     savedWorkouts: [Workout.schema]
@@ -27,8 +26,8 @@ const userSchema = new Schema(
 
   {
     toJSON: {
-      virtuals: true,
-    },
+      virtuals: true
+    }
   }
 );
 
@@ -52,5 +51,6 @@ userSchema.virtual("workoutCount").get(function () {
   return this.savedWorkouts.length;
 });
 const User = model("User", userSchema);
+
 
 module.exports = User;
