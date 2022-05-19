@@ -40,8 +40,22 @@ const SavedWorkouts = () => {
 //     return <h2>LOADING...</h2>;
 //   }
 
-  return (
-    <>
+  
+ 
+{/* 
+  onNameChange(event) {
+    this.setState({ name: event.target.value });
+  }
+
+  onEmailChange(event) {
+    this.setState({ email: event.target.value });
+  }
+
+  onMessageChange(event) {
+    this.setState({ message: event.target.value });
+  }; */}
+
+
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
           <h1>Viewing saved workouts!</h1>
