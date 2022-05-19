@@ -27,7 +27,7 @@ form {
     ),
     url("../../assets/img/52ec5f76e2a79ad25c1f507aa6ff74e3.jpg");
 }
-.wrapper {
+/* .wrapper {
   /* background-image: linear-gradient(
       0deg,
       rgba(255, 255, 255, 0.5),
@@ -42,8 +42,8 @@ form {
   height: 795px;
   line-height: 24px;
   padding-top: 300px;
-  text-align: left; */
-}
+  text-align: left; 
+} */
 .jumbotron-home {
   margin: auto;
   width: fit-content;
