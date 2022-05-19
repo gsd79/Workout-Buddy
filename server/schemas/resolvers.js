@@ -150,17 +150,17 @@ const resolvers = {
       throw new AuthenticationError('No workout or exercise with that id!');
     },
 
-    removeExercise: async (parent, {exerciseid, _id}, context) => {
+    removeExercise: async (parent, args, context) => {
         if (context.user) {
-          const exercise = await Exercise.findOne({ exerciseid });
+          const removedExercise = await Exercise.findById(args.exerciseid);
   
-          await Workout.findByIdAndUpdate(
-            { _id: _id }, 
-            { $pull: { exercises: exercise } },
+          await Workout.updateOne(
+            { _id: args._id }, 
+            { $pull: { exercises: removedExercise } },
             { new: true }
             )
-  
-          return workout;
+
+          return console.log(context.user.username + "'s exercise: " + removedExercise.name + " has been deleted from their workout");;
         }
   
         throw new AuthenticationError('No Exercise or Workout with that ID');
