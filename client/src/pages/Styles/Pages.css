@@ -33,7 +33,7 @@ form {
       rgba(255, 255, 255, 0.5),
       rgba(66, 156, 161, 0.4)
     ),
-    url(http://localhost:3000/static/media/fitness-gym-girl-nb-1920x1080.a2339aacf168ae16dc43.jpg);
+    url(/static/media/fitness-gym-girl-nb-1920x1080.a2339aacf168ae16dc43.jpg);
   box-sizing: border-box;
   color: #212529;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
