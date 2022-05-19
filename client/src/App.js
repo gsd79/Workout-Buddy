@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {
   ApolloClient,
   InMemoryCache,
@@ -9,13 +9,21 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-// import CreateWorkouts from "./pages/CreateWorkouts";
+import Detail from "./pages/Detail";
+
 import Contact from "./pages/Contact";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import CreateWorkouts from "./pages/CreateWorkouts"
+
 // import WorkoutPlan from "./components/WorkPlans/WorkoutPlan";
 // import ProgressBar from "./components/Progress/ProgressBar";
+
+// redux hook and store
+import { Provider } from "react-redux";
+import store from "./redux/store";
+
+import WorkoutPlan from "./components/WorkPlans/WorkoutPlan";
+import SavedWorkouts from "./pages/SavedWorkouts";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -39,23 +47,31 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    
     <ApolloProvider client={client}>
       <Router>
-        <Header/>
-          
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/plans" component={CreateWorkouts} />
-            <Route exact path="/contact" component={Contact} />
-            <Route exact path="/profile" component={Profile} />
-            {/* <Route exact path="/progress" component={ProgressBar} /> */}
-            <Route
-              render={() => <h1 className="display-2">Oops, wrong page!</h1>}
-            />
-          </Switch>
-          <Footer/>
-        
+        <Header />
+        <div>
+          {/*<StoreProvider>*/}
+          <Provider store={store}>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/plans" component={WorkoutPlan} />
+              
+
+              <Route exact path="/saved" component={SavedWorkouts} />
+              <Route exact path="/exercises/:id" component={Detail} />
+              <Route exact path="/contact" component={Contact} />
+              <Route exact path="/profile" component={Profile} />
+              {/* <Route exact path="/progress" component={ProgressBar} /> */}
+
+              <Route
+                render={() => <h1 className="display-2">Oops, wrong page!</h1>}
+              />
+            </Switch>
+          </Provider>
+          {/*</StoreProvider>*/}
+        </div>
+        <Footer />
       </Router>
     </ApolloProvider>
   );

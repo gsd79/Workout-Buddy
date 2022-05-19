@@ -1,3 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: "Spartan", sans-serif; */
+}
+
 .wrapper,
 .profile-wrapper {
   background-image: linear-gradient(
@@ -30,7 +39,7 @@ form {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  height: 817px;
+  height: 795px;
   line-height: 24px;
   padding-top: 300px;
   text-align: left;
@@ -68,6 +77,19 @@ form {
   margin: 3em auto;
   width: fit-content;
 }
+
+
+.stroke-home {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #fc8b00;
+}
+
+.cta-contain {
+  margin: 3em auto;
+  width: fit-content;
+}
+
 .cta-contain button {
   padding: 10px;
   font: 1em Notable;
@@ -214,4 +236,30 @@ div.modal-body {
 }
 div.modal-header {
   background-image: linear-gradient(161.15deg, #e3edfe 12.73%, #e7d9cd 72.95%);
+}
+
+.profile-contain {
+  background: white;
+  padding: 50px 0 0 60px;
+  width: 90%;
+  margin: auto;
+  border: 10px double white;
+  outline: 8px solid rgba(66, 156, 161, 0.9);
+  background: rgba(66, 156, 161, 0.9);
+}
+
+.profile-contain h1 {
+  font: 2.5em Notable;
+  color: rgba(252, 139, 0, 0.6);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: grey;
+  letter-spacing: 2px;
+}
+
+.profile-nav {
+  background: white;
+  width: 90%;
+  margin:0 auto;
+  margin-bottom: 50px;
+  padding: 10px 0 20px 10px;
 }
