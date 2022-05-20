@@ -1,20 +1,14 @@
 import React from "react";
-import {
-    Container,
-    Card,
-    Button,
-    Jumbotron,
-    CardColumns
-} from "react-bootstrap";
+import {Container} from "react-bootstrap";
 import Auth from "../utils/auth";
-import { removeWorkoutId } from "../utils/localStorage"
+
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
 import { QUERY_WORKOUT } from "../utils/queries";
 import { REMOVE_WORKOUT } from "../utils/mutations";
 import { useSelector } from "react-redux";
 import { useLazyQuery } from "@apollo/client";
-import Cart  from "../components/WorkoutCart"
+
 
 
 const SavedWorkouts = () => {
@@ -79,6 +73,7 @@ const SavedWorkouts = () => {
                         : "You have no saved workouts!"}
                 </h2>}
                 
+            
             </Container>
         </>
     );

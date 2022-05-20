@@ -640,7 +640,7 @@ db.once("open", async () => {
       equipment: "band",
       gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0997.gif",
       id: "0997",
-      name: "band categories[5]._id press",
+      name: "band  press",
       category: categories[5]._id,
       target: "delts"
     },
@@ -10597,7 +10597,7 @@ db.once("open", async () => {
       id: "3637",
       name: "wheel run",
       category: categories[8]._id,
-      target: "categories[8]._idvascular system"
+      target: "cardiodvascular system"
     },
     //       {
     //         bodyPart: "categories[2]._id",
@@ -10670,4 +10670,8 @@ db.once("open", async () => {
 
   process.exit()
 
+  await User.deleteMany ();
+//  console.log(categories);
+  process.exit();
 });
+

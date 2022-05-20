@@ -45,12 +45,13 @@ const user = data?.user || {};
                             workouts= {user.savedWorkouts}
                             title= "grace's saved workouts"
                             />
-
+                           
                             {/* //button prompt for adding new empty workout -- will be redirected to 'Build A Workout'   */}
                             <Link as={Link} to= "/plans">
                                 <button className="add-workout">Add Workout</button>
                             </Link>
                             <WorkoutForm/>
+
                         </TabPanel>
                         <TabPanel>
                             <h2> Edit Profile Coming Soon!</h2>
