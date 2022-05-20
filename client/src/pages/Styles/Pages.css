@@ -273,3 +273,49 @@ button {
   background-blend-mode: soft-light;
 }
 
+div#root>div>div>div:nth-child(1)>form {
+  background-image: initial;
+  margin: initial;
+  margin: 0px 0 0 300px;
+}
+
+@media (min-width: 768px) {
+  div#root>div>div>div:nth-child(1)>form>button {
+    padding-bottom: 0rem;
+    padding-top: 0rem;
+    margin-top: 23px;
+    margin-right: 150px;
+    margin-left: 34px;
+    padding-right: 0rem;
+    background-color: #FFE53B;
+    background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);
+  }
+}
+
+div#root>div {
+  margin: initial;
+  padding: initial;
+  padding: 0 0 306px;
+  margin: 0 0 105px;
+  background-color: #08AEEA;
+  background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+}
+
+div#root {
+  background-color: #08AEEA;
+}
+
+div#root>header {
+  margin: initial;
+  margin: -22px 0 0;
+}
+
+div#root>header {
+  margin: initial;
+  margin: -22px 0 0;
+}
+
+div#root>div>div>div:nth-child(4) {
+  margin: initial;
+  margin: 112px 0 0px;
+}

@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { ADD_WORKOUT } from "../../utils/mutations";
 import { QUERY_USER } from "../../utils/queries";
 import SavedWorkouts from "../../pages/SavedWorkouts";
+
 const CreateWorkout = () => {
   const [name, setText] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
