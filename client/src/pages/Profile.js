@@ -28,7 +28,7 @@ const user = data?.user || {};
 
         <div className="profile-wrapper">
             <div className="profile-contain">
-                <h1>Welcome Back {`${user.username}`}!</h1>
+                <h1>Welcome Back !</h1>
                 <div className="profile-nav">
                     <Tabs>
                         <TabList>
