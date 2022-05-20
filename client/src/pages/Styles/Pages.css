@@ -78,7 +78,6 @@ form {
   width: fit-content;
 }
 
-
 .stroke-home {
   -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
   -webkit-text-stroke-width: 1px;
@@ -259,7 +258,7 @@ div.modal-header {
 .profile-nav {
   background: white;
   width: 90%;
-  margin:0 auto;
+  margin: 0 auto;
   margin-bottom: 50px;
   padding: 10px 0 20px 10px;
 }
@@ -269,53 +268,74 @@ button {
 
 button {
   background-color: initial;
-  background-image: radial-gradient(65% 100% at 50% 0%, #00FF94 0%, rgba(0, 255, 148, 0.25) 100%);
+  background-image: radial-gradient(
+    65% 100% at 50% 0%,
+    #00ff94 0%,
+    rgba(0, 255, 148, 0.25) 100%
+  );
   background-blend-mode: soft-light;
 }
 
-div#root>div>div>div:nth-child(1)>form {
+div#root > div > div > div:nth-child(1) > form {
   background-image: initial;
   margin: initial;
   margin: 0px 0 0 300px;
 }
 
 @media (min-width: 768px) {
-  div#root>div>div>div:nth-child(1)>form>button {
+  div#root > div > div > div:nth-child(1) > form > button {
     padding-bottom: 0rem;
     padding-top: 0rem;
     margin-top: 23px;
     margin-right: 150px;
     margin-left: 34px;
     padding-right: 0rem;
-    background-color: #FFE53B;
-    background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);
+    background-color: #ffe53b;
+    background-image: linear-gradient(147deg, #ffe53b 0%, #ff2525 74%);
   }
 }
 
-div#root>div {
+div#root > div {
   margin: initial;
   padding: initial;
   padding: 0 0 306px;
   margin: 0 0 105px;
-  background-color: #08AEEA;
-  background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+  background-color: #08aeea;
+  background-image: linear-gradient(0deg, #08aeea 0%, #2af598 100%);
 }
 
 div#root {
-  background-color: #08AEEA;
+  background-color: #08aeea;
 }
 
-div#root>header {
+div#root > header {
   margin: initial;
   margin: -22px 0 0;
 }
 
-div#root>header {
+div#root > header {
   margin: initial;
   margin: -22px 0 0;
 }
 
-div#root>div>div>div:nth-child(4) {
+div#root > div > div > div:nth-child(4) {
   margin: initial;
   margin: 112px 0 0px;
+}
+
+div#root > header {
+  margin: initial;
+  margin: -22px 0 0;
+}
+
+div#root > div > div > div:nth-child(4) {
+  margin: initial;
+  margin: 112px 0 0px;
+}
+
+div#root>footer {
+  margin: initial;
+  padding: initial;
+  margin: 0 0 34px;
+  padding: 10px 20px 33px;
 }
