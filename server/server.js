@@ -1,5 +1,4 @@
 const express = require("express");
-const routes = require("./routes")
 const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
 const { typeDefs, resolvers } = require("./schemas");
@@ -33,8 +32,6 @@ app.get(
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
   }
 );
-
-app.use(routes);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
