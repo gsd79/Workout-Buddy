@@ -56,7 +56,7 @@ const SavedWorkouts = () => {
       const workoutIds = [];
     
         // getWorkout({
-        //   variables: { exercises: workoutIds },
+        //   variables: { savedWorkouts: workout_id },
         // });
         // console.log(count++);
     // console.log(workoutIds);    
@@ -78,33 +78,7 @@ const SavedWorkouts = () => {
                         }:`
                         : "You have no saved workouts!"}
                 </h2>}
-                {/* <CardColumns>
-                    {userData.Cart.map((workout) => {
-                        return (
-                            <Card key={workout.workoutIds} border="dark">
-                                {workout.image ? (
-                                    <Card.Img
-                                        src={workout.image}
-                                        alt={`The cover for ${workout.name}`}
-                                        variant="top"
-                                    />
-                                ) : null} 
-                                <Card.Body>
-                  <Card.Title>{workout.name}</Card.Title>
-                  <p className="small">Workouts: {workout.bodyParts}</p>
-                  <Card.Text>{workout.equipment}</Card.Text>
-                  <Button
-                    className="btn-block btn-danger"
-                    onClick={() => handleDeleteWorkout(workout.workoutId)}
-                  > 
-                     Delete this Workout!
-                  </Button> 
-                </Card.Body> 
-                             </Card>
-                                        
-                        )}
-                    )}
-                </CardColumns> */}
+                
             </Container>
         </>
     );

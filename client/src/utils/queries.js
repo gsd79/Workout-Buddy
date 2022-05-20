@@ -17,6 +17,10 @@ export const QUERY_USERS = gql`
       _id
       username
       email
+      savedWorkouts{
+        name
+        _id
+      }
     }
   }
 `;
@@ -32,21 +36,20 @@ export const QUERY_USERS = gql`
 
 // query all workouts for user
 export const QUERY_WORKOUT = gql`
-  query workouts($username: String!) {
-    workouts(username: $username) {
-      savedWorkouts {
-        name
-        exercises {
-          _id
-          bodyPart
-          equipment
-          gifUrl
-          name
-          target
-        }
-      }
+query workout($_id: ID) {
+  workout(_id: $_id){
+    _id
+    name
+    exercises {
+      name
+      _id
+      bodyPart
+      equipment
+      gifUrl
+      target
     }
   }
+}
 `;
 
 // query all exercises
