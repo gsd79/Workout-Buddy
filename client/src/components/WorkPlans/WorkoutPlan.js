@@ -3,7 +3,7 @@ import ExerciseList from "../ExerciseList";
 import CategoryMenu from "../CategoryMenu";
 import WorkoutCart from "../WorkoutCart";
 import { Container } from "react-bootstrap";
-import createWorkout from "../CreateWorkout";
+import CreateWorkout from "../CreateWorkout";
 
 function WorkoutPlan() {
   const [categoryId, setCategoryId] = useState("");
@@ -12,7 +12,7 @@ function WorkoutPlan() {
   return (
     <>
       <Container>
-      <createWorkout />
+      <CreateWorkout />
         <CategoryMenu
           onFeedback={(categorySelectedId) => {
             setCategoryId(categorySelectedId);

@@ -23,9 +23,8 @@
   },
   "homepage": "https://github.com/gsd79/Workout-Buddy#readme",
   "dependencies": {
-  
-    "concurrently": "^7.1.0"
-   
+    "concurrently": "^7.1.0",
+    "heroku": "^7.60.2"
   },
   "devDependencies": {
     "jest": "^28.1.0"
