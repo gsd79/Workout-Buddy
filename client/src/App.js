@@ -54,14 +54,21 @@ function App() {
           {/*<StoreProvider>*/}
           <Provider store={store}>
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/home">
+            <Home />
+            </Route>
+            <Route path="/plans">
+              <WorkoutPlan />
+            </Route>
+              {/* <Route exact path="/" component={Home} />
               <Route exact path="/plans" component={WorkoutPlan} />
-              
-
               <Route exact path="/saved" component={SavedWorkouts} />
               <Route exact path="/exercises/:id" component={Detail} />
               <Route exact path="/contact" component={Contact} />
-              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/profile" component={Profile} /> */}
               {/* <Route exact path="/progress" component={ProgressBar} /> */}
 
               <Route
