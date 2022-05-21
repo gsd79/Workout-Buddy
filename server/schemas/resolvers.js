@@ -74,8 +74,31 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
+<<<<<<< HEAD
     removeWorkout: async (parent, args, context) => {
       return this
+=======
+
+    removeWorkout: async (parent, args, context) => {
+      if (context.user) {
+
+        const removedWorkout = await Workout.findById(args.workout_id)
+
+        console.log(removedWorkout + " this is the workout to be removed");
+        
+        await Workout.findByIdAndDelete(args.workout_id);
+
+        const updatedUser = await User.updateOne(
+          { _id: args.user_id }, 
+          { $pull: { savedWorkouts: removedWorkout } },
+          { new: true }
+        )
+
+        return console.log(context.user.username + "'s workout " + removedWorkout.name + " has been deleted");
+      }
+
+      throw new AuthenticationError('No Workout with that ID');
+>>>>>>> 2ff1c7402a111e57d2030e747208230b625e91bf
     },
     addExercise: async (parent, {exerciseid, _id}, context) => {
       if (context.user) {
@@ -107,8 +130,26 @@ const resolvers = {
       }
       throw new AuthenticationError('No workout or exercise with that id!');
     },
+<<<<<<< HEAD
     removeExercise: async (parent, args, context) => {
       return this
+=======
+
+    removeExercise: async (parent, args, context) => {
+        if (context.user) {
+          const removedExercise = await Exercise.findById(args.exerciseid);
+  
+          await Workout.updateOne(
+            { _id: args._id }, 
+            { $pull: { exercises: removedExercise } },
+            { new: true }
+            )
+
+          return console.log(context.user.username + "'s exercise: " + removedExercise.name + " has been deleted from their workout");;
+        }
+  
+        throw new AuthenticationError('No Exercise or Workout with that ID');
+>>>>>>> 2ff1c7402a111e57d2030e747208230b625e91bf
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
