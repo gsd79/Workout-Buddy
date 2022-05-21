@@ -31,7 +31,7 @@ const resolvers = {
     },
     user: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id })
+        const userData = await User.findOne({_id})
           .select('-__v -password')
           .populate('savedWorkouts')
         return userData;
@@ -79,17 +79,30 @@ const resolvers = {
     },
     addExercise: async (parent, {exerciseid, _id}, context) => {
       if (context.user) {
-        console.log(exerciseid + " " + _id)
-        const addedExercise = await Exercise.findOne({exerciseid})
+
+        console.log(args)
+
+        const addedExercise = await Exercise.findById(args.exerciseid)
+
         console.log(addedExercise)
-        const workout = await Workout.findOne({_id});
-        console.log(workout)
+
+        const workout = await Workout.findById(args._id);
+        
         const updatedWorkout = await Workout.findOneAndUpdate(
           { _id: workout },
           { $push: { exercises: addedExercise } },
           { new: true }
-          ).populate('exercises');;
-          console.log(updatedWorkout)
+          );
+          console.log(updatedWorkout + "this is updated workout")
+          //$push: {savedWorkouts: workout}
+
+        // await User.findByIdAndUpdate(
+        //     { _id: context.user._id }, 
+        //     { $pull: { savedWorkouts: workout },
+        //        }, // TODO does this duplicate the workout? how to update exercises to the user?
+        //     { new: true }
+        //     )
+      
         return updatedWorkout;
       }
       throw new AuthenticationError('No workout or exercise with that id!');

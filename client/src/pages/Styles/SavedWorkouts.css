@@ -1,0 +1,31 @@
+div.card-body {
+    width: max-content;
+    height: 50px;
+    background-image: linear-gradient(161.15deg, #28a2b6 12.73%, #4cb879 72.95%);
+}
+
+div.container {
+    overflow: auto;
+    height: 180px;
+}
+
+.button {   
+    text-align: center;
+    font-size: .8em;
+    }
+
+.profile-flex{
+    
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: column nowrap;
+}
+
+.profile-flex h3{
+    font: 1em Notable;
+    background: white;
+    height: 30px;
+    width: 400px;
+    letter-spacing: 1px;
+    display:inline;
+}

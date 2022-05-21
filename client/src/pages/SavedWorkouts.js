@@ -1,115 +1,82 @@
 import React from "react";
-import {
-    Container,
-    Card,
-    Button,
-    Jumbotron,
-    CardColumns
-} from "react-bootstrap";
+import {Container} from "react-bootstrap";
 import Auth from "../utils/auth";
-import { removeWorkoutId } from "../utils/localStorage"
+
+
 import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_USER } from "../utils/queries";
-import { QUERY_WORKOUT } from "../utils/queries";
+import { QUERY_WORKOUTS } from "../utils/queries";
 import { REMOVE_WORKOUT } from "../utils/mutations";
-import { useSelector } from "react-redux";
-import { useLazyQuery } from "@apollo/client";
-import Cart  from "../components/WorkoutCart"
+import { removeWorkoutId } from "../utils/localStorage"
+import "./Styles/SavedWorkouts.css"
 
 
-const SavedWorkouts = () => {
-    const { loading, data } = useQuery(QUERY_USER);
 
-    // const [removeWorkout] = useMutation(REMOVE_WORKOUT);
-    const [getWorkout] = useLazyQuery(QUERY_WORKOUT);
-    const userData = data?.user.savedWorkouts || {};
+const SavedWorkouts = (user) => {
+  console.log(user);
+  
+  const username = user.user.username;
+  // const userId = user.user._id;
+  // const workoutId = user.workouts.savedWorkouts._id;
+  
+  const { data } = useQuery(QUERY_WORKOUTS, {
+    variables: { username }
+  });
+  console.log(username);
+  
+   const [removeWorkout] = useMutation(REMOVE_WORKOUT)
+  //  , {
+  //   variables: {userId, workoutId}
+  // });
+  
+  console.log(data);
 
-      // // create function that accepts the workout's mongo _id value as param and deletes the workout from the database
-      const handleDeleteWorkout = async (workoutId) => {
-        const token = Auth.loggedIn() ? Auth.getToken() : null;
+  var workouts = {};
 
-        if (!token) {
-          return false;
-        }
-
-      }
-
-        const state = useSelector((state) => {
-          return state;
-        })
-
-  // try {
-  //     await removeWorkout({
-  //       variables: { workoutId },
-  //     });
-
-  //     removeWorkoutId(workoutId);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-
-
-      // if (loading) {
-      //   return <h2>LOADING...</h2>;
-      // }
-
-      const workoutIds = [];
-    
-        // getWorkout({
-        //   variables: { exercises: workoutIds },
-        // });
-        // console.log(count++);
-    // console.log(workoutIds);    
-    // console.log(data);    
-    // console.log(userData);
-    
-    return (
+  if (data != null && data.workouts != null) {
+    console.log("HERE");
+    workouts = data.workouts.savedWorkouts;
+  }
+  
+  const handleDeleteWorkout = async (workoutId) => {
+      const token = Auth.loggedIn() ? Auth.getToken() : null;
       
+          if (!token) {
+            return false;
+          }
+  
+    try {
+      await removeWorkout({
+        variables: { workoutId },
+      });
+      
+      removeWorkoutId(workoutId);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  
+  return (
+    <>
+      <Container>
 
-        <>
-            
-                <Container>
-                    Viewing saved workouts!
+        {<h2>
+          {workouts.length > 0 ? `Viewing ${workouts.length} saved ${workouts.length === 1 ? "workout" : "workouts"}` : "You have no saved workouts (you should change that)"}
+        </h2>}
+        {workouts.length > 0 ?
+
+          <div className="profile-flex">
+            {workouts.map(workout => (
+              <div key={workout._id} item={workout} border="dark">
                 
-                {/* TODO app does not like the savedWorkouts.length. gotta fix this  */}
-                {<h2>
-                    {workoutIds.length > 0
-                        ? `Viewing ${userData.workoutIds.length} saved ${userData.workoutIds.length === 1 ? "workout" : "workouts"
-                        }:`
-                        : "You have no saved workouts!"}
-                </h2>}
-                {/* <CardColumns>
-                    {userData.Cart.map((workout) => {
-                        return (
-                            <Card key={workout.workoutIds} border="dark">
-                                {workout.image ? (
-                                    <Card.Img
-                                        src={workout.image}
-                                        alt={`The cover for ${workout.name}`}
-                                        variant="top"
-                                    />
-                                ) : null} 
-                                <Card.Body>
-                  <Card.Title>{workout.name}</Card.Title>
-                  <p className="small">Workouts: {workout.bodyParts}</p>
-                  <Card.Text>{workout.equipment}</Card.Text>
-                  <Button
-                    className="btn-block btn-danger"
-                    onClick={() => handleDeleteWorkout(workout.workoutId)}
-                  > 
-                     Delete this Workout!
-                  </Button> 
-                </Card.Body> 
-                             </Card>
-                                        
-                        )}
-                    )}
-                </CardColumns> */}
-            </Container>
-        </>
-    );
-                                
-                    }
-                    
+                  <h3>{workout.name} <button className="button" onClick={() => handleDeleteWorkout(workout._id)}> X</button></h3>
                   
+              </div>
+            ))}
+          </div>
+          : null}
+      </Container>
+    </>
+  );
+}
+
 export default SavedWorkouts;
