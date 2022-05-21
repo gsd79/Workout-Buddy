@@ -1,384 +1,350 @@
 @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  /* font-family: "Spartan", sans-serif; */
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	/* font-family: "Spartan", sans-serif;
+	*/
 }
-
-.wrapper,
-.profile-wrapper {
-  background-image: linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.5),
-      rgba(66, 156, 161, 0.4)
-    ),
-    url("../../assets/img/fitness-gym-girl-nb-1920x1080.jpg");
-  height: 817px;
-  padding-top: 300px;
+.wrapper,.profile-wrapper {
+	background-image: linear-gradient(0deg,rgba(255, 255, 255, 0.5),rgba(66, 156, 161, 0.4)),url("../../assets/img/fitness-gym-girl-nb-1920x1080.jpg");
+	height: 817px;
+	padding-top: 300px;
 }
-.profile-wrapper,
-form {
-  background-image: linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.5),
-      rgba(66, 156, 161, 0.4)
-    ),
-    url("../../assets/img/52ec5f76e2a79ad25c1f507aa6ff74e3.jpg");
+.profile-wrapper,form {
+	background-image: linear-gradient(0deg,rgba(255, 255, 255, 0.5),rgba(66, 156, 161, 0.4)),url("../../assets/img/52ec5f76e2a79ad25c1f507aa6ff74e3.jpg");
 }
 .wrapper {
-  background-image: linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.5),
-      rgba(66, 156, 161, 0.4)
-    ),
-    url(http://localhost:3000/static/media/fitness-gym-girl-nb-1920x1080.a2339aacf168ae16dc43.jpg);
-  box-sizing: border-box;
-  color: #212529;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  height: 795px;
-  line-height: 24px;
-  padding-top: 300px;
-  text-align: left;
+	background-image: linear-gradient(0deg,rgba(255, 255, 255, 0.5),rgba(66, 156, 161, 0.4)),url(http://localhost:3000/static/media/fitness-gym-girl-nb-1920x1080.a2339aacf168ae16dc43.jpg);
+	box-sizing: border-box;
+	color: #212529;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,"Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	height: 795px;
+	line-height: 24px;
+	padding-top: 300px;
+	text-align: left;
 }
 .jumbotron-home {
-  margin: auto;
-  width: fit-content;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-flow: column;
-  border: 10px double white;
-  outline: 8px solid rgba(255, 255, 255, 0.7);
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 10px 0px 90px black;
+	margin: auto;
+	width: fit-content;
+	padding: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-flow: column;
+	border: 10px double white;
+	outline: 8px solid rgba(255, 255, 255, 0.7);
+	background: rgba(255, 255, 255, 0.7);
+	box-shadow: 10px 0px 90px black;
 }
 .jumbotron-home h1 {
-  text-decoration: none;
-  color: rgba(252, 139, 0, 0.5);
-  font: 5em Notable;
+	text-decoration: none;
+	color: rgba(252, 139, 0, 0.5);
+	font: 5em Notable;
 }
 .jumbotron-home h2 {
-  font: 1.8em Notable;
-  color: #429ca1;
-  letter-spacing: 3px;
+	font: 1.8em Notable;
+	color: #429ca1;
+	letter-spacing: 3px;
 }
 .stroke-home {
-  -webkit-text-fill-color: transparent;
-  /* Will override color (regardless of order) */
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #fc8b00;
+	-webkit-text-fill-color: transparent;
+	/* Will override color (regardless of order) */
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: #fc8b00;
 }
 .cta-contain {
-  margin: 3em auto;
-  width: fit-content;
+	margin: 3em auto;
+	width: fit-content;
 }
-
 .stroke-home {
-  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #fc8b00;
+	-webkit-text-fill-color: transparent;
+	/* Will override color (regardless of order) */
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: #fc8b00;
 }
-
 .cta-contain {
-  margin: 3em auto;
-  width: fit-content;
+	margin: 3em auto;
+	width: fit-content;
 }
-
 .cta-contain button {
-  padding: 10px;
-  font: 1em Notable;
-  background: #429ca1;
-  color: white;
-  border: none;
-  box-shadow: 10px 0px 30px black;
+	padding: 10px;
+	font: 1em Notable;
+	background: #429ca1;
+	color: white;
+	border: none;
+	box-shadow: 10px 0px 30px black;
 }
 .form-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 header {
-  background-color: initial;
-  background-image: linear-gradient(161.15deg, #28a2b6 12.73%, #4cb879 72.95%);
+	background-color: initial;
+	background-image: linear-gradient(161.15deg, #28a2b6 12.73%, #4cb879 72.95%);
 }
 footer {
-  background-color: initial;
-  background-image: linear-gradient(161.15deg, #28a2b6 12.73%, #4cb879 72.95%);
+	background-color: initial;
+	background-image: linear-gradient(161.15deg, #28a2b6 12.73%, #4cb879 72.95%);
 }
 form {
-  display: flex;
-  justify-content: flex-end;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
-  background-image: linear-gradient(
-    to right,
-    rgb(253, 230, 138),
-    rgb(167, 243, 208),
-    rgb(16, 185, 129)
-  );
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-items: center;
+	background-image: linear-gradient(to right,rgb(253, 230, 138),rgb(167, 243, 208),rgb(16, 185, 129));
 }
 div.card-body {
-  text-align: initial;
-  background-image: linear-gradient(180deg, #ffb7b7 0%, #727272 100%),
-    radial-gradient(60.91% 100% at 50% 0%, #ffd1d1 0%, #260000 100%),
-    linear-gradient(238.72deg, #ffdddd 0%, #720066 100%),
-    linear-gradient(127.43deg, #00ffff 0%, #ff4444 100%),
-    radial-gradient(100.22% 100% at 70.57% 0%, #ff0000 0%, #00ffe0 100%),
-    linear-gradient(127.43deg, #b7d500 0%, #3300ff 100%);
-  background-blend-mode: screen, overlay, hard-light, color-burn, color-dodge,
-    normal;
+	text-align: initial;
+	background-image: linear-gradient(180deg, #ffb7b7 0%, #727272 100%),radial-gradient(60.91% 100% at 50% 0%, #ffd1d1 0%, #260000 100%),linear-gradient(238.72deg, #ffdddd 0%, #720066 100%),linear-gradient(127.43deg, #00ffff 0%, #ff4444 100%),radial-gradient(100.22% 100% at 70.57% 0%, #ff0000 0%, #00ffe0 100%),linear-gradient(127.43deg, #b7d500 0%, #3300ff 100%);
+	background-blend-mode: screen, overlay, hard-light, color-burn, color-dodge,normal;
 }
 label {
-  padding-top: 50px;
+	padding-top: 50px;
 }
 nav.navbar.navbar-expand.navbar-light {
-  position: relative;
-  text-align: left;
-  text-align: initial;
+	position: relative;
+	text-align: left;
+	text-align: initial;
 }
 button {
-  margin: initial;
-  padding-top: 1px;
-  padding-bottom: 0px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  margin: 40px 0 0px;
+	margin: initial;
+	padding-top: 1px;
+	padding-bottom: 0px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	margin: 40px 0 0px;
 }
 button.btn.btn-primary {
-  background-color: initial;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  margin: initial;
-  margin: 40px 0 100px;
-  background-color: #b9a074;
+	background-color: initial;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	margin: initial;
+	margin: 40px 0 100px;
+	background-color: #b9a074;
 }
 input#name.form-control {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 input#email.form-control {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 textarea#message.form-control {
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 label {
-  color: #b9a074;
-  font-weight: 900;
+	color: #b9a074;
+	font-weight: 900;
 }
 label {
-  color: #b9a074;
-  font-weight: 900;
+	color: #b9a074;
+	font-weight: 900;
 }
 label {
-  color: #b9a074;
-  font-weight: 900;
+	color: #b9a074;
+	font-weight: 900;
 }
 form#contact-form {
-  background-image: initial;
-  border-style: none;
-  background-image: radial-gradient(
-    rgba(33, 37, 41, 0.4) 0.5px,
-    rgba(255, 255, 255, 0) 0.5px
-  );
+	background-image: initial;
+	border-style: none;
+	background-image: radial-gradient(rgba(33, 37, 41, 0.4) 0.5px,rgba(255, 255, 255, 0) 0.5px);
 }
 form #contact-form {
-  align-items: center;
-  border-style: none;
-  box-sizing: border-box;
-  color: #212529;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue",
-    Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  justify-content: flex-end;
-  line-height: 24px;
-  text-align: left;
-  background-size: 10px 10px;
+	align-items: center;
+	border-style: none;
+	box-sizing: border-box;
+	color: #212529;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	font-family: -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue",Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	justify-content: flex-end;
+	line-height: 24px;
+	text-align: left;
+	background-size: 10px 10px;
 }
 input.form-control {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 form {
-  background-image: initial;
-  background-image: linear-gradient(
-    to top,
-    #f3e7e9 0%,
-    #e3eeff 99%,
-    #e3eeff 100%
-  );
+	background-image: initial;
+	background-image: linear-gradient(to top,#f3e7e9 0%,#e3eeff 99%,#e3eeff 100%);
 }
 input.form-control {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 a.nav-link.active {
-  background-color: initial;
-  color: #6e5d44;
-  border-color: rgba(100, 74, 51, 1);
+	background-color: initial;
+	color: #6e5d44;
+	border-color: rgba(100, 74, 51, 1);
 }
 div.modal-body {
-  background-image: radial-gradient(
-      100% 100% at 50% 0%,
-      #ad00ff 0%,
-      #00ffe0 100%
-    ),
-    radial-gradient(100% 100% at 50% 0%, #00ffe0 0%, #7300a9 80%),
-    linear-gradient(30deg, #7ca304 0%, #2200aa 100%);
-  background-blend-mode: color-dodge, difference, normal;
+	background-image: radial-gradient(100% 100% at 50% 0%,#ad00ff 0%,#00ffe0 100%),radial-gradient(100% 100% at 50% 0%, #00ffe0 0%, #7300a9 80%),linear-gradient(30deg, #7ca304 0%, #2200aa 100%);
+	background-blend-mode: color-dodge, difference, normal;
 }
 div.modal-header {
-  background-image: linear-gradient(161.15deg, #e3edfe 12.73%, #e7d9cd 72.95%);
+	background-image: linear-gradient(161.15deg, #e3edfe 12.73%, #e7d9cd 72.95%);
 }
-
 .profile-contain {
-  background: white;
-  padding: 50px 0 0 60px;
-  width: 90%;
-  margin: auto;
-  border: 10px double white;
-  outline: 8px solid rgba(66, 156, 161, 0.9);
-  background: rgba(66, 156, 161, 0.9);
+	background: white;
+	padding: 50px 0 0 60px;
+	width: 90%;
+	margin: auto;
+	border: 10px double white;
+	outline: 8px solid rgba(66, 156, 161, 0.9);
+	background: rgba(66, 156, 161, 0.9);
 }
-
 .profile-contain h1 {
-  font: 2.5em Notable;
-  color: rgba(252, 139, 0, 0.6);
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: grey;
-  letter-spacing: 2px;
+	font: 2.5em Notable;
+	color: rgba(252, 139, 0, 0.6);
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: grey;
+	letter-spacing: 2px;
 }
-
 .profile-nav {
-  background: white;
-  width: 90%;
-  margin: 0 auto;
-  margin-bottom: 50px;
-  padding: 10px 0 20px 10px;
+	background: white;
+	width: 90%;
+	margin: 0 auto;
+	margin-bottom: 50px;
+	padding: 10px 0 20px 10px;
 }
 button {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-
 button {
-  background-color: initial;
-  background-image: radial-gradient(
-    65% 100% at 50% 0%,
-    #00ff94 0%,
-    rgba(0, 255, 148, 0.25) 100%
-  );
-  background-blend-mode: soft-light;
+	background-color: initial;
+	background-image: radial-gradient(65% 100% at 50% 0%,#00ff94 0%,rgba(0, 255, 148, 0.25) 100%);
+	background-blend-mode: soft-light;
 }
-
 div#root > div > div > div:nth-child(1) > form {
-  background-image: initial;
-  margin: initial;
-  margin: 0px 0 0 300px;
+	background-image: initial;
+	margin: initial;
+	margin: 0px 0 0 300px;
 }
-
 @media (min-width: 768px) {
-  div#root > div > div > div:nth-child(1) > form > button {
-    padding-bottom: 0rem;
-    padding-top: 0rem;
-    margin-top: 23px;
-    margin-right: 150px;
-    margin-left: 34px;
-    padding-right: 0rem;
-    background-color: #ffe53b;
-    background-image: linear-gradient(147deg, #ffe53b 0%, #ff2525 74%);
-  }
+	div#root > div > div > div:nth-child(1) > form > button {
+		padding-bottom: 0rem;
+		padding-top: 0rem;
+		margin-top: 23px;
+		margin-right: 150px;
+		margin-left: 34px;
+		padding-right: 0rem;
+		background-color: #ffe53b;
+		background-image: linear-gradient(147deg, #ffe53b 0%, #ff2525 74%);
+	}
 }
-
 div#root > div {
-  margin: initial;
-  padding: initial;
-  padding: 0 0 306px;
-  margin: 0 0 105px;
-  background-color: #08aeea;
-  background-image: linear-gradient(0deg, #08aeea 0%, #2af598 100%);
+	margin: initial;
+	padding: initial;
+	padding: 0 0 306px;
+	margin: 0 0 105px;
+	background-color: #08aeea;
+	background-image: linear-gradient(0deg, #08aeea 0%, #2af598 100%);
 }
-
 div#root {
-  background-color: #08aeea;
+	background-color: #08aeea;
 }
-
 div#root > header {
-  margin: initial;
-  margin: -22px 0 0;
+	margin: initial;
+	margin: -22px 0 0;
 }
-
 div#root > header {
-  margin: initial;
-  margin: -22px 0 0;
+	margin: initial;
+	margin: -22px 0 0;
 }
-
 div#root > div > div > div:nth-child(4) {
-  margin: initial;
-  margin: 112px 0 0px;
+	margin: initial;
+	margin: 112px 0 0px;
 }
-
 div#root > header {
-  margin: initial;
-  margin: -22px 0 0;
+	margin: initial;
+	margin: -22px 0 0;
 }
-
 div#root > div > div > div:nth-child(4) {
-  margin: initial;
-  margin: 112px 0 0px;
+	margin: initial;
+	margin: 112px 0 0px;
 }
-
 div#root > footer {
-  margin: initial;
-  padding: initial;
-  margin: 0 0 34px;
-  padding: 10px 20px 33px;
+	margin: initial;
+	padding: initial;
+	margin: 0 0 34px;
+	padding: 10px 20px 33px;
 }
-
 div#root > footer {
-  margin: initial;
-  padding: initial;
-  margin: 0 0 34px;
-  padding: 10px 20px 33px;
+	margin: initial;
+	padding: initial;
+	margin: 0 0 34px;
+	padding: 10px 20px 33px;
 }
-
 div#root > div > div > div:nth-child(4) > div > div {
-  background-color: initial;
-  background-color: #21d4fd;
-  background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%);
+	background-color: initial;
+	background-color: #21d4fd;
+	background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%);
 }
-
 @media (min-width: 576px) {
-  div#root > div > div > div:nth-child(4) {
-    background-image: linear-gradient(0deg, #08aeea 0%, #2af598 100%);
-  }
+	div#root > div > div > div:nth-child(4) {
+		background-image: linear-gradient(0deg, #08aeea 0%, #2af598 100%);
+	}
 }
-
 div#root > footer {
-  margin: initial;
-  padding: initial;
-  margin: 0 0 34px;
-  padding: 10px 20px 33px;
+	margin: initial;
+	padding: initial;
+	margin: 0 0 34px;
+	padding: 10px 20px 33px;
 }
-
 div#root > div > div > div:nth-child(4) > div > div {
-  background-color: initial;
-  background-color: #21d4fd;
-  background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%);
+	background-color: initial;
+	background-color: #21d4fd;
+	background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%);
 }
-
 @media (min-width: 576px) {
-  div#root > div > div > div:nth-child(4) {
-    background-image: linear-gradient(0deg, #08aeea 0%, #2af598 100%);
-  }
+	div#root > div > div > div:nth-child(4) {
+		background-image: linear-gradient(0deg, #08aeea 0%, #2af598 100%);
+	}
 }
-
 div#root > div > div > div:nth-child(4) > div > div > div {
-  color: #fdfbfa;
-  font-size: 15px;
+	color: #fdfbfa;
+	font-size: 15px;
 }
+div#root > footer {
+	margin: initial;
+	padding: initial;
+	margin: 0 0 34px;
+	padding: 10px 20px 33px;
+}
+@media (min-width: 576px) {
+	div#root > div > div > div:nth-child(4) {
+		background-image: linear-gradient(0deg, #08aeea 0%, #2af598 100%);
+	}
+}
+div#root > div > div > div:nth-child(4) > div > div > div {
+	color: #fdfbfa;
+	font-size: 15px;
+}
+div#root > div > div > div:nth-child(4) > div > div > h3 {
+	color: #fbfbfb;
+	text-align: center;
+}
+div#workout-name > h3 {
+	color: #fbfbfb;
+	text-align: center;
+}
+div#root > div > div > div:nth-child(4) {
+	background-color: initial;
+	margin: initial;
+	padding: initial;
+	width: initial;
+	margin: 0px 0 0;
+	padding: 0rem 0.25rem;
+	background-image: linear-gradient(114.95deg,rgba(235, 0, 255, 0.5) 0%,rgba(0, 71, 255, 0) 34.35%),linear-gradient(180deg, #004b5b 0%, #ffa7a7 100%),linear-gradient(244.35deg, #ffb26a 0%, #3676b1 50.58%, #00a3ff 100%),linear-gradient(244.35deg, #ffffff 0%, #004a74 49.48%, #ff0000 100%),radial-gradient(100% 233.99% at 0% 100%, #b70000 0%, #ad00ff 100%),linear-gradient(307.27deg, #1dac92 0.37%, #2800c6 100%),radial-gradient(100% 140% at 100% 0%,#eaff6b 0%,#006c7a 57.29%,#2200aa 100%);
+	background-blend-mode: hard-light, overlay, overlay, overlay, difference,difference, normal;
+}
+div#root > div > div > div:nth-child(4) > span {
+	margin: initial;
+	text-align: initial;
+	margin: -3px 0 0 4px;
+	background-image: radial-gradient(80.99% 100% at 50% 0%,#00ff0a 0%,#36008e 100%),radial-gradient(50% 123.47% at 50% 50%, #efe7c8 0%, #36008e 100%),linear-gradient(301.28deg, #ff006b 0%, #48dd9e 100%),linear-gradient(294.84deg, #5a60e4 0%, #d30000 100%),linear-gradient(52.29deg, #000000 0%, #00ff85 100%),radial-gradient(100% 138.69% at 100% 0%, #0007a5 0%, #ff7a00 100%),radial-gradient(70.41% 100% at 50% 0%, #d5b300 0%, #2200aa 100%);
+	background-blend-mode: screen, screen, lighten, overlay, lighten, difference,normal;
+}
+
