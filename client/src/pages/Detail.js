@@ -24,21 +24,21 @@ function Detail() {
 }})
 
    // submit form
-   const handleFormSubmit = async (event) => {
-    event.preventDefault();
+//    const handleFormSubmit = async (event) => {
+//     event.preventDefault();
 
-    try {
-        await addExercise({
-            variables: { _id:workout._id, exerciseid:user.exercises._id },
-        });
+//     try {
+//         await addExercise({
+//             variables: { _id:workout._id, exerciseid:user.exercises._id },
+//         });
 
-        // clear form value
-        setText('');
-        setCharacterCount(0);
-    } catch (e) {
-        console.error(e);
-    }
-};
+//         // clear form value
+//         setText('');
+//         setCharacterCount(0);
+//     } catch (e) {
+//         console.error(e);
+//     }
+// };
 
 //   const state = useSelector((state) => {
 //     return state;

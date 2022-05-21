@@ -95,6 +95,7 @@ const resolvers = {
 
       throw new AuthenticationError('No Workout with that ID');
     },
+
     addExercise: async (parent, {exerciseid, _id}, context) => {
       if (context.user) {
 
@@ -141,6 +142,7 @@ const resolvers = {
   
         throw new AuthenticationError('No Exercise or Workout with that ID');
     },
+    
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
       if (!user) {
