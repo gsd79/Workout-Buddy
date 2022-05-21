@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 
 import { useMutation } from '@apollo/client';
 import { ADD_EXERCISE } from '../utils/mutations';
@@ -11,34 +11,29 @@ function Detail() {
     update(cache, { data: { addExercise } }) {
         try{
         // read what's currently in the cache
-        const { exercises } = cache.readQuery({ query: QUERY_WORKOUTS });
+       const { workouts } = cache.readQuery({ query: QUERY_WORKOUTS });
+         // add the new exercise to the cache
+         cache.writeQuery({
+              query: QUERY_WORKOUTS,
+                data: { workouts: workouts.concat([addExercise]) },
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    },
+    });
 
         // prepend the newest thought to the front of the array
-        cache.writeQuery({
-            query: QUERY_WORKOUTS,
-            data: { savedWorkouts: [addExercise, ...exercises] }
-        });
-    } catch (e) {
-        console.error(e);
-    }
-}})
+        // cache.writeQuery({
+        //     query: QUERY_WORKOUTS,
+        //     data: { savedWorkouts: [addExercise, ...exercises] }
+        // });
+//     } catch (e) {
+//         console.error(e);
+//     }
+// }})
 
    // submit form
-   const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-        await addExercise({
-            variables: { _id:workout._id, exerciseid:user.exercises._id },
-        });
-
-        // clear form value
-        setText('');
-        setCharacterCount(0);
-    } catch (e) {
-        console.error(e);
-    }
-};
 
 //   const state = useSelector((state) => {
 //     return state;
@@ -65,6 +60,20 @@ function Detail() {
 //         exercises: data.exercises,
 //       });
 
+//       data.exercises.forEach((exercise) => {
+//         idbPromise("exercises", "put", exercise);
+//       });
+//     }
+//     // get cache from idb
+//     else if (!loading) {
+//       idbPromise("exercises", "get").then((indexedExercises) => {
+//         dispatch({
+//           type: UPDATE_EXERCISES,
+//           exercises: indexedExercises,
+//         });
+//       });
+//     }
+//   }, [exercises, data, loading, dispatch, id]);
 
 //   const addToWorkout = () => {
 //     const itemInCart = cart.find((cartItem) => cartItem._id === id);
