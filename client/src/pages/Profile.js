@@ -7,7 +7,7 @@ import "react-tabs/style/react-tabs.css";
 
 // functionality variables/queries/mutations
 import SavedWorkouts from '../pages/SavedWorkouts';
-import WorkoutForm from "../components/Workout Form";
+
 import Auth from "../utils/auth";
 
 // in future {ADD_FRIEND, ADD_LOG, ADD_PROGRESS, ADD_PLAYLIST}
@@ -43,7 +43,7 @@ const Profile = () => {
                                 <button className="add-workout">Add A Workout</button>
                             </Link>
                     
-                                {/* <WorkoutForm/> */}
+                                
                             {/* //button prompt for adding new empty workout -- will be redirected to 'Build A Workout'   */}
                         </TabPanel>
                         <TabPanel>
