@@ -26,6 +26,7 @@
     "axios": "^0.27.2",
     "concurrently": "^7.1.0",
     "develop": "^1.0.0",
+    "dotenv": "^16.0.1",
     "mdb-react-ui-kit": "^3.0.0",
     "react": "^17.0.2",
     "run": "^1.4.0"
