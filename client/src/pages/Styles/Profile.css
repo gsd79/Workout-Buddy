@@ -1,4 +1,3 @@
-
 .profile-wrapper {
   background-image: linear-gradient(
       0deg,
@@ -117,4 +116,21 @@
   display: flex;
   flex-flow: row;
   padding-bottom: 20px;
+}
+
+form .flex-row .justify-center .justify-space-between-md .align-stretch{
+align-items: center;
+background-image: linear-gradient(to top, #F3E7E9 0, #E3EEFF 99%, #E3EEFF 100%);
+box-sizing: border-box;
+color: #272F32;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+font-family: Karla, sans-serif;
+justify-content: flex-end;
+line-height: 24px;
+text-align: left;
+width: 40%;
+padding: 0 0 0 0px;
+margin: 0 0 0 300px;
 }

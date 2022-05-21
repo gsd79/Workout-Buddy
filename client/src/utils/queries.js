@@ -135,7 +135,6 @@ export const QUERY_TARGET = gql`
   }
 }`
 
-
 //query exercise (add and remove)
 
 export const QUERY_CATEGORIES = gql`
