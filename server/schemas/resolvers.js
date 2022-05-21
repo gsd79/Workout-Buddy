@@ -12,8 +12,7 @@ const resolvers = {
         return exerciseData;
       }
     },
-
-    exerciseByOther: async (parent, {equipment, bodyPart, target, _id}) => {
+    exerciseByOther: async (parent, {equipment, bodyPart, target}) => {
       if (equipment) {
         const exerciseData = await Exercise.find({equipment})
         return exerciseData;
@@ -26,21 +25,15 @@ const resolvers = {
         const exerciseData = await Exercise.find({target})
         return exerciseData;
       }
-      if (_id) {
-        const exerciseData = await Exercise.find({_id})
-    
-        return exerciseData;
-      }
     },
     exercises: async () => {
       return await Exercise.find();
     },
-
-    user: async (parent, {_id}, context) => {
+    user: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({_id})
           .select('-__v -password')
-    
+          .populate('savedWorkouts')
         return userData;
       }
       throw new AuthenticationError('No user with that ID');
@@ -62,9 +55,9 @@ const resolvers = {
   },
   Mutation: {
     addUser: async (parent, args) => {
-      // args.savedWorkouts = [{
-      //   name: args.username + "'s First Workout"
-      // }]
+      args.savedWorkouts = [{
+        name: args.username + "'s First Workout"
+      }]
       const user = await User.create(args);
       const token = signToken(user);
       return { token, user };
@@ -76,42 +69,15 @@ const resolvers = {
           { _id: context.user._id },
           { $addToSet: { savedWorkouts: workout } },
           { new: true }
-          )
-
+          ).populate('savedWorkouts');
         return workout;
       }
       throw new AuthenticationError('Not logged in');
     },
-
-    removeWorkout: async (parent, { user_id, workout_id }, context) => {
-      if (context.user) {
-
-        const removedWorkout = await Workout.findOne({workout_id})
-
-        console.log(removedWorkout + " this is the workout to be removed");
-        
-        await User.updateOne(
-          { _id: user_id }, 
-          { $pull: { savedWorkouts: removedWorkout } },
-          { new: true }
-        )
-        console.log(context.user._id + "this is context user");
-        console.log(JSON.stringify(context.user));
-
-        // await Workout.findOneAndDelete({ _id });
-
-        // db.posts.updateOne( 
-        //   { _id" : ObjectId("5ec55af811ac5e2e2aafb2b9") },
-        //   { $pull: { comments: { user: "Database Rebel" } } }
-        // )
-
-        return "yes";
-      }
-
-      throw new AuthenticationError('No Workout with that ID');
+    removeWorkout: async (parent, args, context) => {
+      return this
     },
-
-    addExercise: async (parent, args, context) => {
+    addExercise: async (parent, {exerciseid, _id}, context) => {
       if (context.user) {
 
         console.log(args)
@@ -123,8 +89,8 @@ const resolvers = {
         const workout = await Workout.findById(args._id);
         
         const updatedWorkout = await Workout.findOneAndUpdate(
-          { _id: workout }, 
-          { $addToSet: { exercises: addedExercise } },
+          { _id: workout },
+          { $push: { exercises: addedExercise } },
           { new: true }
           );
           console.log(updatedWorkout + "this is updated workout")
@@ -141,21 +107,8 @@ const resolvers = {
       }
       throw new AuthenticationError('No workout or exercise with that id!');
     },
-
-    removeExercise: async (parent, {exerciseid, _id}, context) => {
-        if (context.user) {
-          const exercise = await Exercise.findOne({ exerciseid });
-  
-          await Workout.findByIdAndUpdate(
-            { _id: _id }, 
-            { $pull: { exercises: exercise } },
-            { new: true }
-            )
-  
-          return workout;
-        }
-  
-        throw new AuthenticationError('No Exercise or Workout with that ID');
+    removeExercise: async (parent, args, context) => {
+      return this
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
