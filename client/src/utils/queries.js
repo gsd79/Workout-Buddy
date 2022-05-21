@@ -1,11 +1,16 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
-  query user {
-    user {
+  query user($_id: ID!) {
+    user (_id: $_id) {
+      _id
       username
       email
       password
+      savedWorkouts {
+        name
+        _id
+      }
     }
   }
 `;
@@ -17,24 +22,36 @@ export const QUERY_USERS = gql`
       _id
       username
       email
+      savedWorkouts{
+        name
+        _id
+      }
     }
   }
 `;
 
-// for query current user, not using for MVP
-// export const QUERY_USER_BRIEF = gql`
-// query user($username: String!) {
-//   user(username: $username) {
-//     _id
-//     username
-//   }
-// }`
-
 // query all workouts for user
 export const QUERY_WORKOUT = gql`
+  query workout($_id: ID) {
+    workout(_id: $_id) {
+        _id
+        name
+        exercises {
+          _id
+          bodyPart
+          equipment
+          gifUrl
+          name
+          target
+        }
+      }
+  }
+`;
+export const QUERY_WORKOUTS = gql`
   query workouts($username: String!) {
     workouts(username: $username) {
-      savedWorkouts {
+      savedWorkouts{
+        _id
         name
         exercises {
           _id
@@ -46,7 +63,7 @@ export const QUERY_WORKOUT = gql`
         }
       }
     }
-  }
+    }
 `;
 
 // query all exercises
@@ -61,15 +78,6 @@ query exercises {
     target 
   }
 }
-`;
-
-export const QUERY_USER_BRIEF = gql`
-  query user($username: String!) {
-    user(username: $username) {
-      _id
-      username
-    }
-  }
 `;
 
 // search for exercise by name
@@ -126,22 +134,6 @@ export const QUERY_TARGET = gql`
       target    
   }
 }`
-// export const QUERY_WORKOUT = gql`
-//   query workout($id: ID!) {
-//     workout(_id: $id) {
-//       _id
-//       name
-//       exercises {
-//         _id
-//         bodyPart
-//         equipment
-//         gifUrl
-//         name
-//         target
-//       }
-//     }
-//   }
-// `;
 
 //query exercise (add and remove)
 
@@ -171,31 +163,3 @@ export const QUERY_EXERCISES = gql`
   }
 `;
 
-export const GET_ME = gql`
-  {
-    me {
-      _id
-      username
-      email
-      workoutCount
-      savedWorkouts {
-        workoutId
-        bodyParts
-        name
-        equipment
-        gifUrl
-        target
-      
-    }
-  }
-}`
-
-
-
-// export const QUERY_WORKOUT = gql`
-//   query getWorkout($exercises: [ID]!) {
-//     checkout(exercises: $exercises) {
-//       session
-//     }
-//   }
-// `;
