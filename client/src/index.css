@@ -113,6 +113,7 @@ form {
 }
 span[role="img"] {
   cursor: default;
+  margin-top: 400px;
 }
 
 input {

@@ -53,8 +53,9 @@ export const REMOVE_WORKOUT = gql`
 //add exercise
 
 export const ADD_EXERCISE = gql`
-  mutation addExercise($_id:ID!, $exercises: ID!) {
-    addExercise(_id:$id, exerciseid: $exerciseid){
+  mutation addExercise($workout:ID!, $exercises: ID!) {
+    addExercise(workoutId:$id, exerciseid: $exerciseid){
+    workout{
     _id
     name
     exercises {
@@ -65,6 +66,7 @@ export const ADD_EXERCISE = gql`
       name
       target
     }
+  }
   }
   }
 `;
