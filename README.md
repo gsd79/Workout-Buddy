@@ -4,7 +4,7 @@
 Fitness for everyone! Keep your routine organized by tracking your workouts and progress throughout your journey
 
 ## Live Links
-(To Go Here)
+https://fitness-trainer-buddy.herokuapp.com/
 
 ![Landing Page](./client/src/assets/img/Screenshot%202022-05-21%2001.01.25.png)
 

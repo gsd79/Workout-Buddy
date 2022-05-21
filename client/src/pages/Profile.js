@@ -23,7 +23,7 @@ const Profile = () => {
     return (
         <div className="profile-wrapper">
             <div className="profile-contain">
-                <h1>Your Profile</h1>
+                <h1>Your Profile </h1>
                 <div className="profile-nav">
                     <Tabs>
                         <TabList>

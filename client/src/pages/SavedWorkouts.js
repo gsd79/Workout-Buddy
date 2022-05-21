@@ -58,10 +58,10 @@ const SavedWorkouts = (user) => {
   return (
     <>
       <Container>
-
         {<h2>
           {workouts.length > 0 ? `Viewing ${workouts.length} saved ${workouts.length === 1 ? "workout" : "workouts"}` : "You have no saved workouts (you should change that)"}
         </h2>}
+
         {workouts.length > 0 ?
 
           <div className="profile-flex">
