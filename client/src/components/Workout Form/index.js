@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import { useMutation } from '@apollo/client';
 import { ADD_WORKOUT } from '../../utils/mutations';
-import { QUERY_WORKOUT } from '../../utils/queries';
-// import SavedWorkouts from '../../pages/SavedWorkouts';
+import { QUERY_WORKOUTS } from '../../utils/queries';
+
 
 const WorkoutForm = () => {
 
@@ -13,12 +13,12 @@ const WorkoutForm = () => {
         update(cache, { data: { addWorkout } }) {
             try{
             // read what's currently in the cache
-            const { workout } = cache.readQuery({ query: QUERY_WORKOUT });
+            const { workouts } = cache.readQuery({ query: QUERY_WORKOUTS });
 
             // prepend the newest thought to the front of the array
             cache.writeQuery({
-                query: QUERY_WORKOUT,
-                data: { workout: [addWorkout, ...workout] }
+                query: QUERY_WORKOUTS,
+                data: { savedWorkouts: [addWorkout, ...workouts] }
             });
         } catch (e) {
             console.error(e);

@@ -6,29 +6,24 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
 // functionality variables/queries/mutations
-import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_USER, QUERY_WORKOUT } from "../utils/queries";
 import SavedWorkouts from '../pages/SavedWorkouts';
-import WorkoutForm from "../components/Workout Form/WorkoutForm";
+import WorkoutForm from "../components/Workout Form";
+import Auth from "../utils/auth";
+
 // in future {ADD_FRIEND, ADD_LOG, ADD_PROGRESS, ADD_PLAYLIST}
 
 
 import "./Styles/Profile.css";
 
 const Profile = () => {
-    const { username: userParam } = useParams();
-    const { data } = useQuery(QUERY_USER);
+    const user = Auth.getProfile();
 
-const user = data?.user || {};
+    console.log (user);
 
-
-
-    
     return (
-
         <div className="profile-wrapper">
             <div className="profile-contain">
-                <h1>Welcome Back !</h1>
+                <h1>Your Profile</h1>
                 <div className="profile-nav">
                     <Tabs>
                         <TabList>
@@ -42,16 +37,14 @@ const user = data?.user || {};
                         <TabPanel> 
                             {/* Saved Workouts to appear here */}
                             <SavedWorkouts
-                            workouts= {user.savedWorkouts}
-                            title= "grace's saved workouts"
-                            />
-                           
-                            {/* //button prompt for adding new empty workout -- will be redirected to 'Build A Workout'   */}
+                                user={user.data}
+                                />
                             <Link as={Link} to= "/plans">
-                                <button className="add-workout">Add Workout</button>
+                                <button className="add-workout">Add A Workout</button>
                             </Link>
-                            <WorkoutForm/>
-
+                    
+                                {/* <WorkoutForm/> */}
+                            {/* //button prompt for adding new empty workout -- will be redirected to 'Build A Workout'   */}
                         </TabPanel>
                         <TabPanel>
                             <h2> Edit Profile Coming Soon!</h2>

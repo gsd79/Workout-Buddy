@@ -14,6 +14,7 @@
   background: white;
   padding: 50px 0 0 60px;
   width: 90%;
+  height: 80%;
   margin: 0 auto;
   border: 10px double white;
   outline: 8px solid rgba(66, 156, 161, 0.9);
@@ -31,6 +32,7 @@
 .profile-nav {
   background: white;
   width: 90%;
+  height: 70%;
   margin: 0 auto;
   margin-bottom: 50px;
   padding: 10px 0 20px 10px;
@@ -104,11 +106,15 @@
 .add-workout{
   height: 35px;
   width: 200px;
-  background:rgba(66, 156, 161);
+  background:rgba(66, 156, 161) !important;
   color: white;
-  font: 1em notable;
+  font: .9em notable;
   text-align: center;  
-  padding-bottom: 4px;
-  margin-left: 150px;
-  
+  margin-right: 50px;
+}
+
+.react-tabs__tab-panel{
+  display: flex;
+  flex-flow: row;
+  padding-bottom: 20px;
 }
