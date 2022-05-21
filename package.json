@@ -9,7 +9,8 @@
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm run build",
+    "kill": "kill -9 $(lsof -ti:3000,3001) && npm start"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,10 @@
   },
   "homepage": "https://github.com/gsd79/Workout-Buddy#readme",
   "dependencies": {
-    "concurrently": "^7.1.0"
+    "concurrently": "^7.1.0",
+    "heroku": "^7.60.2"
+  },
+  "devDependencies": {
+    "jest": "^28.1.0"
   }
 }

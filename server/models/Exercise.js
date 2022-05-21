@@ -9,19 +9,13 @@ const exerciseSchema = new Schema({
 
   equipment: {
     type: String,
-    
   },
   gifUrl: {
     type: String,
   },
   // could maybe use this as filter 
-  id: {
-    type: String,
-    
-  },
   name: {
     type: String,
-    
   },
   target: {
     type: String,
