@@ -65,20 +65,6 @@ function Detail() {
 //         exercises: data.exercises,
 //       });
 
-//       data.exercises.forEach((exercise) => {
-//         idbPromise("exercises", "put", exercise);
-//       });
-//     }
-//     // get cache from idb
-//     else if (!loading) {
-//       idbPromise("exercises", "get").then((indexedExercises) => {
-//         dispatch({
-//           type: UPDATE_EXERCISES,
-//           exercises: indexedExercises,
-//         });
-//       });
-//     }
-//   }, [exercises, data, loading, dispatch, id]);
 
 //   const addToWorkout = () => {
 //     const itemInCart = cart.find((cartItem) => cartItem._id === id);
