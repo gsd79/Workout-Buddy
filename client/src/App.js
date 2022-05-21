@@ -56,8 +56,6 @@ function App() {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/plans" component={WorkoutPlan} />
-              
-
               <Route exact path="/saved" component={SavedWorkouts} />
               <Route exact path="/exercises/:id" component={Detail} />
               <Route exact path="/contact" component={Contact} />
