@@ -1,21 +1,116 @@
-// import stripe? possibly not for MVP
+// // import stripe? possibly not for MVP
 
-import React, { Component } from "react";
+// import React, { Component } from "react";
 
-export class Contact extends Component {
-    render() {
-        return (
-            <contact class="py-5 bg-dark">                
-                    <div class="container">
-                        <form id="contact-form">
-                            <input type="text" name="name" id="name-field" class="contact-form-field" placeholder="Jane Doe"></input>
-                            <input type="email" name="email" id="email-field" class="email-form-field" placeholder="janedoe@index.com"></input>
-                            <input type="text" name="message" id="message-field" class="message-form-field" placeholder="words go here"></input>
-                            <input type="submit" value="send" class="contact-form-submit"></input>
-                        </form>                            
-                </div>              
-            </contact>
-        );  
-        }  
+// export class Contact extends Component {
+//     render() {
+//         return (
+//             <contact class="py-5 bg-dark">
+//                     <div class="container">
+//                         <form id="contact-form">
+//                             <input type="text" name="name" id="name-field" class="contact-form-field" placeholder="Jane Doe"></input>
+//                             <input type="email" name="email" id="email-field" class="email-form-field" placeholder="janedoe@index.com"></input>
+//                             <input type="text" name="message" id="message-field" class="message-form-field" placeholder="words go here"></input>
+//                             <input type="submit" value="send" class="contact-form-submit"></input>
+//                         </form>
+//                 </div>
+//             </contact>
+//         );
+//         }
+// }
+// export default Contact;
+
+import React from "react";
+// import axios from "axios";
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      email: "",
+      message: "",
+    };
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    ({
+      method: "POST",
+      url: "http://localhost:3000/send",
+      data: this.state,
+    }).then((response) => {
+      if (response.data.status === "success") {
+        alert("Message Sent.");
+        this.resetForm();
+      } else if (response.data.status === "fail") {
+        alert("Message failed to send.");
+      }
+    });
+  }
+
+  //   resetForm(){
+  //     this.setState({name: ‘’, email: ‘’, message: ‘’})
+  //   }
+
+  render() {
+    return (
+      <div className="App">
+        <form
+          id="contact-form"
+          onSubmit={this.handleSubmit.bind(this)}
+          method="POST"
+        >
+          <div className="form-group">
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              className="form-control"
+              id="name"
+              value={this.state.name}
+              onChange={this.onNameChange.bind(this)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="exampleInputEmail1">Email address</label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              aria-describedby="emailHelp"
+              value={this.state.email}
+              onChange={this.onEmailChange.bind(this)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="message">Message</label>
+            <textarea
+              className="form-control"
+              rows="5"
+              id="message"
+              value={this.state.message}
+              onChange={this.onMessageChange.bind(this)}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </form>
+      </div>
+    );
+  }
+
+  onNameChange(event) {
+    this.setState({ name: event.target.value });
+  }
+
+  onEmailChange(event) {
+    this.setState({ email: event.target.value });
+  }
+
+  onMessageChange(event) {
+    this.setState({ message: event.target.value });
+  }
 }
-export default Contact;
+
+export default App;
