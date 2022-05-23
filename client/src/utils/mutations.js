@@ -22,6 +22,7 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_WORKOUT = gql`
+<<<<<<< HEAD
   mutation addWorkout($name: String!) {
     addWorkout(name: $name) {
       _id
@@ -29,6 +30,28 @@ export const ADD_WORKOUT = gql`
       exercises{
         name
       }     
+=======
+<<<<<<< HEAD
+  mutation addWorkout($workouts: String!) {
+    addWorkout(name: $workouts) {
+      _id
+      name
+=======
+  mutation addWorkout($exercises: [ID]!) {
+    addWorkout(exercises: $exercises) {
+      workoutDate
+      exercises {
+        bodyPart
+        equipment
+        id
+        name
+        target
+        category {
+          name
+        }
+      }
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
+>>>>>>> ea10be63558a190f8a7210da8b8657c8884b1d8d
     }
   }
 `;
@@ -48,6 +71,30 @@ export const REMOVE_WORKOUT = gql`
   }
 }`
 
+<<<<<<< HEAD
+//add exercise
+export const ADD_EXERCISE_TO_WORKOUT = gql`
+  mutation addExerciseToWorkout($id: ID!) {
+    workouts {
+      _id
+      name
+    }
+    exercises {
+      _id
+      name
+    }
+  }
+`;
+
+//remove exercise
+export const REMOVE_EXERCISE_TO_WORKOUT = gql`
+  mutation removeExerciseToWorkout($id: ID!) {
+    workouts {
+      _id
+    }
+    exercises {
+      _id
+=======
 
 
 //add exercise
@@ -71,6 +118,7 @@ export const ADD_EXERCISE = gql`
 
 //remove exercise
 export const REMOVE_EXERCISE = gql`
+<<<<<<< HEAD
 mutation removeExercise($_id:ID!, $exercises: ID!) {
   removeExercise(_id:$id, exerciseid: $exerciseid){
   _id
@@ -82,6 +130,21 @@ mutation removeExercise($_id:ID!, $exercises: ID!) {
     id
     name
     target
+=======
+  mutation removeExercise($name: String!, $id: ID!) {
+    user {
+      _id
+    }
+    exercises {
+      bodyPart
+      equipment
+      gifUrl
+      id
+      name
+      target
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
+    }
+>>>>>>> ea10be63558a190f8a7210da8b8657c8884b1d8d
   }
 }
 }

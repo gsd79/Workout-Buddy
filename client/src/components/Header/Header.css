@@ -1,8 +1,7 @@
-header,
-footer {
-  background-color: #429ca1;
-  padding: 10px 20px;
-  width: 100%;
+header, footer{
+   background-color:#429ca1; 
+   padding: 10px 20px;
+   width:100%;
 }
 
 header h1,
@@ -20,20 +19,19 @@ footer a {
   font-size: 1em;
 }
 
-.nav-link {
-  font-size: 1em;
+.nav-link {   
+   font-size: 1em;
+}       
+
+header a:hover, header h1:hover{
+   text-decoration: none;
+   color: white;   
 }
 
-header a:hover,
-header h1:hover {
-  text-decoration: none;
-  color: white;
+.nav-container{
+   display:flex;
+   justify-content: space-between;
 }
 
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Notable&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Notable&display=swap');

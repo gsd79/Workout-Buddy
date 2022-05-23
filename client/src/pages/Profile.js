@@ -12,14 +12,38 @@ import Auth from "../utils/auth";
 
 // in future {ADD_FRIEND, ADD_LOG, ADD_PROGRESS, ADD_PLAYLIST}
 
+<<<<<<< HEAD
+=======
+ 
+  const user = data?.user || {};
+<<<<<<< HEAD
+=======
+>>>>>>> ea10be63558a190f8a7210da8b8657c8884b1d8d
 
 import "./Styles/Profile.css";
 
+<<<<<<< HEAD
 const Profile = () => {
     const user = Auth.getProfile();
+=======
+    // const handleClick = async () => {
+    //     try {
+    //         await addWorkout({
+    //             variables: { name: user.savedWorkouts.name },
+    //         });
+    //     } catch (e) {
+    //         console.error(e);
+    //     }
+    // };
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
+>>>>>>> ea10be63558a190f8a7210da8b8657c8884b1d8d
 
     console.log (user);
 
+<<<<<<< HEAD
+  if (!user?.username) {
+=======
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
     return (
         <div className="profile-wrapper">
             <div className="profile-contain">
@@ -66,5 +90,9 @@ const Profile = () => {
     );
     }
 
+<<<<<<< HEAD
+export default Profile;
+=======
 
 export default Profile;
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6

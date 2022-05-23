@@ -135,6 +135,21 @@ db.once("open", async () => {
       target: "abs",
     },
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+  const workout = await Workout.create({
+    name: "testing",
+    exercises: [{
+      bodyPart: "waist",
+          equipment: "body weight",
+          gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0001.gif",
+          name: "3/4 sit-up",
+          target: "abs",
+    }]
+  })
+=======
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
+=======
     {
       bodyPart: categories[4]._id,
       equipment: "leverage machine",
@@ -171,6 +186,7 @@ db.once("open", async () => {
       category: categories[3]._id,
       target: "calves",
     },
+>>>>>>> eebc6290a94ff13f844d543e10d34e350560a2cd
 
     //   {
     //     bodyPart: "categories[1]._id",
