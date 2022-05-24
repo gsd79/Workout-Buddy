@@ -8,6 +8,18 @@
   box-sizing: border-box;
   /* font-family: "Spartan", sans-serif; */
 }
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+.wrapper,.profile-wrapper {
+	background-image: linear-gradient(0deg,rgba(255, 255, 255, 0.5),rgba(66, 156, 161, 0.4)),url("../../assets/img/fitness-gym-girl-nb-1920x1080.jpg");
+	height: 817px;
+	padding-top: 300px;
+}
+.profile-wrapper,form {
+	background-image: linear-gradient(0deg,rgba(255, 255, 255, 0.5),rgba(66, 156, 161, 0.4)),url("../../assets/img/52ec5f76e2a79ad25c1f507aa6ff74e3.jpg");
+=======
+>>>>>>> Stashed changes
 
 >>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
 .wrapper,
@@ -29,6 +41,10 @@ form {
       rgba(66, 156, 161, 0.4)
     ),
     url("../../assets/img/52ec5f76e2a79ad25c1f507aa6ff74e3.jpg");
+<<<<<<< Updated upstream
+=======
+>>>>>>> ea10be63558a190f8a7210da8b8657c8884b1d8d
+>>>>>>> Stashed changes
 }
 .wrapper {
   background-image: linear-gradient(
@@ -89,16 +105,32 @@ form {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #fc8b00;
 }
+<<<<<<< Updated upstream
 
 >>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
+>>>>>>> ea10be63558a190f8a7210da8b8657c8884b1d8d
+>>>>>>> Stashed changes
 .cta-contain {
   margin: 3em auto;
   width: fit-content;
 }
 <<<<<<< HEAD
 =======
+<<<<<<< Updated upstream
 
 >>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
+>>>>>>> ea10be63558a190f8a7210da8b8657c8884b1d8d
+>>>>>>> Stashed changes
 .cta-contain button {
   padding: 10px;
   font: 1em Notable;
@@ -248,7 +280,14 @@ div.modal-header {
 }
 <<<<<<< HEAD
 =======
+<<<<<<< Updated upstream
 
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> ea10be63558a190f8a7210da8b8657c8884b1d8d
+>>>>>>> Stashed changes
 .profile-contain {
   background: white;
   padding: 50px 0 0 60px;
@@ -292,6 +331,7 @@ div.modal-header {
   padding: 6px 12px;
   cursor: pointer;
 }
+<<<<<<< Updated upstream
 
 .react-tabs__tab--selected {
   background: #fff;
@@ -309,6 +349,181 @@ div.modal-header {
   outline: none;
 }
 
+=======
+<<<<<<< HEAD
+button {
+	background-color: initial;
+	background-image: radial-gradient(65% 100% at 50% 0%,#00ff94 0%,rgba(0, 255, 148, 0.25) 100%);
+	background-blend-mode: soft-light;
+}
+div#root > div > div > div:nth-child(1) > form {
+	background-image: initial;
+	margin: initial;
+	margin: 0px 0 0 300px;
+}
+@media (min-width: 768px) {
+	div#root > div > div > div:nth-child(1) > form > button {
+		padding-bottom: 0rem;
+		padding-top: 0rem;
+		margin-top: 23px;
+		margin-right: 150px;
+		margin-left: 34px;
+		padding-right: 0rem;
+		background-color: #ffe53b;
+		background-image: linear-gradient(147deg, #ffe53b 0%, #ff2525 74%);
+	}
+}
+div#root > div {
+	margin: initial;
+	padding: initial;
+	padding: 0 0 306px;
+	margin: 0 0 105px;
+	background-color: #08aeea;
+	background-image: linear-gradient(0deg, #08aeea 0%, #2af598 100%);
+}
+div#root {
+	background-color: #08aeea;
+}
+div#root > header {
+	margin: initial;
+	margin: -22px 0 0;
+}
+div#root > header {
+	margin: initial;
+	margin: -22px 0 0;
+}
+div#root > div > div > div:nth-child(4) {
+	margin: initial;
+	margin: 112px 0 0px;
+}
+div#root > header {
+	margin: initial;
+	margin: -22px 0 0;
+}
+div#root > div > div > div:nth-child(4) {
+	margin: initial;
+	margin: 112px 0 0px;
+}
+div#root > footer {
+	margin: initial;
+	padding: initial;
+	margin: 0 0 34px;
+	padding: 10px 20px 33px;
+}
+div#root > footer {
+	margin: initial;
+	padding: initial;
+	margin: 0 0 34px;
+	padding: 10px 20px 33px;
+}
+div#root > div > div > div:nth-child(4) > div > div {
+	background-color: initial;
+	background-color: #21d4fd;
+	background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%);
+}
+@media (min-width: 576px) {
+	div#root > div > div > div:nth-child(4) {
+		background-image: linear-gradient(0deg, #08aeea 0%, #2af598 100%);
+	}
+}
+div#root > footer {
+	margin: initial;
+	padding: initial;
+	margin: 0 0 34px;
+	padding: 10px 20px 33px;
+}
+div#root > div > div > div:nth-child(4) > div > div {
+	background-color: initial;
+	background-color: #21d4fd;
+	background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%);
+}
+@media (min-width: 576px) {
+	div#root > div > div > div:nth-child(4) {
+		background-image: linear-gradient(0deg, #08aeea 0%, #2af598 100%);
+	}
+}
+div#root > div > div > div:nth-child(4) > div > div > div {
+	color: #fdfbfa;
+	font-size: 15px;
+}
+div#root > footer {
+	margin: initial;
+	padding: initial;
+	margin: 0 0 34px;
+	padding: 10px 20px 33px;
+}
+@media (min-width: 576px) {
+	div#root > div > div > div:nth-child(4) {
+		background-image: linear-gradient(0deg, #08aeea 0%, #2af598 100%);
+	}
+}
+div#root > div > div > div:nth-child(4) > div > div > div {
+	color: #fdfbfa;
+	font-size: 15px;
+}
+div#root > div > div > div:nth-child(4) > div > div > h3 {
+	color: #fbfbfb;
+	text-align: center;
+}
+div#workout-name > h3 {
+	color: #fbfbfb;
+	text-align: center;
+}
+div#root > div > div > div:nth-child(4) {
+	background-color: initial;
+	margin: initial;
+	padding: initial;
+	width: initial;
+	margin: 0px 0 0;
+	padding: 0rem 0.25rem;
+	background-image: linear-gradient(114.95deg,rgba(235, 0, 255, 0.5) 0%,rgba(0, 71, 255, 0) 34.35%),linear-gradient(180deg, #004b5b 0%, #ffa7a7 100%),linear-gradient(244.35deg, #ffb26a 0%, #3676b1 50.58%, #00a3ff 100%),linear-gradient(244.35deg, #ffffff 0%, #004a74 49.48%, #ff0000 100%),radial-gradient(100% 233.99% at 0% 100%, #b70000 0%, #ad00ff 100%),linear-gradient(307.27deg, #1dac92 0.37%, #2800c6 100%),radial-gradient(100% 140% at 100% 0%,#eaff6b 0%,#006c7a 57.29%,#2200aa 100%);
+	background-blend-mode: hard-light, overlay, overlay, overlay, difference,difference, normal;
+}
+div#root > div > div > div:nth-child(4) > span {
+	margin: initial;
+	text-align: initial;
+	margin: -3px 0 0 4px;
+	background-image: radial-gradient(80.99% 100% at 50% 0%,#00ff0a 0%,#36008e 100%),radial-gradient(50% 123.47% at 50% 50%, #efe7c8 0%, #36008e 100%),linear-gradient(301.28deg, #ff006b 0%, #48dd9e 100%),linear-gradient(294.84deg, #5a60e4 0%, #d30000 100%),linear-gradient(52.29deg, #000000 0%, #00ff85 100%),radial-gradient(100% 138.69% at 100% 0%, #0007a5 0%, #ff7a00 100%),radial-gradient(70.41% 100% at 50% 0%, #d5b300 0%, #2200aa 100%);
+	background-blend-mode: screen, screen, lighten, overlay, lighten, difference,normal;
+}
+
+=======
+<<<<<<< HEAD
+/* list above content showing individual tabs */
+.react-tabs__tab-list {
+  border-bottom: 1px solid #aaa;
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.react-tabs__tab {
+  display: inline-block;
+  border: 1px solid transparent;
+  border-bottom: none;
+  bottom: -1px;
+  position: relative;
+  list-style: none;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.react-tabs__tab--selected {
+  background: #fff;
+  border-color: #aaa;
+  color: black;
+  border-radius: 5px 5px 0 0;
+}
+
+/* .react-tabs__tab--disabled {
+  color: GrayText;
+  cursor: default;
+} */
+
+.react-tabs__tab:focus {
+  outline: none;
+}
+
+>>>>>>> Stashed changes
 .react-tabs__tab:focus:after {
   content: "";
   position: absolute;
@@ -330,3 +545,7 @@ div.modal-header {
 >>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
 =======
 >>>>>>> eebc6290a94ff13f844d543e10d34e350560a2cd
+<<<<<<< Updated upstream
+=======
+>>>>>>> ea10be63558a190f8a7210da8b8657c8884b1d8d
+>>>>>>> Stashed changes

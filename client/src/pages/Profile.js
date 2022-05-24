@@ -12,10 +12,23 @@ import CreateWorkoutForm from '../components/CreateWorkoutForm';
 import SavedWorkouts from '../components/savedWorkouts';
 // in future {ADD_FRIEND, ADD_LOG, ADD_PROGRESS, ADD_PLAYLIST}
 
+<<<<<<< Updated upstream
 // import Auth from "../utils/auth";
+=======
+<<<<<<< HEAD
+=======
+ 
+  const user = data?.user || {};
+<<<<<<< HEAD
+=======
+>>>>>>> ea10be63558a190f8a7210da8b8657c8884b1d8d
+
+>>>>>>> Stashed changes
 import "./Styles/Profile.css";
 
+<<<<<<< HEAD
 const Profile = () => {
+<<<<<<< Updated upstream
     const { username: userParam } = useParams();
     // const [addWorkout] = useMutation(ADD_WORKOUT);
     const { loading, data } = useQuery(QUERY_USER, {
@@ -26,6 +39,21 @@ const Profile = () => {
   const user = data?.user || {};
 <<<<<<< HEAD
 =======
+=======
+    const user = Auth.getProfile();
+=======
+    // const handleClick = async () => {
+    //     try {
+    //         await addWorkout({
+    //             variables: { name: user.savedWorkouts.name },
+    //         });
+    //     } catch (e) {
+    //         console.error(e);
+    //     }
+    // };
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
+>>>>>>> ea10be63558a190f8a7210da8b8657c8884b1d8d
+>>>>>>> Stashed changes
 
     // if (!user?.username) {
     //     return (
@@ -36,6 +64,7 @@ const Profile = () => {
     //     );
     // }
 
+<<<<<<< Updated upstream
     // const handleClick = async () => {
     //     try {
     //         await addWorkout({
@@ -48,6 +77,8 @@ const Profile = () => {
 >>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
 
 
+=======
+>>>>>>> Stashed changes
 <<<<<<< HEAD
   if (!user?.username) {
 =======

@@ -34,11 +34,27 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // // Serve up static assets
+<<<<<<< Updated upstream
 app.use("/images", express.static(path.join(__dirname, "../client/images")));
 
 // if (process.env.NODE_ENV === 'production') {
 //   app.use(express.static(path.join(__dirname, '../client/build')));
 // }
+=======
+<<<<<<< HEAD
+app.use('/images', express.static(path.join(__dirname, '../client/images')));
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
+=======
+app.use("/images", express.static(path.join(__dirname, "../client/images")));
+
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, '../client/build')));
+// }
+>>>>>>> ea10be63558a190f8a7210da8b8657c8884b1d8d
+>>>>>>> Stashed changes
 
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, '../client/build/index.html'));

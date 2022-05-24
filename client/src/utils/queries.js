@@ -1,8 +1,18 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
+<<<<<<< Updated upstream
   query user {
     user {
+=======
+<<<<<<< HEAD
+  query user($_id: ID!) {
+    user (_id: $_id) {
+=======
+  query user {
+    user {
+>>>>>>> ea10be63558a190f8a7210da8b8657c8884b1d8d
+>>>>>>> Stashed changes
       _id
       username
       email
@@ -187,10 +197,17 @@ export const QUERY_EQUIPMENT = gql`
   }
 `;
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 // search for exercise by bodypart
 export const QUERY_BODYPART = gql`
   query exercise($Name: String!) {
     exerciseByOther(bodyPart: $ID) {
+<<<<<<< Updated upstream
+=======
       _id
       bodyPart
       equipment
@@ -223,12 +240,48 @@ export const GET_ME = gql`
 export const QUERY_TARGET = gql`
   query exercise($Name: String!) {
     exerciseByOther(target: $ID) {
+>>>>>>> Stashed changes
       _id
       bodyPart
       equipment
       gifUrl
       name
       target
+<<<<<<< Updated upstream
+=======
+export const GET_ME = gql`
+  {
+    me {
+      _id
+      username
+      email
+      workoutCount
+      savedWorkouts {
+        workoutId
+        bodyParts
+        name
+        equipment
+        gifUrl
+        target
+      
+>>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
+    }
+  }
+}`
+
+<<<<<<< HEAD
+// query exercise by target
+export const QUERY_TARGET = gql`
+  query exercise($Name: String!) {
+    exerciseByOther(target: $ID) {
+      _id
+      bodyPart
+      equipment
+      gifUrl
+      name
+      target
+=======
+>>>>>>> Stashed changes
     }
   }
 `;
@@ -243,3 +296,7 @@ export const QUERY_TARGET = gql`
 //   }
 // `;
 >>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
+<<<<<<< Updated upstream
+=======
+>>>>>>> ea10be63558a190f8a7210da8b8657c8884b1d8d
+>>>>>>> Stashed changes

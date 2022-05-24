@@ -8,6 +8,7 @@ const resolvers = {
     },
 <<<<<<< HEAD
 
+<<<<<<< Updated upstream
     exerciseByName: async (parent, {name}) => {
       if (name) {
         const exerciseData = await Exercise.findOne({name})
@@ -16,6 +17,16 @@ const resolvers = {
     exerciseByName: async (parent, {name}) => {
       if (name) {
         const exerciseData = await Exercise.findOne({name})
+=======
+    exerciseByName: async (parent, {name}) => {
+      if (name) {
+        const exerciseData = await Exercise.findOne({name})
+    
+=======
+    exerciseByName: async (parent, {name}) => {
+      if (name) {
+        const exerciseData = await Exercise.findOne({name})
+>>>>>>> Stashed changes
 >>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
         return exerciseData;
       }
@@ -88,12 +99,21 @@ const resolvers = {
           ).populate('savedWorkouts');
 <<<<<<< HEAD
 
+<<<<<<< Updated upstream
         return workout;
       }
 
 =======
         return workout;
       }
+=======
+        return workout;
+      }
+
+=======
+        return workout;
+      }
+>>>>>>> Stashed changes
 >>>>>>> d9c376c1afe6ae0e49ae5e60e79b2b4c379cadf6
       throw new AuthenticationError('Not logged in');
     },
