@@ -1,7 +1,7 @@
 # Workout-Buddy
 
 ## Description
-Fitness for everyone! Keep your routine organized by tracking your workouts and progress throughout your journey
+Keep your routine organized by tracking your workouts and progress throughout your fitness journey. 
 
 ## Live Links
 https://fitness-trainer-buddy.herokuapp.com/
