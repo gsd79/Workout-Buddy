@@ -348,3 +348,12 @@ div#root > div > div > div:nth-child(4) > span {
 	background-blend-mode: screen, screen, lighten, overlay, lighten, difference,normal;
 }
 
+form {
+  padding: initial;
+  padding: 0 0px 0 0;
+}
+
+div.fade.tab-pane.active.show {
+  margin: initial;
+  margin: 0 -1149px 0 0;
+}

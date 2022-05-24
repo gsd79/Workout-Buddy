@@ -15,8 +15,21 @@
         "statusBarItem.remoteForeground": "#e7e7e7",
         "titleBar.activeBackground": "#2c5c11",
         "titleBar.activeForeground": "#e7e7e7",
+<<<<<<< Updated upstream
         "titleBar.inactiveBackground": "#2c5c1199",
         "titleBar.inactiveForeground": "#e7e7e799"
+=======
+        "titleBar.inactiveBackground": "#83256199",
+        "titleBar.inactiveForeground": "#e7e7e799",
+        "activityBar.activeBackground": "#ab307e",
+        "activityBar.activeBorder": "#25320e",
+        "activityBar.background": "#ab307e",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#25320e",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "sash.hoverBorder": "#ab307e"
+>>>>>>> Stashed changes
     },
     "peacock.color": "#2c5c11"
 }
