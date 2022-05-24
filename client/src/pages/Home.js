@@ -17,9 +17,9 @@ const HomePage = () => {
           <h2>Get Organized. Train Hard. Stay Fit.</h2>
         </div>
         <div className="cta-contain">
-          <Link onClick={() => setShowModal(true)}>
+          <Nav.Link onClick={() => setShowModal(true)}>
             <button>Get Started Today</button>
-          </Link>
+          </Nav.Link>
         </div>
       </div>
       {/* Modal for signup */}

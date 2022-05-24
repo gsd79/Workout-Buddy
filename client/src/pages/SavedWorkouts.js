@@ -1,5 +1,5 @@
 import React from "react";
-import {Container} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Auth from "../utils/auth";
 
 
@@ -13,21 +13,21 @@ import "./Styles/SavedWorkouts.css"
 
 const SavedWorkouts = (user) => {
   console.log(user);
-  
+
   const username = user.user.username;
   // const userId = user.user._id;
   // const workoutId = user.workouts.savedWorkouts._id;
-  
+
   const { data } = useQuery(QUERY_WORKOUTS, {
     variables: { username }
   });
   console.log(username);
-  
-   const [removeWorkout] = useMutation(REMOVE_WORKOUT)
+
+  const [removeWorkout] = useMutation(REMOVE_WORKOUT)
   //  , {
   //   variables: {userId, workoutId}
   // });
-  
+
   console.log(data);
 
   var workouts = {};
@@ -36,25 +36,25 @@ const SavedWorkouts = (user) => {
     console.log("HERE");
     workouts = data.workouts.savedWorkouts;
   }
-  
+
   const handleDeleteWorkout = async (workoutId) => {
-      const token = Auth.loggedIn() ? Auth.getToken() : null;
-      
-          if (!token) {
-            return false;
-          }
-  
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
     try {
       await removeWorkout({
         variables: { workoutId },
       });
-      
+
       removeWorkoutId(workoutId);
     } catch (err) {
       console.error(err);
     }
   };
-  
+
   return (
     <>
       <Container>
@@ -67,9 +67,9 @@ const SavedWorkouts = (user) => {
           <div className="profile-flex">
             {workouts.map(workout => (
               <div key={workout._id} item={workout} border="dark">
-                
-                  <h3>{workout.name} <button className="button" onClick={() => handleDeleteWorkout(workout._id)}> X</button></h3>
-                  
+
+                <h3>{workout.name} <button className="button" onClick={() => handleDeleteWorkout(workout._id)}> X</button></h3>
+
               </div>
             ))}
           </div>

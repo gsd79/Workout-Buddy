@@ -14,7 +14,7 @@ function WorkoutPlan() {
   return (
     <>
     <div className="profile-wrapper">
-      <div class="plan-container">
+      <div className="plan-container">
         <h2>Create a New Workout:</h2>
         <WorkoutForm/>
         <CategoryMenu
