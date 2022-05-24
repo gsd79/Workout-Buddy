@@ -78,7 +78,7 @@ const Cart = () => {
             [close]
           </div>
 
-          <section id="cart-add" class="section-p1">
+          <section id="cart-add" className="section-p1">
             <div id="workout-name">
               <h3>Enter Workout Name</h3>
               <div>
