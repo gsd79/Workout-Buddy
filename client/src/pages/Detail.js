@@ -1,151 +1,125 @@
-import React, { useState } from 'react';
-
-import { useMutation } from '@apollo/client';
-import { ADD_EXERCISE } from '../utils/mutations';
-import { QUERY_WORKOUTS } from '../utils/queries';
-
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import WorkoutCart from "../components/WorkoutCart";
+import { useDispatch, useSelector } from "react-redux";
+import {
+    REMOVE_FROM_CART,
+    UPDATE_CART_EQUIPMENT,
+    ADD_TO_CART,
+    UPDATE_EXERCISES,
+} from "../utils/actions";
+import { QUERY_EXERCISES } from "../utils/queries";
+import { idbPromise } from "../utils/helpers";
+import spinner from "../assets/img/spinner.gif";
 
 function Detail() {
+    const state = useSelector((state) => {
+        return state;
+    });
+    const dispatch = useDispatch();
 
-  const [addExercise, { error }] = useMutation(ADD_EXERCISE, {
-    update(cache, { data: { addExercise } }) {
-        try{
-        // read what's currently in the cache
-        const { exercises } = cache.readQuery({ query: QUERY_WORKOUTS });
+    const { id } = useParams();
 
-        // prepend the newest thought to the front of the array
-        cache.writeQuery({
-            query: QUERY_WORKOUTS,
-            data: { savedWorkouts: [addExercise, ...exercises] }
+    const [currentExercise, setCurrentExercise] = useState({});
+
+    const { loading, data } = useQuery(QUERY_EXERCISES);
+
+    const { exercises, cart } = state;
+
+    useEffect(() => {
+        // already in global store
+        if (exercises.length) {
+            setCurrentExercise(exercises.find((exercise) => exercise._id === id));
+        }
+        // retrieved from server
+        else if (data) {
+            dispatch({
+                type: UPDATE_EXERCISES,
+                exercises: data.exercises,
+            });
+
+            data.exercises.forEach((exercise) => {
+                idbPromise("exercises", "put", exercise);
+            });
+        }
+        // get cache from idb
+        else if (!loading) {
+            idbPromise("exercises", "get").then((indexedExercises) => {
+                dispatch({
+                    type: UPDATE_EXERCISES,
+                    exercises: indexedExercises,
+                });
+            });
+        }
+    }, [exercises, data, loading, dispatch, id]);
+
+    const addToCart = () => {
+        const itemInCart = cart.find((cartItem) => cartItem._id === id);
+        if (itemInCart) {
+            dispatch({
+                type: UPDATE_CART_EQUIPMENT,
+                _id: id,
+                addingEquipment: parseInt(itemInCart.addingEquipment) + 1,
+            });
+            idbPromise("cart", "put", {
+                ...itemInCart,
+                addingEquipment: parseInt(itemInCart.addingEquipment) + 1,
+            });
+        } else {
+            dispatch({
+                type: ADD_TO_CART,
+                exercise: { ...currentExercise, addingEquipment: 1 },
+            });
+            idbPromise("cart", "put", { ...currentExercise, addingEquipment: 1 });
+        }
+    };
+
+    const removeFromCart = () => {
+        dispatch({
+            type: REMOVE_FROM_CART,
+            _id: currentExercise._id,
         });
-    } catch (e) {
-        console.error(e);
-    }
-}})
 
-   // submit form
-   const handleFormSubmit = async (event) => {
-    event.preventDefault();
+        idbPromise("cart", "delete", { ...currentExercise });
+    };
 
-    try {
-        await addExercise({
-            variables: { _id:workout._id, exerciseid:user.exercises._id },
-        });
+    // check if there is anything in cart then display also.
+    return (
+        <>
+            {currentExercise && cart ? (
+                <div className="container my-1">
+                    <Link to="/plans">← Back to Exercises</Link>
 
-        // clear form value
-        setText('');
-        setCharacterCount(0);
-    } catch (e) {
-        console.error(e);
-    }
-};
+                    <h2>{currentExercise.name}</h2>
 
-//   const state = useSelector((state) => {
-//     return state;
-//   });
-//   const dispatch = useDispatch();
+                    <p>{currentExercise.description}</p>
 
-//   const { id } = useParams();
+                    <p>
+                        <strong>Exercise:</strong>
+                        <br></br>
+                        {currentExercise.target} <br></br>
+                    </p>
 
-//   const [currentExercise, setCurrentExercise] = useState({});
+                    <img src={`${currentExercise.gifUrl}`} alt={currentExercise.name} />
+                    <br></br>
+                    <br></br>
+                    <button onClick={addToCart}>Add to My Workout</button>
+                    <br></br>
+                    <br></br>
 
-//   const { loading, data } = useQuery(QUERY_EXERCISES);
-
-//   const { exercises, workout } = state;
-
-//   useEffect(() => {
-//     // already in global store
-//     if (exercises.length) {
-//       setCurrentExercise(exercises.find((exercise) => exercise._id === id));
-//     }
-//     // retrieved from server
-//     else if (data) {
-//       dispatch({
-//         type: UPDATE_EXERCISES,
-//         exercises: data.exercises,
-//       });
-
-//       data.exercises.forEach((exercise) => {
-//         idbPromise("exercises", "put", exercise);
-//       });
-//     }
-//     // get cache from idb
-//     else if (!loading) {
-//       idbPromise("exercises", "get").then((indexedExercises) => {
-//         dispatch({
-//           type: UPDATE_EXERCISES,
-//           exercises: indexedExercises,
-//         });
-//       });
-//     }
-//   }, [exercises, data, loading, dispatch, id]);
-
-//   const addToWorkout = () => {
-//     const itemInCart = cart.find((cartItem) => cartItem._id === id);
-//     if (itemInCart) {
-//       dispatch({
-//         type: UPDATE_CART_EQUIPMENT,
-//         _id: id,
-//         addingEquipment: parseInt(itemInCart.addingEquipment) + 1,
-//       });
-//       idbPromise("cart", "put", {
-//         ...itemInCart,
-//         addingEquipment: parseInt(itemInCart.addingEquipment) + 1,
-//       });
-//     } else {
-//       dispatch({
-//         type: ADD_TO_CART,
-//         exercise: { ...currentExercise, addingEquipment: 1 },
-//       });
-//       idbPromise("cart", "put", { ...currentExercise, addingEquipment: 1 });
-//     }
-//   };
-
-//   const removeFromCart = () => {
-//     dispatch({
-//       type: REMOVE_FROM_CART,
-//       _id: currentExercise._id,
-//     });
-
-//     idbPromise("cart", "delete", { ...currentExercise });
-//   };
-
-//   // check if there is anything in cart then display also.
-//   return (
-//     <>
-//       {currentExercise && cart ? (
-//         <div className="container my-1">
-//           <Link to="/plans">← Back to Exercises</Link>
-
-//           <h2>{currentExercise.name}</h2>
-
-//           <p>{currentExercise.description}</p>
-
-//           <p>
-//             <strong>Exercise:</strong>
-//             <br></br>
-//             {currentExercise.target} <br></br>
-//           </p>
-
-//           <img src={`${currentExercise.gifUrl}`} alt={currentExercise.name} />
-//           <br></br>
-//           <br></br>
-//           <button onClick={addToCart}>Add to My Workout</button>
-//           <br></br>
-//           <br></br>
-
-//           <button
-//             disabled={!cart.find((p) => p._id === currentExercise._id)}
-//             onClick={removeFromCart}
-//           >
-//             Remove from My Workout Plan
-//           </button>
-//         </div>
-//       ) : null}
-//       {loading ? <img src={spinner} alt="loading" /> : null}
-//       <WorkoutCart />
-//       </>
-// )
+                    <button
+                        disabled={!cart.find((p) => p._id === currentExercise._id)}
+                        onClick={removeFromCart}
+                    >
+                        Remove from My Workout Plan
+                    </button>
+                </div>
+            ) : null}
+            {loading ? <img src={spinner} alt="loading" /> : null}
+            <WorkoutCart />
+        </>
+    );
 }
 
 export default Detail;
