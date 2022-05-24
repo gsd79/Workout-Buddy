@@ -6,9 +6,6 @@
   "dependencies": {
     "@apollo/client": "^3.5.10",
     "@apollo/react-hooks": "^4.0.0",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.1.1",
-    "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^4.4.1",
     "graphql": "^16.4.0",
     "graphql-tag": "^2.12.6",
@@ -16,8 +13,10 @@
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "5.0.1",
+    "react-tabs": "^4.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

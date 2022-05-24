@@ -1,41 +1,70 @@
-// import React from "react";
-// import { Redirect, useParams } from 'react-router-dom';
-// import { QUERY_USER } from '../utils/queries';
-// import { useQuery, useMutation } from '@apollo/client';
-// import Auth from '../utils/auth';
-// import './Styles/Pages.css';
+// react imports
+import React from "react";
+import {  useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+
+// functionality variables/queries/mutations
+import SavedWorkouts from '../pages/SavedWorkouts';
+
+import Auth from "../utils/auth";
+
+// in future {ADD_FRIEND, ADD_LOG, ADD_PROGRESS, ADD_PLAYLIST}
 
 
-// const Profile = (props) => {
-//     const { username: userParam } = useParams();
-//     const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-//         variables: { username: userParam }
-//     });
-//     const user = data?.me || data?.user || {};
+import "./Styles/Profile.css";
 
-//     if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-//         return <Redirect to="/profile"/>;
-//     }
+const Profile = () => {
+    const user = Auth.getProfile();
 
-//     if (loading) {
-//         return <div>Loading...</div>;
-//     }
+    console.log (user);
 
-//     // if (!user?.username) {
-//     //     return (
-//     //         <h4>
-//     //             You need to be logged in to see this. Use the navigation links above to
-//     //             sign up or log in!
-//     //         </h4>
-//     //     );
-    
-//     return (
-//         <div className="profile-wrapper">
-//             <h1>Welcome Back,{userParam `${user.username}`}</h1>
-//         </div>
+    return (
+        <div className="profile-wrapper">
+            <div className="profile-contain">
+                <h1>Your Profile </h1>
+                <div className="profile-nav">
+                    <Tabs>
+                        <TabList>
+                            <Tab>Your Saved Workouts</Tab>
+                            <Tab>Edit Your Profile</Tab>
+                            <Tab>Goals</Tab>
+                            <Tab>Log</Tab>
+                            <Tab>Friends</Tab>
+                        </TabList>
 
-//     );
-// }
-// export default Profile;
+                        <TabPanel> 
+                            {/* Saved Workouts to appear here */}
+                            <SavedWorkouts
+                                user={user.data}
+                                />
+                            <Link as={Link} to= "/plans">
+                                <button className="add-workout">Add A Workout</button>
+                            </Link>
+                    
+                                
+                            {/* //button prompt for adding new empty workout -- will be redirected to 'Build A Workout'   */}
+                        </TabPanel>
+                        <TabPanel>
+                            <h2> Edit Profile Coming Soon!</h2>
+                        </TabPanel>
+                        <TabPanel>
+                            <h2>Goal Setting Coming Soon!</h2>
+                        </TabPanel>
+                        <TabPanel>
+                            <h2>Logs Coming Soon!</h2>
+                        </TabPanel>
+                        <TabPanel>
+                            <h2>Social Coming Soon!</h2>
+                        </TabPanel>
+                    </Tabs>
+                </div>
+            </div>
+            
+        </div >
+    );
+    }
 
 
+export default Profile;

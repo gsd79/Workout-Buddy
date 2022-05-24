@@ -3,9 +3,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Nav, Modal, Tab } from "react-bootstrap";
 import SignUpForm from "../pages/SignupForm";
-import './Styles/Pages.css';
 
-
+import "./Styles/Pages.css";
 
 const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -13,16 +12,16 @@ const HomePage = () => {
     <>
       <div className="wrapper">
         <div className="jumbotron-home">
-          <h1>WORKOUT <span class="stroke-home">BUDDY</span></h1>
+          <h1>WORKOUT <span className="stroke-home">BUDDY</span></h1>
           <h2>Get Organized. Train Hard. Stay Fit.</h2>
         </div>
         <div className="cta-contain">
-          <Link onClick={() => setShowModal(true)}>
+          <Nav.Link onClick={() => setShowModal(true)}>
             <button>Get Started Today</button>
-          </Link>
+          </Nav.Link>
         </div>
       </div>
-          {/* Modal for signup */}
+      {/* Modal for signup */}
       <Modal
         size="lg"
         show={showModal}
@@ -41,20 +40,15 @@ const HomePage = () => {
           </Modal.Header>
           <Modal.Body>
             <Tab.Content>
-                <Tab.Pane eventKey="signup">
+              <Tab.Pane eventKey="signup">
                 <SignUpForm handleModalClose={() => setShowModal(false)} />
               </Tab.Pane>
             </Tab.Content>
           </Modal.Body>
         </Tab.Container>
       </Modal>
-
     </>
-
-
-
   );
-}
-
+};
 
 export default HomePage;

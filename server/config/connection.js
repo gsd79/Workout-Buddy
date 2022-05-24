@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+require('dotenv').config();
 
 
-
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout-buddy', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });

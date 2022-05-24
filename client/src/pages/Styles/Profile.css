@@ -1,0 +1,125 @@
+.profile-wrapper {
+  background-image: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.5),
+      rgba(66, 156, 161, 0.4)
+    ),
+    url("../../assets/img/52ec5f76e2a79ad25c1f507aa6ff74e3.jpg");
+  height: 795px;
+  padding-top: 250px;
+}
+
+.profile-contain {
+  background: white;
+  padding: 50px 0 0 60px;
+  width: 90%;
+  height: 80%;
+  margin: 0 auto;
+  border: 10px double white;
+  outline: 8px solid rgba(66, 156, 161, 0.9);
+  background: rgba(66, 156, 161, 0.9);
+}
+
+.profile-contain h1 {
+  font: 2.5em Notable;
+  color: whitesmoke;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: grey;
+  letter-spacing: 2px;
+}
+
+.profile-nav {
+  background: white;
+  width: 90%;
+  height: 70%;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  padding: 10px 0 20px 10px;
+}
+/* list above content showing individual tabs */
+.react-tabs__tab-list {
+  border-bottom: 1px solid #aaa;
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.react-tabs__tab {
+  display: inline-block;
+  border: 1px solid transparent;
+  border-bottom: none;
+  bottom: -1px;
+  position: relative;
+  list-style: none;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.react-tabs__tab--selected {
+  background: #fff;
+  border-color: #aaa;
+  color: black;
+  border-radius: 5px 5px 0 0;
+}
+
+/* .react-tabs__tab--disabled {
+    color: GrayText;
+    cursor: default;
+  } */
+
+.react-tabs__tab:focus {
+  outline: none;
+}
+
+.react-tabs__tab:focus:after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  left: -4px;
+  right: -4px;
+  bottom: -5px;
+  background: #fff;
+}
+
+/* content of tabs */
+.react-tabs__tab-panel {
+  display: none;
+}
+
+.react-tabs__tab-panel--selected {
+  display: block;
+  
+}
+
+
+.add-workout{
+  height: 35px;
+  width: 200px;
+  background:rgba(66, 156, 161) !important;
+  color: white;
+  font: .9em notable;
+  text-align: center;  
+  margin-right: 50px;
+}
+
+.react-tabs__tab-panel{
+  display: flex;
+  flex-flow: row;
+  padding-bottom: 20px;
+}
+
+form .flex-row .justify-center .justify-space-between-md .align-stretch{
+align-items: center;
+background-image: linear-gradient(to top, #F3E7E9 0, #E3EEFF 99%, #E3EEFF 100%);
+box-sizing: border-box;
+color: #272F32;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+font-family: Karla, sans-serif;
+justify-content: flex-end;
+line-height: 24px;
+text-align: left;
+width: 40%;
+padding: 0 0 0 0px;
+margin: 0 0 0 300px;
+}

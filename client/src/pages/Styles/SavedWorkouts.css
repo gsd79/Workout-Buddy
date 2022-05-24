@@ -1,0 +1,37 @@
+div.card-body {
+    width: max-content;
+    height: 50px;
+    background-image: linear-gradient(161.15deg, #28a2b6 12.73%, #4cb879 72.95%);
+}
+
+div.container {
+    overflow: auto;
+    height: 180px !important;
+    margin-right: 400px;
+}
+
+.button {   
+    text-align: center;
+    font-size: .8em;
+    }
+
+.profile-flex{
+    
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: column nowrap;
+}
+
+.profile-flex h3{
+    font: 1em Notable;
+    
+    height: 30px !important;
+    width: 400px;
+    letter-spacing: 1px;
+    display:inline;
+}
+
+h2{
+    border-bottom: 2px solid #429ca1;
+    margin-bottom: -15px;
+}
