@@ -1,5 +1,5 @@
 import React from "react";
-import {Container} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Auth from "../utils/auth";
 
 
@@ -83,18 +83,18 @@ const SavedWorkouts = () => {
   return (
     <>
       <Container>
-
         {<h2>
           {workouts.length > 0 ? `Viewing ${workouts.length} saved ${workouts.length === 1 ? "workout" : "workouts"}` : "You have no saved workouts (you should change that)"}
         </h2>}
+
         {workouts.length > 0 ?
 
           <div className="profile-flex">
             {workouts.map(workout => (
               <div key={workout._id} item={workout} border="dark">
-                
-                  <h3>{workout.name} <button className="button" onClick={() => handleDeleteWorkout(workout._id)}> X</button></h3>
-                  
+
+                <h3>{workout.name} <button className="button" onClick={() => handleDeleteWorkout(workout._id)}> X</button></h3>
+
               </div>
             ))}
           </div>

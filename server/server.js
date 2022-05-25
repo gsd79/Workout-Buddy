@@ -4,6 +4,7 @@ const path = require("path");
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
 const { authMiddleware } = require("./utils/auth");
+require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -15,16 +16,16 @@ const startServer = async () => {
   });
   await server.start();
   server.applyMiddleware({ app });
-  console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+  // console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
 };
 
 startServer();
 
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // // Serve up static assets
-app.use('/images', express.static(path.join(__dirname, '../client/images')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
@@ -33,6 +34,7 @@ if (process.env.NODE_ENV === 'production') {
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 // });
+
 
 db.once("open", () => {
   app.listen(PORT, () => {

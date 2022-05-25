@@ -1,9 +1,9 @@
 import React from "react";
 import { ReactDOM } from "react-dom";
 
-const exercises = [];
 
 function App() {
+  const exercises = [];
   const [searchTerm, setSearchTerm] = React.useState("");
   const [searchResults, setSearchResults] = React.useState([]);
   const handleChange = (e) => {

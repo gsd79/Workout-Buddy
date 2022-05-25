@@ -18,7 +18,7 @@ db.once("open", async () => {
   await Exercise.deleteMany();
   const workouts = await Exercise.insertMany([
     {
-      bodyPart: categories[0]._id,
+      bodyPart: "waist",
       equipment: "body weight",
       gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0001.gif",
       name: "3/4 sit-up",
@@ -27,7 +27,7 @@ db.once("open", async () => {
     },
 
     {
-      bodyPart: categories[0]._id,
+      bodyPart: "waist",
       equipment: "body weight",
       gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0002.gif",
       name: "45° side bend",
@@ -36,7 +36,7 @@ db.once("open", async () => {
     },
 
     {
-      bodyPart: categories[0]._id,
+      bodyPart: "waist",
       equipment: "body weight",
       gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0003.gif",
       category: categories[0]._id,
@@ -45,7 +45,7 @@ db.once("open", async () => {
     },
 
     {
-      bodyPart: categories[1]._id,
+      bodyPart: "upper legs",
       equipment: "body weight",
       gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/1512.gif",
       id: "1512",
@@ -54,7 +54,7 @@ db.once("open", async () => {
       target: "quads",
     },
     {
-      bodyPart: categories[0]._id,
+      bodyPart: "waist",
       equipment: "body weight",
       gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0006.gif",
       id: "0006",
@@ -63,7 +63,7 @@ db.once("open", async () => {
       target: "abs",
     },
     {
-      bodyPart: categories[2]._id,
+      bodyPart: "back",
       equipment: "cable",
       gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0007.gif",
       id: "0007",
@@ -72,7 +72,7 @@ db.once("open", async () => {
       target: "lats",
     },
     {
-      bodyPart: categories[3]._id,
+      bodyPart: "lower legs",
       equipment: "body weight",
       gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/1368.gif",
       id: "1368",
@@ -81,7 +81,7 @@ db.once("open", async () => {
       target: "calves",
     },
     {
-      bodyPart: categories[2]._id,
+      bodyPart: "back",
       equipment: "body weight",
       gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/3293.gif",
       id: "3293",
@@ -90,7 +90,7 @@ db.once("open", async () => {
       target: "lats",
     },
     {
-      bodyPart: categories[4]._id,
+      bodyPart: "chest",
       equipment: "body weight",
       gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/3294.gif",
       id: "3294",
@@ -99,7 +99,7 @@ db.once("open", async () => {
       target: "pectorals",
     },
     {
-      bodyPart: categories[0]._id,
+      bodyPart: "waist",
       equipment: "body weight",
       gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/2355.gif",
       id: "2355",
@@ -108,7 +108,7 @@ db.once("open", async () => {
       target: "abs",
     },
     {
-      bodyPart: categories[0]._id,
+      bodyPart: "waist",
       equipment: "body weight",
       gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/2333.gif",
       id: "2333",
@@ -117,7 +117,7 @@ db.once("open", async () => {
       target: "abs",
     },
     {
-      bodyPart: categories[1]._id,
+      bodyPart: "upper legs",
       equipment: "body weight",
       gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/3214.gif",
       id: "3214",
@@ -126,7 +126,7 @@ db.once("open", async () => {
       target: "glutes",
     },
     {
-      bodyPart: categories[0]._id,
+      bodyPart: "waist",
       equipment: "body weight",
       gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/3204.gif",
       id: "3204",
@@ -136,7 +136,7 @@ db.once("open", async () => {
     },
 
     {
-      bodyPart: categories[4]._id,
+      bodyPart: "chest",
       equipment: "leverage machine",
       gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0009.gif",
       id: "0009",
@@ -145,7 +145,7 @@ db.once("open", async () => {
       target: "pectorals",
     },
     {
-      bodyPart: categories[0]._id,
+      bodyPart: "waist",
       equipment: "assisted",
       gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0011.gif",
       id: "0011",
@@ -154,7 +154,7 @@ db.once("open", async () => {
       target: "abs",
     },
     {
-      bodyPart: categories[0]._id,
+      bodyPart: "waist",
       equipment: "assisted",
       gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0010.gif",
       id: "0010",
@@ -163,7 +163,7 @@ db.once("open", async () => {
       target: "abs",
     },
     {
-      bodyPart: categories[3]._id,
+      bodyPart: "lower legs",
       equipment: "assisted",
       gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/1708.gif",
       id: "1708",
@@ -189,7 +189,7 @@ db.once("open", async () => {
     //     target: "glutes",
     //   },
     //   {
-    //     bodyPart: "categories[0]._id",
+    //     bodyPart: "waist",
     //     equipment: "assisted",
     //     gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0012.gif",
     //     id: "0012",

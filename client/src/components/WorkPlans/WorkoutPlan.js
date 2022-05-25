@@ -14,7 +14,8 @@ function WorkoutPlan() {
   return (
     <>
     <div className="profile-wrapper">
-      <Container>
+      <div className="plan-container">
+        <h2>Create a New Workout:</h2>
         <WorkoutForm/>
         <CategoryMenu
           onFeedback={(categorySelectedId) => {
@@ -23,7 +24,7 @@ function WorkoutPlan() {
         />
         <ExerciseList categoryId={categoryId} />
         <WorkoutCart />
-      </Container>
+      </div>
       </div>
     </>
   );
