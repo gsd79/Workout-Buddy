@@ -3,7 +3,7 @@ import { ReactDOM } from "react-dom";
 
 
 function App() {
-  const exercises = [];
+  const excercises = [];
   const [searchTerm, setSearchTerm] = React.useState("");
   const [searchResults, setSearchResults] = React.useState([]);
   const handleChange = (e) => {
