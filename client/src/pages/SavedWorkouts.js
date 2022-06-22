@@ -9,77 +9,52 @@ import { REMOVE_WORKOUT } from "../utils/mutations";
 import { removeWorkoutId } from "../utils/localStorage"
 import "./Styles/SavedWorkouts.css"
 
-const SavedWorkouts = () => {
-  const { loading, data } = useQuery(QUERY_WORKOUTS);
-  const [removeWorkout] = useMutation(REMOVE_WORKOUT, {
-    update(cache, { data: { removeWorkout } }) {
-      try {
-        // read what's currently in the cache
-        const { workouts } = cache.readQuery({ query: QUERY_WORKOUTS });
-        // remove the deleted workout from the cache
-        cache.writeQuery({
-          query: QUERY_WORKOUTS,
-          data: { workouts: workouts.filter((workout) => workout._id !== removeWorkout._id) },
-        });
-      } catch (err) {
-        console.error(err);
-      }
-    },
-  });
 
-  const handleDelete = (id) => {
-    removeWorkout(id);
-    removeWorkoutId(id);
+
+const SavedWorkouts = (user) => {
+  console.log(user);
+
+  const username = user.user.username;
+  // const userId = user.user._id;
+  // const workoutId = user.workouts.savedWorkouts._id;
+
+  const { data } = useQuery(QUERY_WORKOUTS, {
+    variables: { username }
+  });
+  console.log(username);
+
+  const [removeWorkout] = useMutation(REMOVE_WORKOUT)
+  //  , {
+  //   variables: {userId, workoutId}
+  // });
+
+  console.log(data);
+
+  var workouts = {};
+
+  if (data != null && data.workouts != null) {
+    console.log("HERE");
+    workouts = data.workouts.savedWorkouts;
+  }
+
+  const handleDeleteWorkout = async (workoutId) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      await removeWorkout({
+        variables: { workoutId },
+      });
+
+      removeWorkoutId(workoutId);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (!data) return <p>No data</p>;
-  
-
-// const SavedWorkouts = (user) => {
-//   console.log(user);
-  
-//   const username = user.user.username;
-//   // const userId = user.user._id;
-//   // const workoutId = user.workouts.savedWorkouts._id;
-  
-//   const { data } = useQuery(QUERY_WORKOUTS, {
-//     variables: { username }
-//   });
-//   console.log(username);
-  
-//    const [removeWorkout] = useMutation(REMOVE_WORKOUT)
-//   //  , {
-//   //   variables: {userId, workoutId}
-//   // });
-  
-//   console.log(data);
-
-//   var workouts = {};
-
-//   if (data != null && data.workouts != null) {
-//     console.log("HERE");
-//     workouts = data.workouts.savedWorkouts;
-//   }
-  
-//   const handleDeleteWorkout = async (workoutId) => {
-//       const token = Auth.loggedIn() ? Auth.getToken() : null;
-      
-//           if (!token) {
-//             return false;
-//           }
-  
-//     try {
-//       await removeWorkout({
-//         variables: { workoutId },
-//       });
-      
-//       removeWorkoutId(workoutId);
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   };
-  
   return (
     <>
       <Container>
