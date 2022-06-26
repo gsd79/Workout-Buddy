@@ -95,7 +95,7 @@ function Detail() {
                     
                     <h2><Link to="/plans">← Back to Exercises</Link></h2>
 
-                    <div className="card">
+                    <div className="detail-card">
                     <h2>{currentExercise.name}</h2>
 
                     <p>{currentExercise.description}</p>

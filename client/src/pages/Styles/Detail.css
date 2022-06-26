@@ -33,14 +33,23 @@
     color: black;
     }
 
-    .card {
+    .detail-card {
     margin: auto;
     height: 400px;
     width: 400px;
     margin-bottom: -20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
     }
 
-    .card img {
+    .detail-card img {
     width: 70%;
     height: 70%;
     margin: auto;
