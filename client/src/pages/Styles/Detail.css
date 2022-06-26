@@ -1,0 +1,48 @@
+    .detail-wrapper {
+    background-image: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.5),
+        rgba(66, 156, 161, 0.4)
+        ),
+        url("../../assets/img/workoutdude.jpg");
+    height: 816px;
+    padding-top: 180px;
+    padding-bottom: 50px;
+    }
+
+    .detail-contain {
+    background: white;
+    padding: 20px 0 0 60px;
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    border: 10px double white;
+    outline: 8px solid rgba(66, 156, 161, 0.9);
+    background: rgba(66, 156, 161, 0.9);
+    overflow: auto;
+    }
+
+    
+    .detail-contain h2 {
+        color: black;
+        font: 1.1em Notable;
+        margin-bottom: 10px;
+    }
+
+    .detail-contain a {
+    color: black;
+    }
+
+    .card {
+    margin: auto;
+    height: 400px;
+    width: 400px;
+    margin-bottom: -20px;
+    }
+
+    .card img {
+    width: 70%;
+    height: 70%;
+    margin: auto;
+    margin-bottom: -50px;
+    }

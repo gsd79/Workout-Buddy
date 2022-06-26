@@ -75,7 +75,11 @@ div.plan-section.service-plan.spad {
   margin: 0 auto;
   margin-top: -40px;
   overflow: auto;
-  padding-right: 20px;
+  padding: 20px;
+  border: 10px double white;
+  outline: 8px solid rgba(66, 156, 161, 0.9);
+  background: rgba(66, 156, 161, 0.9);
+  
 }
 
 .plan-container h2{
