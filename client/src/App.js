@@ -1,4 +1,5 @@
 import React from "react";
+import Modal from "./components/Modal/modal";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {
   ApolloClient,

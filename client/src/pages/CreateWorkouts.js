@@ -85,6 +85,35 @@ const SavedWorkouts = () => {
       </Container>
     </>
   );
-        }
+}
+        
+<Modal
+        size="lg"
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        aria-labelledby="signup-modal"
+      >
+        <Tab.Container defaultActiveKey="">
+          <Modal.Header closeButton>
+            <Modal.Title id="signup-modal">
+              <Nav variant="pills">
+                <Nav.Item>
+                  <Nav.Link eventKey="signup">Sign Up</Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Tab.Content>
+              <Tab.Pane eventKey="signup">
+                <SignUpForm handleModalClose={() => setShowModal(false)} />
+              </Tab.Pane>
+            </Tab.Content>
+          </Modal.Body>
+        </Tab.Container>
+      </Modal>
+    </>
+  );
+};
 
 export default SavedWorkouts;
