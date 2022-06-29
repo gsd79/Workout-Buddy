@@ -12,6 +12,7 @@ import {
 import { QUERY_EXERCISES } from "../utils/queries";
 import { idbPromise } from "../utils/helpers";
 import spinner from "../assets/img/spinner.gif";
+import "./Styles/Detail.css";
 
 function Detail() {
     const state = useSelector((state) => {
@@ -87,17 +88,20 @@ function Detail() {
     // check if there is anything in cart then display also.
     return (
         <>
-            {currentExercise && cart ? (
-                <div className="container my-1">
-                    <Link to="/plans">← Back to Exercises</Link>
+    {currentExercise && cart ? (
+        <div className="detail-wrapper">
+            <div className="detail-contain">
 
+                    
+                    <h2><Link to="/plans">← Back to Exercises</Link></h2>
+
+                    <div className="detail-card">
                     <h2>{currentExercise.name}</h2>
 
                     <p>{currentExercise.description}</p>
 
                     <p>
-                        <strong>Exercise:</strong>
-                        <br></br>
+                        <strong>Target:</strong>                        
                         {currentExercise.target} <br></br>
                     </p>
 
@@ -108,14 +112,18 @@ function Detail() {
                     <br></br>
                     <br></br>
 
-                    <button
+                    {/* <button
                         disabled={!cart.find((p) => p._id === currentExercise._id)}
                         onClick={removeFromCart}
-                    >
+                        >
                         Remove from My Workout Plan
-                    </button>
+                    </button> */}
+
+                    </div>
                 </div>
-            ) : null}
+            </div>            
+        
+        ) : null}
             {loading ? <img src={spinner} alt="loading" /> : null}
             <WorkoutCart />
         </>
