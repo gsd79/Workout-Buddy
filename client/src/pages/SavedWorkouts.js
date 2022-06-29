@@ -49,7 +49,7 @@ const SavedWorkouts = (user) => {
         variables: { workoutId },
       });
 
-      removeWorkoutId(workoutId);
+      removeWorkout(workoutId);
     } catch (err) {
       console.error(err);
     }
@@ -68,7 +68,7 @@ const SavedWorkouts = (user) => {
             {workouts.map(workout => (
               <div key={workout._id} item={workout} border="dark">
 
-                <h3>{workout.name} <button className="button" onClick={() => handleDeleteWorkout(workout._id)}> X</button></h3>
+                <h3>{workout.name} <button className="button" onClick={() => handleDeleteWorkout()}> X</button></h3>
 
               </div>
             ))}

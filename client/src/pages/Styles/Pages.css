@@ -322,8 +322,9 @@ div#root > div > div > div:nth-child(4) > div > div > h3 {
 	text-align: center;
 }
 div#workout-name > h3 {
-	color: #fbfbfb;
+	color: black;
 	text-align: center;
+	margin-top: 40px;
 }
 div#root > div > div > div:nth-child(4) {
 	background-color: initial;
