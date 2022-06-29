@@ -23,15 +23,15 @@
 import React from "react";
 // import axios from "axios";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "",
-      email: "",
-      message: "",
-    };
-  }
+// class App extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       name: "",
+//       email: "",
+//       message: "",
+//     };
+//   }
 
   // handleSubmit(e) {
   //   e.preventDefault();
@@ -53,7 +53,7 @@ class App extends React.Component {
   //     this.setState({name: ‘’, email: ‘’, message: ‘’})
   //   }
 
-  render() {
+  const Contact = () => {
     return (
       <div className="App">
         <form
@@ -98,19 +98,19 @@ class App extends React.Component {
         </form>
       </div>
     );
-  }
 
-  onNameChange(event) {
-    this.setState({ name: event.target.value });
-  }
 
-  onEmailChange(event) {
-    this.setState({ email: event.target.value });
-  }
+  // onNameChange(event) {
+  //   this.setState({ name: event.target.value });
+  // }
 
-  onMessageChange(event) {
-    this.setState({ message: event.target.value });
-  }
+  // onEmailChange(event) {
+  //   this.setState({ email: event.target.value });
+  // }
+
+  // onMessageChange(event) {
+  //   this.setState({ message: event.target.value });
+  // }
 }
 
-export default App;
+export default Contact;
