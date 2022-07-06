@@ -50,14 +50,14 @@ const CartItem = ({ item }) => {
         <div>
           Target: {item.target}
         </div>
-        <div>
+        {/* <div>
           <span>Reps:</span>
           <input
             type="number"
             placeholder="1"
             value={item.addingEquipment}
             onChange={onChange}
-          />
+          /> */}
           <span
             role="img"
             aria-label="trash"
@@ -66,7 +66,7 @@ const CartItem = ({ item }) => {
             🗑️
           </span>
         </div>
-      </div>
+      
     </div>
   );
 };

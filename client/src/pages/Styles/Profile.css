@@ -5,7 +5,7 @@
       rgba(66, 156, 161, 0.4)
     ),
     url("../../assets/img/52ec5f76e2a79ad25c1f507aa6ff74e3.jpg");
-  height: 795px;
+  height: 816px;
   padding-top: 250px;
 }
 
@@ -19,6 +19,10 @@
   outline: 8px solid rgba(66, 156, 161, 0.9);
   background: rgba(66, 156, 161, 0.9);
 }
+
+
+
+
 
 .profile-contain h1 {
   font: 2.5em Notable;

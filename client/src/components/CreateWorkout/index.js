@@ -7,6 +7,7 @@ import SavedWorkouts from "../../pages/SavedWorkouts";
 const CreateWorkout = () => {
   const [name, setText] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
+  
   const [addWorkout, { error }] = useMutation(ADD_WORKOUT, {
     update(cache, { data: { addWorkout } }) {
       // read what's currently in the cache

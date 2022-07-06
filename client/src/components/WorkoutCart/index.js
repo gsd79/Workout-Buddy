@@ -80,15 +80,8 @@ const Cart = () => {
 
           <section id="cart-add" className="section-p1">
             <div id="workout-name">
-              <h3>Enter Workout Name</h3>
-              <div>
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder="Name your workout"
-                ></input>
-              </div>
+              <h3>Recently Added</h3>
+              
             </div>
           </section>
 
@@ -97,21 +90,18 @@ const Cart = () => {
               {state.cart.map((item) => (
                 <WorkoutCartItem key={item._id} item={item} />
               ))}
-              <div className="flex-row space-between">
+              {/* <div className="flex-row space-between">
                 {Auth.loggedIn() ? (
                   <button onClick={submitWorkout}>Save Workout</button>
                 ) : (
                   <span>(log in to add them in your profile)</span>
                 )}
-              </div>
+              </div> */}
             </div>
           ) : (
-            <h3>
-              <span role="img" aria-label="shocked">
-                😱
-              </span>
-              You haven't added anything to your Workout Plan yet!
-            </h3>
+            <h4>
+              You haven't added anything recently! Click on an exercise to add. 
+            </h4>
           )}
         </div>
       </Container>

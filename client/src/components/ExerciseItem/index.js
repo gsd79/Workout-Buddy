@@ -53,7 +53,7 @@ function ExerciseItem(item) {
         </div>
         <span>{target}</span>
       </div>
-      <button onClick={addToCart}>Add to my workouts</button>
+      <button onClick={addToCart}>Add to a workout</button>
     </div>
   );
 }
